@@ -44,7 +44,8 @@ logs/
 vectorstore/
 
 # Data files (optional - uncomment if you don't want to commit PDFs)
-# data/*.pdf
+data/*.pdf
+
 
 # OS
 .DS_Store
@@ -73,3 +74,7 @@ promptfoo-*.json
 redteam-*.json
 *.promptfoo.json
 
+# Giskard test results (ignore generated results, keep test code)
+tests/giskard/results/
+tests/giskard/test_data/
+*.giskard.json
