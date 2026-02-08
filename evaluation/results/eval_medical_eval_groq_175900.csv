@@ -1,0 +1,59 @@
+inputs.query,outputs.output,error,reference.category,reference.expected_keywords,feedback.answer_relevance,feedback.keyword_presence,feedback.response_length,feedback.no_error,execution_time,example_id,id
+What are the complications of untreated diabetes?,"According to the provided documents, the complications of untreated diabetes include:
+
+1. Renal (kidney) failure
+2. Heart disease
+3. Stroke
+4. Blindness
+5. Infected and difficult to treat wounds, which can lead to the need for amputation of toes, feet, or legs due to severe infection.
+6. Kidney failure, which may require kidney dialysis or a kidney transplant.
+7. Babies born to diabetic mothers have an increased risk of complications.",,medical_complications,"['complications', 'kidney', 'nerve', 'eye', 'foot']",1.0,0.4,1.0,1.0,1.133643,,019c28a0-ae40-7c01-b589-59754da322d3
+What are the key features of Max Life Smart Secure Plus?,"Based on the provided context, the key features of Max Life Smart Secure Plus Plan are not explicitly mentioned. However, I can provide you with the content of the ""Key Feature Document"" which is mentioned in the metadata of the documents.
+
+The ""Key Feature Document"" content from the first document (id='7fdc2aa7-a80d-47ce-9815-e5bb70be14cf') is:
+
+Key Feature Document for Max Life Smart Secure Plus Plan
+- -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- -- - -- - -- - -- - -- - -- - -- -- - --
+Introduction This document is the summary of important points in your policy. You must read this to understand your policy
+better.
+
+Unfortunately, the actual key features of the Max Life Smart Secure Plus Plan are not provided in this content. The second document (id='6ad396d9-47c8-43b0-b488-eab52c128cf6') also contains the same content, which does not provide any specific key features of the plan.
+
+However, the third document (id='e3ee8e1a-a9b3-4bb1-8b26-caf5ce0513ba') contains some information about the plan, but it seems to be more of a policy preamble rather than a key feature document.
+
+To get the actual key features of the Max Life Smart Secure Plus Plan, I would recommend checking the policy documents or contacting the insurance company directly.",,policy_features,"['Max Life', 'Smart Secure Plus', 'features', 'benefits']",1.0,0.75,1.0,1.0,0.757149,,019c28a0-b2c3-7720-9ebe-6bd9ad700198
+What is the relationship between diabetes and heart disease?,"According to the provided context, there is a serious relationship between diabetes and heart disease. The documents mention that:
+
+- Diabetes mellitus increases the risk of developing coronary artery disease significantly.
+- More than 80% of diabetics die of some type of heart or blood vessel disease.
+- The risk of heart attack or stroke is several times higher for people with diabetes, high cholesterol, or high blood pressure.
+
+Additionally, the context states that diabetes can lead to serious health complications, including heart disease, as a result of the disease itself or as a consequence of the treatment (such as daily injections of insulin).",,medical_relationship,"['diabetes', 'heart', 'cardiovascular', 'risk']",1.0,0.75,1.0,1.0,0.444965,,019c28a0-b5bf-7383-aab0-3f8d39a7d607
+When did Padmini Meher get vaccinated?,"Based on the provided context, Padmini Meher got vaccinated twice. 
+
+Her first dose was administered on 02 Apr 2021 (Batch no. 4120Z010), and her second dose was administered on 18 Jun 2021 (Batch no. 4121Z097).",,personal_data_query,"['Padmini Meher', 'vaccination', 'date']",1.0,0.3333333333333333,1.0,1.0,0.308794,,019c28a0-b782-7ee2-b9fc-a1dee24982c2
+Tell me about policy number 146382023,"I couldn't find any information about policy number 146382023 in the provided context. The context appears to be a collection of PDF documents, but none of them seem to contain information about a specific policy number. If you could provide more context or information about where you found this policy number, I may be able to help you better.",,policy_query,"['policy', 'insurance', 'coverage']",1.0,0.3333333333333333,1.0,1.0,0.369989,,019c28a0-b8bf-7f33-8872-e3a6717cb262
+How is diabetes treated?,"According to the provided documents, diabetes is treated in several ways:
+
+1. Changes in diet: This is a part of managing the condition to keep blood glucose within a normal range.
+2. Oral medications: Medications such as metformin, acarbose, and troglitizone are available to treat diabetes. The choice of medication depends on the individual patient profile.
+3. Daily injections of insulin: In some cases, patients may need daily injections of insulin to manage their blood glucose levels.
+
+Additionally, treatment of diabetes also focuses on careful monitoring of diet, exercise, and blood glucose levels to prevent the development of long-term complications.",,medical_treatment,"['insulin', 'medication', 'diet', 'exercise', 'lifestyle']",1.0,0.8,1.0,1.0,0.451807,,019c28a0-ba37-71f1-9bb2-2a883ea1fa91
+What are the symptoms of diabetes?,"According to the provided documents, the symptoms of diabetes can include:
+
+1. Feeling tired and sick
+2. Frequent urination
+3. Excessive thirst
+4. Excessive hunger
+5. Weight loss
+6. Ketoacidosis (a condition due to starvation or)
+7. Lethargy
+8. Slow wound healing
+9. Urinary tract infections
+10. Gum disease
+11. Blurred vision
+12. Sudden weight loss
+
+Note that some of these symptoms may be more common in certain types of diabetes, such as Type II diabetes, or in specific age groups, such as children or adults over 40.",,medical_symptoms,"['thirst', 'urination', 'hunger', 'fatigue', 'weight']",1.0,0.8,1.0,1.0,7.669122,,019c28a0-bc02-7e12-856f-ede82fe61db4
+What is diabetes?,"According to the provided context, diabetes mellitus is a chronic disease that causes serious health complications. It is a condition in which the pancreas no longer produces enough insulin or when cells are unable to absorb glucose from the blood. Symptoms include frequent urination, lethargy, excessive thirst, and hunger.",,medical_definition,"['blood sugar', 'glucose', 'insulin', 'chronic']",1.0,0.75,1.0,1.0,10.588328,,019c28a0-d9ff-7993-a29f-8d0d49e93930

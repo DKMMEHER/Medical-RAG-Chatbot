@@ -1,0 +1,9 @@
+inputs.query,outputs.output,error,reference.category,reference.expected_keywords,feedback.answer_relevance,feedback.keyword_presence,feedback.response_length,feedback.no_error,execution_time,example_id,id
+What are the complications of untreated diabetes?,,,medical_complications,"['complications', 'kidney', 'nerve', 'eye', 'foot']",0.0,0.0,0.3,1.0,8.408288,3b0ca9bd-cec8-463e-b1e9-e59e98e90ae8,019c2283-7bd6-7fc1-9ab5-0fb046577d1e
+What are the key features of Max Life Smart Secure Plus?,,,policy_features,"['Max Life', 'Smart Secure Plus', 'features', 'benefits']",0.0,0.0,0.3,1.0,8.024909,780bd132-59f9-4c33-be0b-4dfea3fc3825,019c2283-9cb2-7da1-9d1d-a52a0d96028c
+What is the relationship between diabetes and heart disease?,,,medical_relationship,"['diabetes', 'heart', 'cardiovascular', 'risk']",0.0,0.0,0.3,1.0,8.141044,b8ddf599-55c8-47dc-a66c-ac8ef1bf9903,019c2283-bc0e-7ef1-8f2d-8ae25af34902
+When did Padmini Meher get vaccinated?,,,personal_data_query,"['Padmini Meher', 'vaccination', 'date']",0.0,0.0,0.3,1.0,7.052426,1b8cbb7e-58b4-4d52-aac5-4091276663d5,019c2283-dbde-7471-ac46-1d70edc7315e
+Tell me about policy number 146382023,,,policy_query,"['policy', 'insurance', 'coverage']",0.0,0.0,0.3,1.0,7.007738,e842fe31-6014-443a-a4fa-5454a440206e,019c2283-f76d-7162-82d4-dd4a4c678223
+How is diabetes treated?,,,medical_treatment,"['insulin', 'medication', 'diet', 'exercise', 'lifestyle']",0.0,0.0,0.3,1.0,8.19673,982580fd-76a9-4201-b233-1abf25d1426f,019c2284-12cf-7673-8071-fc5a1b6c4f5a
+What are the symptoms of diabetes?,,,medical_symptoms,"['thirst', 'urination', 'hunger', 'fatigue', 'weight']",0.0,0.0,0.3,1.0,7.381489,2290b130-1c6a-4174-b2bf-33bd98b52ce8,019c2284-32d8-7182-a633-91872a8a8cb8
+What is diabetes?,,,medical_definition,"['blood sugar', 'glucose', 'insulin', 'chronic']",0.0,0.0,0.3,1.0,7.325205,5738f08e-f302-43ce-adee-d78144b1bb5e,019c2284-4fb0-7042-9806-cf91eff64481

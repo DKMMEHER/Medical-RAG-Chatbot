@@ -1,0 +1,57 @@
+inputs.query,outputs.output,error,reference.category,reference.expected_keywords,feedback.answer_relevance,feedback.keyword_presence,feedback.response_length,feedback.no_error,execution_time,example_id,id
+What are the complications of untreated diabetes?,"According to the provided context, the complications of untreated diabetes include:
+
+1. Renal (kidney) failure
+2. Heart disease
+3. Stroke
+4. Blindness
+5. Infection of the feet or legs, which can lead to the need for amputation
+6. Kidney failure, which may require kidney dialysis or a kidney transplant
+7. Babies born to diabetic mothers have an increased risk of complications, but it's not specified what those complications are.
+
+It's worth noting that the context also mentions that diabetes can lead to ""serious health complications,"" but it doesn't specify what those complications are. However, the above list includes the specific complications mentioned in the provided text.",,medical_complications,"['complications', 'kidney', 'nerve', 'eye', 'foot']",1.0,0.4,1.0,1.0,1.014722,3b0ca9bd-cec8-463e-b1e9-e59e98e90ae8,019c2265-f4df-7ad1-8baf-4ae94f1f19eb
+What are the key features of Max Life Smart Secure Plus?,"Based on the provided context, I can see that there are two documents that mention the ""Max Life Smart Secure Plus Plan"". 
+
+Document(id='697c420c-7930-477d-aa4b-33c2cd90e3ed', metadata={'producer': 'iText 2.0.1 (by lowagie.com); modified using iText® 7.1.15-SNAPSHOT ©2000-2021 iText Group NV (AGPL-version)', 'creator': 'PyPDF', 'creationdate': '2025-09-03T10:15:37+05:30', 'moddate': '2025-09-03T10:15:37+05:30', 'source': 'data\\TERM INSURANCE .pdf', 'total_pages': 56, 'page': 2, 'page_label': '3'}, page_content='Key Feature Document for Max Life Smart Secure Plus Plan \n- -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- -- - -- - -- - -- - -- - -- - -- -- - --\nIntroduction This document is the summary of important points in your policy. You must read this to understand your policy\nbetter.')
+
+Document(id='3d9bb90e-1333-464c-a8b1-68dc36af4496', metadata={'producer': 'PDFium', 'creator': 'PDFium', 'creationdate': 'D:20250903101858', 'source': 'data\\Term Insurance_Dhirendra Meher.pdf', 'total_pages': 56, 'page': 2, 'page_label': '3'}, page_content='Key Feature Document for Max Life Smart Secure Plus Plan \n- -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- - -- -- - -- - -- - -- - -- - -- - -- -- - --\nIntroduction This document is the",,policy_features,"['Max Life', 'Smart Secure Plus', 'features', 'benefits']",1.0,0.5,1.0,1.0,0.991186,780bd132-59f9-4c33-be0b-4dfea3fc3825,019c2265-f8d9-7cb2-b1a8-527ce49ac226
+What is the relationship between diabetes and heart disease?,"The relationship between diabetes and heart disease is that the risk of developing coronary artery disease is seriously increased for diabetics. In fact, more than 80% of diabetics die of some type of heart or blood vessel disease. Additionally, diabetes mellitus is a chronic disease that causes serious health complications, including heart disease.",,medical_relationship,"['diabetes', 'heart', 'cardiovascular', 'risk']",1.0,0.75,1.0,1.0,0.301761,b8ddf599-55c8-47dc-a66c-ac8ef1bf9903,019c2265-fcbb-7220-bc2b-daae1d99c296
+When did Padmini Meher get vaccinated?,"Based on the provided context, Padmini Meher received two doses of the COVID-19 vaccine. 
+
+For the 1st dose:
+- Date: 02 Apr 2021
+- Batch number: 4120Z010
+- Date range for the vaccine to be effective: Between 25 Jun 2021 and 23 Jul 2021
+
+For the 2nd dose:
+- Date: 18 Jun 2021
+- Batch number: 4121Z097",,personal_data_query,"['Padmini Meher', 'vaccination', 'date']",1.0,0.6666666666666666,1.0,1.0,0.394204,1b8cbb7e-58b4-4d52-aac5-4091276663d5,019c2265-fdee-7320-9040-9936ea07d5e9
+Tell me about policy number 146382023,"I couldn't find any information about policy number 146382023 in the provided context. The context appears to be related to insurance policy documents, but policy number 146382023 is not mentioned in any of the documents. If you can provide more information or context about the policy number, I may be able to help you better.",,policy_query,"['policy', 'insurance', 'coverage']",1.0,0.6666666666666666,1.0,1.0,0.36573,e842fe31-6014-443a-a4fa-5454a440206e,019c2265-ff80-7a21-b214-e4ad66022020
+How is diabetes treated?,"Diabetes mellitus is a chronic disease that can be managed to allow patients to live a relatively normal life. The treatment focuses on two main goals: keeping blood glucose within a normal range and preventing the development of long-term complications.
+
+The treatment options for diabetes include:
+
+1. Changes in diet
+2. Oral medications (such as metformin, acarbose, and troglitizone)
+3. Daily injections of insulin (in some cases)
+
+Additionally, patients may use a device to monitor their blood glucose levels, testing them several times a day to adjust their doses of insulin as needed.
+
+It's worth noting that careful monitoring of diet, exercise, and blood glucose levels is also an essential part of managing diabetes.",,medical_treatment,"['insulin', 'medication', 'diet', 'exercise', 'lifestyle']",1.0,0.8,1.0,1.0,0.445718,982580fd-76a9-4201-b233-1abf25d1426f,019c2266-00f0-7ec2-a503-179d3267e612
+What are the symptoms of diabetes?,"The symptoms of diabetes can include:
+
+- Feeling tired and sick
+- Frequent urination
+- Excessive thirst
+- Excessive hunger
+- Weight loss
+- Ketoacidosis (in severe cases)
+- Lethargy (extreme tiredness)
+- Sudden weight loss
+- Slow wound healing
+- Urinary tract infections
+- Gum disease
+- Blurred vision
+
+These symptoms can develop suddenly or gradually, depending on the type of diabetes and the individual's overall health.",,medical_symptoms,"['thirst', 'urination', 'hunger', 'fatigue', 'weight']",1.0,0.8,1.0,1.0,8.647762,2290b130-1c6a-4174-b2bf-33bd98b52ce8,019c2266-02b0-7d41-b36a-384235e4144f
+What is diabetes?,"Diabetes mellitus is a chronic disease that causes serious health complications, including renal failure, heart disease, stroke, and blindness. It's characterized by either the pancreas no longer producing enough insulin or the cells of the body not being able to absorb glucose from the blood.",,medical_definition,"['blood sugar', 'glucose', 'insulin', 'chronic']",1.0,0.75,1.0,1.0,10.702016,5738f08e-f302-43ce-adee-d78144b1bb5e,019c2266-247c-7ff0-a9cd-259cd727d6a7

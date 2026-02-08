@@ -1,0 +1,250 @@
+# RAG System Configuration
+# Switch between different LLMs by changing the 'active_llm' value
+
+# Active LLM for answer generation (can be any LLM)
+active_llm: "groq"
+
+# Active LLM for RAGAS evaluation (MUST be "openai" for RAGAS v0.4.3)
+# See RAGAS_LIMITATION.md for details
+evaluation_llm: "openai"
+
+# LLM Configurations
+llms:
+  # === FAST & FREE OPTIONS ===
+  
+  groq:
+    provider: "groq"
+    model: "llama-3.1-8b-instant"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "GROQ_API_KEY"
+    description: "Fast inference, 6000 TPM free tier"
+  
+  groq_mixtral:
+    provider: "groq"
+    model: "mixtral-8x7b-32768"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "GROQ_API_KEY"
+    description: "Groq Mixtral, larger context window (32k tokens)"
+  
+  groq_llama_70b:
+    provider: "groq"
+    model: "llama-3.1-70b-versatile"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "GROQ_API_KEY"
+    description: "Groq Llama 70B, best quality on Groq"
+  
+  # === GOOGLE OPTIONS ===
+  
+  gemini:
+    provider: "google"
+    model: "gemini-3-pro-preview"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "GEMINI_API_KEY"
+    description: "gemini-3-pro-preview, paid but cheap ($0.15/1M tokens)"
+
+  
+  # === OPENAI OPTIONS ===
+  
+  openai:
+    provider: "openai"
+    model: "gpt-4o-mini"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "OPENAI_API_KEY"
+    description: "OpenAI GPT-4o mini, paid but cheap ($0.15/1M tokens)"
+  
+  openai_gpt4:
+    provider: "openai"
+    model: "gpt-4o"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "OPENAI_API_KEY"
+    description: "OpenAI GPT-4o, best quality, more expensive ($2.50/1M tokens)"
+  
+  # === ANTHROPIC CLAUDE ===
+  
+  claude:
+    provider: "anthropic"
+    model: "claude-3-5-sonnet-20241022"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "ANTHROPIC_API_KEY"
+    description: "Anthropic Claude 3.5 Sonnet, excellent for complex reasoning"
+  
+  claude_haiku:
+    provider: "anthropic"
+    model: "claude-3-5-haiku-20241022"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "ANTHROPIC_API_KEY"
+    description: "Anthropic Claude 3.5 Haiku, fastest and cheapest Claude"
+  
+  # === COHERE ===
+  
+  cohere:
+    provider: "cohere"
+    model: "command-r-plus"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "COHERE_API_KEY"
+    description: "Cohere Command R+, great for RAG, free trial available"
+  
+  cohere_light:
+    provider: "cohere"
+    model: "command-r"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "COHERE_API_KEY"
+    description: "Cohere Command R, faster and cheaper"
+  
+  # === MISTRAL AI ===
+  
+  mistral:
+    provider: "mistral"
+    model: "mistral-large-latest"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "MISTRAL_API_KEY"
+    description: "Mistral Large, top-tier European LLM"
+  
+  mistral_small:
+    provider: "mistral"
+    model: "mistral-small-latest"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "MISTRAL_API_KEY"
+    description: "Mistral Small, cost-effective option"
+  
+  # === TOGETHER AI (Multiple Open Source Models) ===
+  
+  together_llama:
+    provider: "together"
+    model: "meta-llama/Meta-Llama-3.1-8B-Instruct-Turbo"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "TOGETHER_API_KEY"
+    description: "Together AI Llama 3.1, fast inference, $0.18/1M tokens"
+  
+  together_mixtral:
+    provider: "together"
+    model: "mistralai/Mixtral-8x7B-Instruct-v0.1"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "TOGETHER_API_KEY"
+    description: "Together AI Mixtral, good quality, affordable"
+  
+  # === PERPLEXITY ===
+  
+  perplexity:
+    provider: "perplexity"
+    model: "llama-3.1-sonar-large-128k-online"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "PERPLEXITY_API_KEY"
+    description: "Perplexity Sonar, includes web search, $1/1M tokens"
+  
+  # === HUGGINGFACE ===
+  
+  huggingface:
+    provider: "huggingface"
+    model: "gpt2"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: "HUGGINGFACE_API_KEY"
+    description: "HuggingFace Inference API, free tier - GPT-2 (most reliable)"
+  
+  # === LOCAL OPTIONS ===
+  
+  ollama:
+    provider: "ollama"
+    model: "llama3:latest"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: null
+    description: "Local Ollama, 100% free, no rate limits"
+  
+  ollama_phi3:
+    provider: "ollama"
+    model: "phi3:latest"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: null
+    description: "Local Ollama Phi-3, smaller and faster than Llama"
+  
+  ollama_mistral:
+    provider: "ollama"
+    model: "mistral:latest"
+    temperature: 0.5
+    max_tokens: 512
+    api_key_env: null
+    description: "Local Ollama Mistral, good balance of speed and quality"
+
+# Embedding Model Configuration
+# Multiple embedding models for ensemble/hybrid retrieval
+embedding:
+  # Active embedding strategy
+  # Options: "single", "ensemble", "hybrid"
+  strategy: "single"
+  
+  # Primary embedding model (always used)
+  primary:
+    model: "BAAI/bge-base-en-v1.5"
+    provider: "huggingface"
+    dimension: 768
+    device: "cpu"
+    description: "BGE Base - Best open-source embedding model (MTEB: 63.6)"
+  
+  # Secondary embedding models (used in ensemble mode)
+  secondary:
+    - model: "sentence-transformers/all-MiniLM-L6-v2"
+      provider: "huggingface"
+      dimension: 384
+      device: "cpu"
+      weight: 0.3
+      description: "MiniLM - Fast and lightweight (MTEB: 58.8)"
+    
+    - model: "text-embedding-3-small"
+      provider: "openai"
+      dimension: 1536
+      api_key_env: "OPENAI_API_KEY"
+      weight: 0.4
+      description: "OpenAI Embedding - High quality commercial ($0.00002/1K tokens)"
+  
+  # Ensemble weights (must sum to 1.0)
+  # primary: 0.3, secondary[0]: 0.3, secondary[1]: 0.4 = 1.0
+  ensemble_weights:
+    primary: 0.3
+    secondary: [0.3, 0.4]
+  
+  # Legacy single model (for backward compatibility)
+  # Used when strategy: "single"
+  model: "BAAI/bge-base-en-v1.5"
+  device: "cpu"
+
+# Vector Store Configuration
+vectorstore:
+  path: "vectorstore/db_faiss"
+  search_k: 3
+
+# Application Settings
+max_retries: 3
+
+# Evaluation Configuration
+evaluation:
+  test_dataset_path: "evaluation/test_dataset.json"
+  results_dir: "evaluation/results"
+  metrics:
+    - "faithfulness"
+    - "answer_relevancy"
+    - "context_precision"
+    - "context_recall"
+
+# Logging Configuration
+logging:
+  level: "INFO"
+  log_dir: "logs"
+  evaluation_log: "logs/evaluation.log"

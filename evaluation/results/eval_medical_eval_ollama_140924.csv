@@ -1,0 +1,40 @@
+inputs.query,outputs.output,error,reference.category,reference.expected_keywords,feedback.answer_relevance,feedback.keyword_presence,feedback.response_length,feedback.no_error,execution_time,example_id,id
+What are the complications of untreated diabetes?,"Based on the provided context, which appears to be an excerpt from The Gale Encyclopedia of Medicine, Second Edition, I can answer your question.
+
+According to the text, some of the serious health complications that can occur as a result of untreated diabetes include:
+
+* Renal (kidney) failure
+* Heart disease
+* Stroke
+* Blindness
+
+Additionally, it is mentioned that babies born to diabetic mothers have an increased risk of developing certain complications.",,medical_complications,"['complications', 'kidney', 'nerve', 'eye', 'foot']",1.0,0.4,1.0,1.0,10.954962,3b0ca9bd-cec8-463e-b1e9-e59e98e90ae8,019c22a8-1e24-7b52-892e-ca62400f90c5
+What are the key features of Max Life Smart Secure Plus?,"Based on the provided context, it appears that I have access to a document related to the Max Life Smart Secure Plus Plan. According to the page content, one of the documents (id='697c420c-7930-477d-aa4b-33c2cd90e3ed' or id='9cf16987-0259-46c0-8407-70957504dc52') contains the ""Key Feature Document for Max Life Smart Secure Plus Plan"". Unfortunately, this information is not provided within the given context.
+
+However, I can tell you that one of the documents (id='3d9bb90e-1333-464c-a8b1-68dc36af4496' or id='9cf16987-0259-46c0-8407-70957504dc52') contains a preamble for the Max Life Smart Secure Plus Plan, which mentions that it is a ""Non-Linked Non-Participating Individual Pure Risk Premium Life Insurance Plan"" with UIN - 104N118V06.
+
+To provide more specific information about the key features of this plan, I would need access to additional documents or context. If you have any further questions or concerns, please feel free to ask!",,policy_features,"['Max Life', 'Smart Secure Plus', 'features', 'benefits']",1.0,0.75,1.0,1.0,8.178678,780bd132-59f9-4c33-be0b-4dfea3fc3825,019c22a8-48f9-7a41-9a8f-7327ce93ec17
+What is the relationship between diabetes and heart disease?,"According to the provided context, the relationship between diabetes and heart disease is that ""The risk of developing coronary artery disease is seriously increased for diabetics. More than 80% of diabetics die of some type of heart or blood vessel disease."" This suggests that having diabetes significantly increases an individual's risk of developing heart disease.",,medical_relationship,"['diabetes', 'heart', 'cardiovascular', 'risk']",1.0,0.75,1.0,1.0,4.573077,b8ddf599-55c8-47dc-a66c-ac8ef1bf9903,019c22a8-68ef-7342-be28-387ad23089a3
+When did Padmini Meher get vaccinated?,"According to the provided documents, Padmini Meher received her first dose of Covishield on April 2, 2021 (Batch no. 4120Z010), and her second dose on June 18, 2021 (Batch no. 4121Z097).",,personal_data_query,"['Padmini Meher', 'vaccination', 'date']",1.0,0.3333333333333333,1.0,1.0,4.571637,1b8cbb7e-58b4-4d52-aac5-4091276663d5,019c22a8-7ad4-7d62-88bb-115b2fe2c755
+Tell me about policy number 146382023,"I apologize, but I don't have any information about a specific policy number ""146382023"" based on the provided context. The documents you shared appear to be insurance policies or summaries, but they do not contain any information about a specific policy with that number. If you could provide more context or clarify which policy you are referring to, I'll do my best to assist you.",,policy_query,"['policy', 'insurance', 'coverage']",1.0,0.6666666666666666,1.0,1.0,4.979801,e842fe31-6014-443a-a4fa-5454a440206e,019c22a8-8cb5-72a2-8a10-f0f73586efe8
+How is diabetes treated?,"According to the provided context, diabetes treatment includes:
+
+* Changes in diet
+* Oral medications
+* In some cases, daily injections of insulin
+
+Additionally, the text mentions that available medications for treating diabetes include metformin, acarbose, and troglitizone. The choice of medication depends on the individual patient profile, and all drugs have side effects that may make them inappropriate for particular patients.
+
+It also notes that some patients may need to use a device to test their blood glucose levels several times a day and adjust their doses of insulin accordingly.
+
+Overall, treatment of diabetes focuses on two goals: keeping blood glucose within normal range and preventing the development of long-term complications. Careful monitoring of diet, exercise, and blood glucose levels is also important.",,medical_treatment,"['insulin', 'medication', 'diet', 'exercise', 'lifestyle']",1.0,0.8,1.0,1.0,6.490411,982580fd-76a9-4201-b233-1abf25d1426f,019c22a8-a030-71c3-a8e4-a49eedf5d3de
+What are the symptoms of diabetes?,"According to the provided context, the symptoms of diabetes can develop suddenly (over days or weeks) in previously healthy children or adolescents, or gradually (over several years) in overweight adults over the age of 40. The classic symptoms include:
+
+* Feeling tired and sick
+* Frequent urination
+* Excessive thirst
+* Excessive hunger
+* Weight loss
+
+Additionally, ketoacidosis can also be a symptom due to starvation or other factors.",,medical_symptoms,"['thirst', 'urination', 'hunger', 'fatigue', 'weight']",1.0,0.8,1.0,1.0,5.135785,2290b130-1c6a-4174-b2bf-33bd98b52ce8,019c22a8-b991-75a1-ac41-44f82e8b213d
+What is diabetes?,"According to the provided context, Diabetes mellitus is a condition in which the pancreas no longer produces enough insulin or when cells are unable to use insulin effectively. Symptoms include frequent urination, lethargy, excessive thirst, and hunger. The treatment includes changes in diet, oral medications, and in some cases, daily injections of insulin.",,medical_definition,"['blood sugar', 'glucose', 'insulin', 'chronic']",1.0,0.25,1.0,1.0,4.617682,5738f08e-f302-43ce-adee-d78144b1bb5e,019c22a8-cda7-72e2-a612-0c1385c650a5
