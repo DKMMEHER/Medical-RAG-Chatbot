@@ -86,3 +86,6 @@ tests/evaluation/results/*.json
 
 # Documentation (internal dev notes, not for GitHub)
 docs/
+
+# Evaluation folder
+evaluation/
