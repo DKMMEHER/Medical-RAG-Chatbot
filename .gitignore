@@ -89,3 +89,6 @@ docs/
 
 # Evaluation folder
 evaluation/
+
+# Example/demo scripts
+examples/
