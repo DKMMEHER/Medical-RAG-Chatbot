@@ -65,3 +65,18 @@ ignore = [
 "src/content_analyzer/pii_detector_presidio.py" = ["F401"]    # Optional presidio import
 
 
+[tool.coverage.run]
+omit = [
+    "src/evaluation/*",                        # Evaluation scripts — not unit-testable
+    "src/content_analyzer/QUICK_START.py",      # Demo/quick-start script
+    "src/content_analyzer/demo.py",             # Demo script
+    "src/content_analyzer/utils.py",            # Standalone utility script
+    "src/multi_embedding.py",                   # Standalone embedding script
+    "src/observability/monitoring.py",          # Monitoring dashboard script
+]
+
+[tool.coverage.report]
+exclude_lines = [
+    "if __name__ == .__main__.:",  # Exclude script entry points
+    "pragma: no cover",
+]
