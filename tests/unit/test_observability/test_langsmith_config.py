@@ -59,15 +59,15 @@ class TestConfigureLangsmith:
 
     def test_configure_langsmith_client_error(self):
         """Returns False when Client instantiation raises an exception"""
+        import importlib
+        import src.observability.langsmith_config as cfg_mod
+
+        importlib.reload(cfg_mod)  # reload BEFORE patching, not inside
+
         with patch(
             "src.observability.langsmith_config.Client",
             side_effect=Exception("Connection error"),
         ):
-            import importlib
-            import src.observability.langsmith_config as cfg_mod
-
-            importlib.reload(cfg_mod)
-
             result = cfg_mod.configure_langsmith(api_key="test-key")
 
         assert result is False
