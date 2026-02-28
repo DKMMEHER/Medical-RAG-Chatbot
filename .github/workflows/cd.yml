@@ -59,3 +59,32 @@ jobs:
           echo "  Date   : $(date '+%Y-%m-%d %H:%M:%S UTC')"
           echo "  Status : All checks passed"
           echo "========================================="
+
+  deploy:
+    name: Deploy to Google Cloud Run
+    needs: delivery
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Authenticate to Google Cloud
+        id: auth
+        uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
+
+      - name: Set up Cloud SDK
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Deploy to Cloud Run
+        run: |
+          gcloud run deploy medical-chatbot \
+            --source . \
+            --project ${{ secrets.GCP_PROJECT }} \
+            --region ${{ secrets.GCP_REGION }} \
+            --port 8080 \
+            --allow-unauthenticated \
+            --set-env-vars="STREAMLIT_SERVER_ENABLE_WEBSOCKET_COMPRESSION=false"
