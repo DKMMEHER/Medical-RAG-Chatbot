@@ -1,6 +1,6 @@
 # 🚀 Giskard Testing Suite - Quick Start Guide
 
-**Date:** 2026-02-08  
+**Date:** 2026-02-08
 **Status:** Comprehensive testing suite ready to use
 
 ---

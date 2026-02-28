@@ -212,10 +212,10 @@ tests/evaluation/results/
 def my_custom_evaluator(run, example):
     """Custom evaluation logic"""
     output = run.outputs.get("output", "")
-    
+
     # Your logic here
     score = 1.0 if condition else 0.0
-    
+
     return {
         "key": "my_evaluator",
         "score": score,

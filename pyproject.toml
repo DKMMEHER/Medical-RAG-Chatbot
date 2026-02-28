@@ -38,6 +38,7 @@ dependencies = [
 
 [dependency-groups]
 dev = [
+    "pre-commit>=4.0.0",
     "pytest>=9.0.2",
     "pytest-cov>=7.0.0",
     "pytest-mock>=3.15.1",
@@ -63,6 +64,7 @@ ignore = [
 "tests/integration/test_observability.py" = ["F401"]          # Optional observability imports
 "src/content_analyzer/ner_detector.py" = ["F401"]             # Optional spacy type import
 "src/content_analyzer/pii_detector_presidio.py" = ["F401"]    # Optional presidio import
+"src/evaluation/*" = ["E722", "F841"]                          # Evaluation scripts — bare except and unused vars acceptable
 
 
 [tool.coverage.run]

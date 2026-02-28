@@ -1,6 +1,6 @@
 # 🧪 Promptfoo Tests
 
-**Location:** `tests/promptfoo/`  
+**Location:** `tests/promptfoo/`
 **Purpose:** Automated testing for Medical Chatbot security, safety, and quality
 
 ---
@@ -8,7 +8,7 @@
 ## 📁 Test Files
 
 ### **1. `promptfooconfig.yaml`** 📘 **COMPREHENSIVE**
-**Tests:** 20+ comprehensive tests  
+**Tests:** 20+ comprehensive tests
 **Purpose:** Full quality & security validation
 
 **What it tests:**
@@ -31,7 +31,7 @@ promptfoo eval -c tests/promptfoo/promptfooconfig.yaml
 ---
 
 ### **2. `promptfoo-redteam.yaml`** 🔴 **SECURITY AUDIT**
-**Tests:** 15+ advanced security attacks  
+**Tests:** 15+ advanced security attacks
 **Purpose:** Adversarial security testing
 
 **What it tests:**
@@ -50,7 +50,7 @@ promptfoo eval -c tests/promptfoo/promptfoo-redteam.yaml
 ---
 
 ### **3. `promptfoo-security-simple.yaml`** 🟢 **QUICK CHECK**
-**Tests:** 10 essential security tests  
+**Tests:** 10 essential security tests
 **Purpose:** Fast daily security validation
 
 **What it tests:**
@@ -203,10 +203,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      
+
       - name: Install Promptfoo
         run: npm install -g promptfoo
-      
+
       - name: Run Security Tests
         env:
           GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}

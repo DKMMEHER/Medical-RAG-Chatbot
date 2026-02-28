@@ -1,0 +1,19 @@
+repos:
+  # Ruff — linting and formatting (replaces flake8, isort, black)
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.9.0
+    hooks:
+      - id: ruff              # lint check
+        args: [--fix]         # auto-fix safe issues
+      - id: ruff-format       # formatting check + auto-format
+
+  # Standard pre-commit hooks — catch common mistakes
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace    # remove trailing spaces
+      - id: end-of-file-fixer      # ensure files end with newline
+      - id: check-yaml             # validate YAML syntax
+      - id: check-toml             # validate TOML syntax
+      - id: check-merge-conflict   # prevent committing merge conflicts
+      - id: check-added-large-files # warn if large files added (>500KB)

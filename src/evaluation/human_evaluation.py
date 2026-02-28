@@ -16,7 +16,6 @@ import streamlit as st
 from datetime import datetime
 from pathlib import Path
 from typing import Dict, List, Optional
-import numpy as np
 from sklearn.metrics import cohen_kappa_score
 
 # Detect project root (where config.yaml is)
@@ -43,8 +42,8 @@ RATING_SCALES = {
             2: "Mostly incorrect",
             3: "Partially correct",
             4: "Mostly correct",
-            5: "Completely correct"
-        }
+            5: "Completely correct",
+        },
     },
     "completeness": {
         "label": "Completeness",
@@ -54,8 +53,8 @@ RATING_SCALES = {
             2: "Missing most key points",
             3: "Covers some key points",
             4: "Covers most key points",
-            5: "Covers all key points"
-        }
+            5: "Covers all key points",
+        },
     },
     "relevance": {
         "label": "Relevance",
@@ -65,8 +64,8 @@ RATING_SCALES = {
             2: "Slightly relevant",
             3: "Moderately relevant",
             4: "Very relevant",
-            5: "Perfectly relevant"
-        }
+            5: "Perfectly relevant",
+        },
     },
     "clarity": {
         "label": "Clarity",
@@ -76,8 +75,8 @@ RATING_SCALES = {
             2: "Somewhat confusing",
             3: "Acceptable clarity",
             4: "Clear",
-            5: "Very clear"
-        }
+            5: "Very clear",
+        },
     },
     "helpfulness": {
         "label": "Helpfulness",
@@ -87,9 +86,9 @@ RATING_SCALES = {
             2: "Slightly helpful",
             3: "Moderately helpful",
             4: "Very helpful",
-            5: "Extremely helpful"
-        }
-    }
+            5: "Extremely helpful",
+        },
+    },
 }
 
 
@@ -101,32 +100,34 @@ def initialize_directories():
 def load_test_cases() -> List[Dict]:
     """Load test cases from the evaluation dataset."""
     test_dataset_path = PROJECT_ROOT / "evaluation" / "test_dataset.json"
-    
+
     if not test_dataset_path.exists():
         st.error(f"Test dataset not found: {test_dataset_path}")
-        st.info("Please make sure you're running this from the project directory and have run an evaluation first.")
+        st.info(
+            "Please make sure you're running this from the project directory and have run an evaluation first."
+        )
         return []
-    
-    with open(test_dataset_path, 'r', encoding='utf-8') as f:
+
+    with open(test_dataset_path, "r", encoding="utf-8") as f:
         return json.load(f)
 
 
 def load_generated_answers() -> Optional[pd.DataFrame]:
     """Load the most recent evaluation results."""
     results_dir = PROJECT_ROOT / "evaluation" / "results"
-    
+
     if not results_dir.exists():
         return None
-    
+
     # Find most recent CSV file
     csv_files = list(results_dir.glob("evaluation_metrics_*.csv"))
     if not csv_files:
         # Try simple results
         csv_files = list(results_dir.glob("simple_results_*.csv"))
-    
+
     if not csv_files:
         return None
-    
+
     latest_file = max(csv_files, key=lambda p: p.stat().st_mtime)
     return pd.read_csv(latest_file)
 
@@ -134,7 +135,7 @@ def load_generated_answers() -> Optional[pd.DataFrame]:
 def load_annotations() -> Dict:
     """Load existing annotations."""
     if os.path.exists(RESULTS_FILE):
-        with open(RESULTS_FILE, 'r', encoding='utf-8') as f:
+        with open(RESULTS_FILE, "r", encoding="utf-8") as f:
             return json.load(f)
     return {"annotations": [], "metadata": {"created": datetime.now().isoformat()}}
 
@@ -142,25 +143,27 @@ def load_annotations() -> Dict:
 def save_annotation(annotation: Dict):
     """Save a new annotation."""
     data = load_annotations()
-    
+
     # Check if this question was already annotated by this annotator
     existing_idx = None
     for idx, ann in enumerate(data["annotations"]):
-        if (ann["question_id"] == annotation["question_id"] and 
-            ann["annotator_id"] == annotation["annotator_id"]):
+        if (
+            ann["question_id"] == annotation["question_id"]
+            and ann["annotator_id"] == annotation["annotator_id"]
+        ):
             existing_idx = idx
             break
-    
+
     if existing_idx is not None:
         # Update existing annotation
         data["annotations"][existing_idx] = annotation
     else:
         # Add new annotation
         data["annotations"].append(annotation)
-    
+
     data["metadata"]["last_updated"] = datetime.now().isoformat()
-    
-    with open(RESULTS_FILE, 'w', encoding='utf-8') as f:
+
+    with open(RESULTS_FILE, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=2, ensure_ascii=False)
 
 
@@ -168,7 +171,7 @@ def calculate_inter_annotator_agreement(annotations: List[Dict]) -> Dict:
     """Calculate inter-annotator agreement using Cohen's Kappa."""
     if len(annotations) < 2:
         return {"error": "Need at least 2 annotators"}
-    
+
     # Group by question
     by_question = {}
     for ann in annotations:
@@ -176,28 +179,28 @@ def calculate_inter_annotator_agreement(annotations: List[Dict]) -> Dict:
         if q_id not in by_question:
             by_question[q_id] = []
         by_question[q_id].append(ann)
-    
+
     # Calculate agreement for each dimension
     agreements = {}
-    
+
     for dimension in RATING_SCALES.keys():
         # Get all pairs of annotators for each question
         all_ratings_a = []
         all_ratings_b = []
-        
+
         for q_id, anns in by_question.items():
             if len(anns) >= 2:
                 # Take first two annotators for simplicity
                 all_ratings_a.append(anns[0]["ratings"][dimension])
                 all_ratings_b.append(anns[1]["ratings"][dimension])
-        
+
         if len(all_ratings_a) > 0:
             kappa = cohen_kappa_score(all_ratings_a, all_ratings_b)
             agreements[dimension] = {
                 "kappa": round(kappa, 3),
-                "interpretation": interpret_kappa(kappa)
+                "interpretation": interpret_kappa(kappa),
             }
-    
+
     return agreements
 
 
@@ -320,63 +323,63 @@ We may ask you to re-rate some questions to check consistency. This is normal an
 
 If you're unsure about how to rate something, make your best judgment and add a note in the comments field.
 """
-    
-    with open(GUIDELINES_FILE, 'w', encoding='utf-8') as f:
+
+    with open(GUIDELINES_FILE, "w", encoding="utf-8") as f:
         f.write(guidelines)
 
 
 def main():
     """Main Streamlit application."""
     st.set_page_config(
-        page_title="Human Evaluation - Medical Chatbot",
-        page_icon="📝",
-        layout="wide"
+        page_title="Human Evaluation - Medical Chatbot", page_icon="📝", layout="wide"
     )
-    
+
     # Initialize
     initialize_directories()
     create_guidelines()
-    
+
     # Sidebar
     st.sidebar.title("📝 Human Evaluation")
     st.sidebar.markdown("---")
-    
+
     # Annotator ID
     annotator_id = st.sidebar.text_input(
         "Your Annotator ID",
         value=st.session_state.get("annotator_id", ""),
-        help="Enter a unique identifier (e.g., your name or initials)"
+        help="Enter a unique identifier (e.g., your name or initials)",
     )
-    
+
     if annotator_id:
         st.session_state.annotator_id = annotator_id
-    
+
     # Mode selection
     mode = st.sidebar.radio(
-        "Mode",
-        ["Annotate", "View Results", "Guidelines", "Statistics"]
+        "Mode", ["Annotate", "View Results", "Guidelines", "Statistics"]
     )
-    
+
     st.sidebar.markdown("---")
     st.sidebar.markdown("### Progress")
-    
+
     # Load data
     annotations_data = load_annotations()
     test_cases = load_test_cases()
     generated_answers = load_generated_answers()
-    
+
     if not annotator_id and mode == "Annotate":
         st.warning("⚠️ Please enter your Annotator ID in the sidebar to begin.")
         return
-    
+
     # Show progress
     if mode == "Annotate":
-        user_annotations = [a for a in annotations_data["annotations"] 
-                          if a["annotator_id"] == annotator_id]
+        user_annotations = [
+            a
+            for a in annotations_data["annotations"]
+            if a["annotator_id"] == annotator_id
+        ]
         progress = len(user_annotations) / len(test_cases) if test_cases else 0
         st.sidebar.progress(progress)
         st.sidebar.write(f"{len(user_annotations)}/{len(test_cases)} completed")
-    
+
     # Main content
     if mode == "Annotate":
         show_annotation_interface(test_cases, generated_answers, annotations_data)
@@ -391,53 +394,58 @@ def main():
 def show_annotation_interface(test_cases, generated_answers, annotations_data):
     """Show the annotation interface."""
     st.title("📝 Answer Annotation")
-    
+
     if not test_cases:
         st.error("No test cases found. Please run evaluation first.")
         return
-    
+
     # Question selector
     question_ids = list(range(len(test_cases)))
-    
+
     # Find next unannotated question
     annotator_id = st.session_state.annotator_id
-    annotated_ids = {a["question_id"] for a in annotations_data["annotations"] 
-                     if a["annotator_id"] == annotator_id}
-    
+    annotated_ids = {
+        a["question_id"]
+        for a in annotations_data["annotations"]
+        if a["annotator_id"] == annotator_id
+    }
+
     next_unannotated = None
     for qid in question_ids:
         if qid not in annotated_ids:
             next_unannotated = qid
             break
-    
+
     default_idx = next_unannotated if next_unannotated is not None else 0
-    
+
     selected_idx = st.selectbox(
         "Select Question",
         question_ids,
         index=default_idx,
-        format_func=lambda x: f"Question {x+1}" + (" ✅" if x in annotated_ids else "")
+        format_func=lambda x: f"Question {x + 1}"
+        + (" ✅" if x in annotated_ids else ""),
     )
-    
+
     test_case = test_cases[selected_idx]
-    
+
     # Display question and context
     st.markdown("### Question")
     st.info(test_case["question"])
-    
+
     # Get generated answer
     answer = None
     contexts = []
-    
+
     if generated_answers is not None:
         try:
             row = generated_answers.iloc[selected_idx]
             answer = row.get("response", row.get("generated_answer", ""))
-            
+
             # Parse contexts
             contexts_str = row.get("retrieved_contexts", row.get("contexts", ""))
             if isinstance(contexts_str, str):
                 import ast
+
                 try:
                     contexts = ast.literal_eval(contexts_str)
                 except:
@@ -446,76 +454,73 @@ def show_annotation_interface(test_cases, generated_answers, annotations_data):
                 contexts = contexts_str
         except:
             pass
-    
+
     if not answer:
         st.warning("No generated answer found. Please run evaluation first.")
         return
-    
+
     # Display context
     with st.expander("📚 Retrieved Context", expanded=False):
         for i, ctx in enumerate(contexts, 1):
             st.markdown(f"**Context {i}:**")
             st.text(ctx[:500] + "..." if len(ctx) > 500 else ctx)
             st.markdown("---")
-    
+
     # Display answer
     st.markdown("### Generated Answer")
     st.success(answer)
-    
+
     # Display ground truth
     with st.expander("✅ Ground Truth (Reference Answer)", expanded=False):
         st.write(test_case["ground_truth"])
-    
+
     st.markdown("---")
-    
+
     # Rating interface
     st.markdown("### Rate This Answer")
     st.markdown("*Rate each dimension from 1 (worst) to 5 (best)*")
-    
+
     # Load existing annotation if any
     existing_annotation = None
     for ann in annotations_data["annotations"]:
-        if (ann["question_id"] == selected_idx and 
-            ann["annotator_id"] == annotator_id):
+        if ann["question_id"] == selected_idx and ann["annotator_id"] == annotator_id:
             existing_annotation = ann
             break
-    
+
     ratings = {}
     cols = st.columns(2)
-    
+
     for idx, (dim_key, dim_info) in enumerate(RATING_SCALES.items()):
         col = cols[idx % 2]
-        
+
         with col:
             st.markdown(f"**{dim_info['label']}**")
-            st.caption(dim_info['description'])
-            
+            st.caption(dim_info["description"])
+
             default_value = 3
             if existing_annotation:
                 default_value = existing_annotation["ratings"].get(dim_key, 3)
-            
+
             rating = st.radio(
                 f"{dim_key}_rating",
                 options=[1, 2, 3, 4, 5],
                 index=default_value - 1,
                 format_func=lambda x: f"{x} - {dim_info['scale'][x]}",
                 key=f"rating_{dim_key}",
-                label_visibility="collapsed"
+                label_visibility="collapsed",
             )
             ratings[dim_key] = rating
-    
+
     # Comments
     st.markdown("### Additional Comments (Optional)")
     default_comments = existing_annotation["comments"] if existing_annotation else ""
     comments = st.text_area(
-        "Any additional observations or notes?",
-        value=default_comments,
-        height=100
+        "Any additional observations or notes?", value=default_comments, height=100
     )
-    
+
     # Save button
     col1, col2, col3 = st.columns([1, 1, 2])
-    
+
     with col1:
         if st.button("💾 Save Annotation", type="primary", use_container_width=True):
             annotation = {
@@ -524,13 +529,13 @@ def show_annotation_interface(test_cases, generated_answers, annotations_data):
                 "annotator_id": annotator_id,
                 "ratings": ratings,
                 "comments": comments,
-                "timestamp": datetime.now().isoformat()
+                "timestamp": datetime.now().isoformat(),
             }
-            
+
             save_annotation(annotation)
             st.success("✅ Annotation saved!")
             st.rerun()
-    
+
     with col2:
         if selected_idx < len(test_cases) - 1:
             if st.button("Next Question →", use_container_width=True):
@@ -541,42 +546,44 @@ def show_annotation_interface(test_cases, generated_answers, annotations_data):
 def show_results(annotations_data):
     """Show annotation results."""
     st.title("📊 Annotation Results")
-    
+
     if not annotations_data["annotations"]:
         st.info("No annotations yet. Start annotating to see results!")
         return
-    
+
     # Convert to DataFrame
     df = pd.DataFrame(annotations_data["annotations"])
-    
+
     # Summary statistics
     st.markdown("### Summary")
     col1, col2, col3 = st.columns(3)
-    
+
     with col1:
         st.metric("Total Annotations", len(df))
-    
+
     with col2:
         unique_annotators = df["annotator_id"].nunique()
         st.metric("Unique Annotators", unique_annotators)
-    
+
     with col3:
         unique_questions = df["question_id"].nunique()
         st.metric("Questions Annotated", unique_questions)
-    
+
     # Ratings breakdown
     st.markdown("### Average Ratings by Dimension")
-    
+
     # Extract ratings
-    ratings_df = pd.DataFrame([ann["ratings"] for ann in annotations_data["annotations"]])
+    ratings_df = pd.DataFrame(
+        [ann["ratings"] for ann in annotations_data["annotations"]]
+    )
     avg_ratings = ratings_df.mean().sort_values(ascending=False)
-    
+
     # Display as bar chart
     st.bar_chart(avg_ratings)
-    
+
     # Detailed table
     st.markdown("### Detailed Ratings")
-    
+
     for dim in RATING_SCALES.keys():
         col1, col2, col3 = st.columns([2, 1, 1])
         with col1:
@@ -585,28 +592,23 @@ def show_results(annotations_data):
             st.write(f"Avg: {avg_ratings[dim]:.2f}")
         with col3:
             st.write(f"Std: {ratings_df[dim].std():.2f}")
-    
+
     # Show all annotations
     st.markdown("### All Annotations")
     st.dataframe(df, use_container_width=True)
-    
+
     # Export button
     if st.button("📥 Export to CSV"):
         csv = df.to_csv(index=False)
-        st.download_button(
-            "Download CSV",
-            csv,
-            "annotations.csv",
-            "text/csv"
-        )
+        st.download_button("Download CSV", csv, "annotations.csv", "text/csv")
 
 
 def show_guidelines():
     """Show annotation guidelines."""
     st.title("📖 Annotation Guidelines")
-    
+
     if os.path.exists(GUIDELINES_FILE):
-        with open(GUIDELINES_FILE, 'r', encoding='utf-8') as f:
+        with open(GUIDELINES_FILE, "r", encoding="utf-8") as f:
             guidelines = f.read()
         st.markdown(guidelines)
     else:
@@ -616,17 +618,17 @@ def show_guidelines():
 def show_statistics(annotations_data):
     """Show statistical analysis."""
     st.title("📈 Statistical Analysis")
-    
+
     if len(annotations_data["annotations"]) < 2:
         st.info("Need at least 2 annotations to calculate statistics.")
         return
-    
+
     # Inter-annotator agreement
     st.markdown("### Inter-Annotator Agreement (Cohen's Kappa)")
     st.markdown("*Measures how much annotators agree with each other*")
-    
+
     agreements = calculate_inter_annotator_agreement(annotations_data["annotations"])
-    
+
     if "error" in agreements:
         st.warning(agreements["error"])
     else:
@@ -638,16 +640,19 @@ def show_statistics(annotations_data):
                 st.metric("κ", stats["kappa"])
             with col3:
                 st.write(stats["interpretation"])
-    
+
     # Distribution of ratings
     st.markdown("### Rating Distributions")
-    
-    ratings_df = pd.DataFrame([ann["ratings"] for ann in annotations_data["annotations"]])
-    
+
+    ratings_df = pd.DataFrame(
+        [ann["ratings"] for ann in annotations_data["annotations"]]
+    )
+
     for dim in RATING_SCALES.keys():
         st.markdown(f"**{RATING_SCALES[dim]['label']}**")
         dist = ratings_df[dim].value_counts().sort_index()
         st.bar_chart(dist)
+
 
 if __name__ == "__main__":
     main()

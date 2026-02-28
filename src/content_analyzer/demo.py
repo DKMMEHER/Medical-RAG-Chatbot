@@ -183,7 +183,7 @@ def demo_content_sanitization():
     SSN: 123-45-6789
     Job: Software Engineer
     Medical Record: MRN A987654
-    
+
     This damn system is so slow! I hate waiting.
     """
 

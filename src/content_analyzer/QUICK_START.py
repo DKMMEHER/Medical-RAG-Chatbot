@@ -174,17 +174,17 @@ if 'validator' not in st.session_state:
 # In your query processing function:
 def process_user_query(query: str):
     validator = st.session_state.validator
-    
+
     # Validate query
     is_safe, issues = validator.validate(query)
-    
+
     if not is_safe:
         st.error("⚠️ Your query contains sensitive information and cannot be processed")
         with st.expander("See details"):
             for issue in issues:
                 st.write(f"- {issue}")
         return None
-    
+
     # Proceed with RAG pipeline
     # ... retrieve documents ...
     # ... validate documents ...
