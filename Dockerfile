@@ -43,11 +43,14 @@ ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
 ENV STREAMLIT_SERVER_ENABLE_WEBSOCKET_COMPRESSION=false
 
+# GCS bucket name for FAISS persistence (injected by Cloud Run at deploy time)
+ENV GCS_BUCKET_NAME=""
+
 # Run the application
 CMD ["uv", "run", "streamlit", "run", "app.py", \
-     "--server.port=8080", \
-     "--server.address=0.0.0.0", \
-     "--server.headless=true", \
-     "--server.enableCORS=false", \
-     "--server.enableXsrfProtection=false", \
-     "--server.enableWebsocketCompression=false"]
+    "--server.port=8080", \
+    "--server.address=0.0.0.0", \
+    "--server.headless=true", \
+    "--server.enableCORS=false", \
+    "--server.enableXsrfProtection=false", \
+    "--server.enableWebsocketCompression=false"]

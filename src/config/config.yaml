@@ -248,3 +248,11 @@ logging:
   level: "INFO"
   log_dir: "logs"
   evaluation_log: "logs/evaluation.log"
+
+# Google Cloud Storage — FAISS index persistence
+# Set GCS_BUCKET_NAME environment variable to enable GCS storage.
+# Leave GCS_BUCKET_NAME unset for local-only mode (dev/testing).
+gcs:
+  bucket_name_env: "GCS_BUCKET_NAME"  # env var holding the bucket name
+  index_prefix: "faiss-index"          # folder prefix inside the bucket
+  enabled: true                         # set false to force local-only mode

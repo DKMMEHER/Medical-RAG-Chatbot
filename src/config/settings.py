@@ -126,6 +126,22 @@ class Settings:
         """Get max retries for operations"""
         return self.config.get("max_retries", 3)
 
+    @property
+    def gcs_bucket_name(self) -> Optional[str]:
+        """Get GCS bucket name from environment (set GCS_BUCKET_NAME env var)"""
+        return os.getenv("GCS_BUCKET_NAME") or None
+
+    @property
+    def gcs_index_prefix(self) -> str:
+        """Get GCS index prefix from config"""
+        return self.config.get("gcs", {}).get("index_prefix", "faiss-index")
+
+    @property
+    def gcs_enabled(self) -> bool:
+        """True when GCS_BUCKET_NAME is set and GCS is not disabled in config"""
+        cfg_enabled = self.config.get("gcs", {}).get("enabled", True)
+        return bool(self.gcs_bucket_name) and cfg_enabled
+
 
 # Global settings instance
 try:

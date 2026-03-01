@@ -437,6 +437,21 @@ def main():
         print(f"✅ Vector store saved to {DB_FAISS_PATH}")
         print()
 
+        # Step 5: Upload to GCS (if GCS_BUCKET_NAME is configured)
+        from src.storage.gcs_handler import GCSHandler
+
+        gcs = GCSHandler()
+        if gcs.gcs_enabled:
+            print(f"☁️  Step 5: Uploading FAISS index to GCS bucket '{gcs.bucket_name}'...")
+            success = gcs.upload_faiss_index(DB_FAISS_PATH)
+            if success:
+                print(f"✅ Vector store uploaded to GCS: gs://{gcs.bucket_name}/{gcs.index_prefix}/")
+            else:
+                print("⚠️  GCS upload failed — index is saved locally only.")
+        else:
+            print("ℹ️  Step 5: GCS not configured (set GCS_BUCKET_NAME to enable cloud storage).")
+        print()
+
         # Success summary
         print("=" * 60)
         print("✅ SUCCESS! Vector store created successfully")

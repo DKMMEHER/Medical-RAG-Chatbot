@@ -6,6 +6,8 @@ import streamlit as st
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
+from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_community.document_loaders import PyPDFLoader
 
 from dotenv import load_dotenv
 
@@ -15,6 +17,7 @@ from src.utils.exceptions import VectorStoreError, LLMError, ConfigurationError
 from src.config.settings import settings
 from src.model.llm_factory import create_llm
 from src.content_analyzer.output_guardrails import OutputGuardrails
+from src.storage.gcs_handler import GCSHandler
 
 # Import observability modules
 from src.observability import (
@@ -67,54 +70,79 @@ guardrails = OutputGuardrails(
 )
 logger.info("✅ Output guardrails initialized")
 
+# Initialize GCS handler (no-op if GCS_BUCKET_NAME not set)
+gcs_handler = GCSHandler(
+    bucket_name=settings.gcs_bucket_name if settings else None,
+    index_prefix=settings.gcs_index_prefix if settings else "faiss-index",
+)
+if gcs_handler.gcs_enabled:
+    logger.info(f"☁️  GCS storage enabled — bucket: {gcs_handler.bucket_name}")
+else:
+    logger.info("📂 GCS not configured — using local vectorstore only")
+
 
 @st.cache_resource
 def get_vectorstore() -> Optional[FAISS]:
     """
-    Load the FAISS vector store with error handling.
+    Load the FAISS vector store.
+
+    Priority:
+      1. Download from GCS (if GCS_BUCKET_NAME is configured)
+      2. Fallback to local vectorstore/ directory
 
     Returns:
         FAISS: The loaded vector store
 
     Raises:
-        VectorStoreError: If vector store cannot be loaded
+        VectorStoreError: If vector store cannot be loaded from either source
     """
     try:
-        logger.info(f"Loading vector store from {DB_FAISS_PATH}")
-
-        # Check if vector store path exists
-        if not os.path.exists(DB_FAISS_PATH):
-            error_msg = f"Vector store not found at {DB_FAISS_PATH}. Please run create_memory_for_llm.py first to generate Embedding vector for Documents."
-            logger.error(error_msg)
-            raise VectorStoreError(error_msg)
-
-        # Load embedding model
+        # --- Load embedding model (needed by both paths) ---
         try:
             embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
             logger.info(f"Loaded embedding model: {DEFAULT_EMBEDDING_MODEL}")
         except Exception as e:
-            error_msg = f"Failed to load embedding model: {str(e)}"
+            raise VectorStoreError(f"Failed to load embedding model: {str(e)}")
+
+        # --- Path 1: Try GCS ---
+        if gcs_handler.gcs_enabled:
+            logger.info("☁️  Trying to load FAISS index from GCS...")
+            tmp_path = gcs_handler.download_to_temp()
+            if tmp_path:
+                try:
+                    db = FAISS.load_local(
+                        tmp_path, embedding_model, allow_dangerous_deserialization=True
+                    )
+                    logger.info("✅ FAISS index loaded from GCS")
+                    return db
+                except Exception as e:
+                    logger.warning(f"GCS index found but failed to load: {e}. Trying local fallback.")
+            else:
+                logger.info("GCS index not found yet — checking local fallback")
+
+        # --- Path 2: Local filesystem ---
+        logger.info(f"📂 Loading FAISS index from local path: {DB_FAISS_PATH}")
+        if not os.path.exists(DB_FAISS_PATH):
+            error_msg = (
+                f"Vector store not found at {DB_FAISS_PATH} and GCS has no index either. "
+                "Please run create_vectorstore.py first, or upload PDFs via the sidebar."
+            )
             logger.error(error_msg)
             raise VectorStoreError(error_msg)
 
-        # Load FAISS database
         try:
             db = FAISS.load_local(
                 DB_FAISS_PATH, embedding_model, allow_dangerous_deserialization=True
             )
-            logger.info("Successfully loaded FAISS vector store")
+            logger.info("✅ FAISS index loaded from local filesystem")
             return db
         except Exception as e:
-            error_msg = f"Failed to load FAISS database: {str(e)}"
-            logger.error(error_msg)
-            raise VectorStoreError(error_msg)
+            raise VectorStoreError(f"Failed to load FAISS database: {str(e)}")
 
     except VectorStoreError:
         raise
     except Exception as e:
-        error_msg = f"Unexpected error loading vector store: {str(e)}"
-        logger.error(error_msg)
-        raise VectorStoreError(error_msg)
+        raise VectorStoreError(f"Unexpected error loading vector store: {str(e)}")
 
 
 def validate_environment() -> dict:
@@ -436,6 +464,106 @@ def display_error_message(error: Exception, error_type: str):
     logger.error(f"{error_type}: {str(error)}", exc_info=True)
 
 
+def rebuild_vectorstore_from_pdfs(
+    uploaded_files, mode: str = "add"
+) -> tuple:
+    """
+    Build or update the FAISS index from uploaded PDF files.
+
+    Args:
+        uploaded_files: List of Streamlit UploadedFile objects.
+        mode: "add" to merge with existing index, "rebuild" to start fresh.
+
+    Returns:
+        Tuple[bool, str]: (success, message)
+    """
+    import tempfile
+
+    if not uploaded_files:
+        return False, "No files uploaded."
+
+    try:
+        # Save uploaded files to a temp directory
+        with tempfile.TemporaryDirectory() as tmp_dir:
+            all_chunks = []
+            splitter = RecursiveCharacterTextSplitter(
+                chunk_size=500, chunk_overlap=50
+            )
+
+            for uploaded_file in uploaded_files:
+                tmp_file_path = os.path.join(tmp_dir, uploaded_file.name)
+                with open(tmp_file_path, "wb") as f:
+                    f.write(uploaded_file.getbuffer())
+
+                # Load and split the PDF
+                try:
+                    loader = PyPDFLoader(tmp_file_path)
+                    docs = loader.load()
+                    chunks = splitter.split_documents(docs)
+                    all_chunks.extend(chunks)
+                    logger.info(
+                        f"Processed '{uploaded_file.name}': "
+                        f"{len(docs)} pages, {len(chunks)} chunks"
+                    )
+                except Exception as e:
+                    logger.warning(f"Failed to load '{uploaded_file.name}': {e}")
+                    return False, f"Failed to read '{uploaded_file.name}': {e}"
+
+            if not all_chunks:
+                return False, "No content could be extracted from the uploaded PDFs."
+
+            # Load embedding model
+            embedding_model = HuggingFaceEmbeddings(
+                model_name=DEFAULT_EMBEDDING_MODEL
+            )
+
+            if mode == "add" and os.path.exists(DB_FAISS_PATH):
+                # Merge with existing index
+                existing_db = FAISS.load_local(
+                    DB_FAISS_PATH,
+                    embedding_model,
+                    allow_dangerous_deserialization=True,
+                )
+                new_db = FAISS.from_documents(all_chunks, embedding_model)
+                existing_db.merge_from(new_db)
+                final_db = existing_db
+                logger.info("Merged new documents into existing FAISS index")
+            else:
+                # Build fresh index
+                final_db = FAISS.from_documents(all_chunks, embedding_model)
+                logger.info("Built new FAISS index from scratch")
+
+            # Save to local disk
+            os.makedirs(DB_FAISS_PATH, exist_ok=True)
+            final_db.save_local(DB_FAISS_PATH)
+            logger.info(f"Saved updated FAISS index to {DB_FAISS_PATH}")
+
+        # Upload to GCS (if configured)
+        gcs_ok = False
+        if gcs_handler.gcs_enabled:
+            gcs_ok = gcs_handler.upload_faiss_index(DB_FAISS_PATH)
+            if gcs_ok:
+                logger.info("Uploaded updated FAISS index to GCS")
+            else:
+                logger.warning("GCS upload failed — index saved locally only")
+
+        # Clear Streamlit resource cache so next query loads the new index
+        get_vectorstore.clear()
+
+        n_files = len(uploaded_files)
+        n_chunks = len(all_chunks)
+        gcs_note = " and uploaded to GCS ☁️" if gcs_ok else " (local only)"
+        msg = (
+            f"✅ Successfully indexed {n_files} PDF(s) into "
+            f"{n_chunks} chunks{gcs_note}."
+        )
+        return True, msg
+
+    except Exception as e:
+        logger.error(f"rebuild_vectorstore_from_pdfs failed: {e}", exc_info=True)
+        return False, f"Failed to build index: {e}"
+
+
 def main():
     """Main application function with comprehensive error handling"""
 
@@ -589,6 +717,94 @@ def main():
         else:
             st.info("📊 LangSmith Observability: **Disabled**")
             st.caption("Set LANGSMITH_API_KEY to enable tracing")
+
+        st.divider()
+
+        # ── Knowledge Base section ──────────────────────────────────────────
+        st.header("📚 Knowledge Base")
+
+        # Show current index source & metadata
+        if gcs_handler.gcs_enabled:
+            meta = gcs_handler.get_index_metadata()
+            if meta["exists"]:
+                last_updated = meta["last_updated"]
+                updated_str = (
+                    last_updated.strftime("%d %b %Y, %H:%M UTC")
+                    if last_updated
+                    else "unknown"
+                )
+                st.success(
+                    f"☁️ **GCS** — {meta['total_size_kb']:.0f} KB\n\n"
+                    f"Updated: {updated_str}"
+                )
+            else:
+                st.warning("☁️ GCS configured but no index found yet.")
+        elif os.path.exists(DB_FAISS_PATH):
+            st.info("📂 **Local** FAISS index loaded")
+        else:
+            st.error("❌ No index found. Upload PDFs below.")
+
+        st.divider()
+
+        # ── PDF Upload UI ───────────────────────────────────────────────────
+        st.subheader("⬆️ Update Knowledge Base")
+        st.caption(
+            "Upload medical PDFs to add to or rebuild the knowledge base. "
+            "Changes take effect immediately after indexing."
+        )
+
+        uploaded_files = st.file_uploader(
+            "Drop PDF files here",
+            type=["pdf"],
+            accept_multiple_files=True,
+            label_visibility="collapsed",
+            key="pdf_uploader",
+        )
+
+        if uploaded_files:
+            st.caption(f"📄 {len(uploaded_files)} file(s) selected")
+            col_add, col_rebuild = st.columns(2)
+
+            with col_add:
+                if st.button(
+                    "⚡ Add to Index",
+                    help="Merge these PDFs into the existing index",
+                    use_container_width=True,
+                    key="btn_add_index",
+                ):
+                    with st.spinner("Embedding and indexing PDFs..."):
+                        ok, msg = rebuild_vectorstore_from_pdfs(
+                            uploaded_files, mode="add"
+                        )
+                    if ok:
+                        st.success(msg)
+                        # Reload vectorstore in session
+                        st.session_state.vectorstore = get_vectorstore()
+                        logger.info(msg)
+                    else:
+                        st.error(msg)
+
+            with col_rebuild:
+                if st.button(
+                    "🔄 Rebuild All",
+                    help="Delete existing index and rebuild from these PDFs only",
+                    use_container_width=True,
+                    key="btn_rebuild_index",
+                ):
+                    with st.spinner("Rebuilding full index from scratch..."):
+                        ok, msg = rebuild_vectorstore_from_pdfs(
+                            uploaded_files, mode="rebuild"
+                        )
+                    if ok:
+                        st.success(msg)
+                        st.session_state.vectorstore = get_vectorstore()
+                        logger.info(msg)
+                    else:
+                        st.error(msg)
+        else:
+            st.caption("No files selected yet.")
+
+        st.divider()
 
         st.header("📊 Stats")
         st.metric("Messages", len(st.session_state.messages))
