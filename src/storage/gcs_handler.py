@@ -86,6 +86,17 @@ class GCSHandler:
                 "Run: uv add google-cloud-storage"
             )
         except Exception as e:
+            # Catch DefaultCredentialsError and any other auth/connection errors.
+            # Disable GCS gracefully so local dev still works without gcloud login.
+            err_str = str(e)
+            if "credentials" in err_str.lower() or "default" in err_str.lower() or "auth" in err_str.lower():
+                logger.warning(
+                    f"GCS credentials not found — disabling GCS for this session. "
+                    f"Run 'gcloud auth application-default login' to enable GCS locally. "
+                    f"({err_str})"
+                )
+                self.bucket_name = ""   # disables gcs_enabled for all subsequent calls
+                return None
             raise RuntimeError(f"Failed to connect to GCS bucket '{self.bucket_name}': {e}") from e
 
     def _blob_name(self, filename: str) -> str:
@@ -107,6 +118,8 @@ class GCSHandler:
             return False
         try:
             bucket = self._get_bucket()
+            if bucket is None:
+                return False
             for fname in FAISS_FILES:
                 blob = bucket.blob(self._blob_name(fname))
                 if not blob.exists():
@@ -140,6 +153,9 @@ class GCSHandler:
 
         try:
             bucket = self._get_bucket()
+            if bucket is None:
+                logger.info("GCS upload skipped — no credentials available")
+                return False
             for fname in FAISS_FILES:
                 local_file = local_dir / fname
                 if not local_file.exists():
@@ -187,6 +203,9 @@ class GCSHandler:
             local_dir.mkdir(parents=True, exist_ok=True)
 
             bucket = self._get_bucket()
+            if bucket is None:
+                logger.info("GCS download skipped — no credentials available")
+                return False
             for fname in FAISS_FILES:
                 blob = bucket.blob(self._blob_name(fname))
                 dest = local_dir / fname
