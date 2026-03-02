@@ -35,22 +35,23 @@ COPY .streamlit /app/.streamlit
 # Expose the port Streamlit uses on Cloud Run
 EXPOSE 8080
 
-# Configure Streamlit via ENV (belt-and-suspenders alongside config.toml)
-ENV STREAMLIT_SERVER_PORT=8080
-ENV STREAMLIT_SERVER_ADDRESS=0.0.0.0
+# Configure Streamlit via ENV
+# NOTE: Do NOT set STREAMLIT_SERVER_PORT or STREAMLIT_SERVER_ADDRESS here.
+# Cloud Run exposes port 443 (HTTPS) externally. If Streamlit is told its
+# server port is 8080, it will build WebSocket URLs like wss://...app:8080/stream
+# which Cloud Run blocks — only 443 is publicly reachable.
+# The .streamlit/config.toml binds Streamlit to 0.0.0.0:8080 inside the container.
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
-ENV STREAMLIT_SERVER_ENABLE_WEBSOCKET_COMPRESSION=false
 
 # GCS bucket name for FAISS persistence (injected by Cloud Run at deploy time)
 ENV GCS_BUCKET_NAME=""
 
 # Run the application
+# Port/address are set in .streamlit/config.toml only (not duplicated here)
+# to prevent Streamlit from hardcoding the WebSocket port in the browser URLs.
 CMD ["uv", "run", "streamlit", "run", "app.py", \
-    "--server.port=8080", \
-    "--server.address=0.0.0.0", \
     "--server.headless=true", \
     "--server.enableCORS=false", \
-    "--server.enableXsrfProtection=false", \
-    "--server.enableWebsocketCompression=false"]
+    "--server.enableXsrfProtection=false"]
