@@ -513,26 +513,30 @@ def rebuild_vectorstore_from_pdfs(pdf_files: list, mode: str = "add") -> tuple:
         if not all_chunks:
             return False, "No content could be extracted from the uploaded PDFs."
 
-        # Build or merge the index
+        # Build or merge the index in batches to limit peak memory.
+        # Processing all chunks at once can OOM on Cloud Run (2-4 Gi).
+        BATCH_SIZE = 500
+        logger.info(
+            f"Building FAISS index from {len(all_chunks)} chunks "
+            f"(batch size={BATCH_SIZE})"
+        )
+
         if mode == "add":
-            # Use the already-loaded vectorstore from session state (works on Cloud Run
-            # where the index was downloaded to a temp dir, not DB_FAISS_PATH)
-            existing_db = st.session_state.get("vectorstore")
-            if existing_db is not None:
-                new_db = FAISS.from_documents(all_chunks, embedding_model)
-                existing_db.merge_from(new_db)
-                final_db = existing_db
-                logger.info("Merged new documents into in-memory FAISS index")
-            else:
-                # No existing index in session — build fresh
-                final_db = FAISS.from_documents(all_chunks, embedding_model)
-                logger.info(
-                    "No existing index in session — built new FAISS index from scratch"
-                )
+            final_db = st.session_state.get("vectorstore")
         else:
-            # Rebuild from scratch
-            final_db = FAISS.from_documents(all_chunks, embedding_model)
-            logger.info("Built new FAISS index from scratch")
+            final_db = None
+
+        for i in range(0, len(all_chunks), BATCH_SIZE):
+            batch = all_chunks[i : i + BATCH_SIZE]
+            batch_db = FAISS.from_documents(batch, embedding_model)
+            if final_db is None:
+                final_db = batch_db
+            else:
+                final_db.merge_from(batch_db)
+            logger.info(
+                f"  Batch {i // BATCH_SIZE + 1}: "
+                f"indexed chunks {i + 1}–{min(i + BATCH_SIZE, len(all_chunks))}"
+            )
 
         # Save to local disk path (so GCS upload can read the files)
         os.makedirs(DB_FAISS_PATH, exist_ok=True)
