@@ -86,5 +86,6 @@ jobs:
             --project ${{ secrets.GCP_PROJECT }} \
             --region ${{ secrets.GCP_REGION }} \
             --port 8080 \
+            --memory 2Gi \
             --allow-unauthenticated \
-            --set-env-vars="STREAMLIT_SERVER_HEADLESS=true,STREAMLIT_SERVER_ENABLE_CORS=false,STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false,GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }}"
+            --set-env-vars="STREAMLIT_SERVER_HEADLESS=true,STREAMLIT_SERVER_ENABLE_CORS=false,STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false,GCS_BUCKET_NAME=${{ secrets.GCS_BUCKET_NAME }},GROQ_API_KEY=${{ secrets.GROQ_API_KEY }}"
