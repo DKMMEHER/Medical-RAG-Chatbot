@@ -780,9 +780,8 @@ def main():
                         )
                     if ok:
                         st.success(msg)
-                        # Reload vectorstore in session
-                        st.session_state.vectorstore = get_vectorstore()
                         logger.info(msg)
+                        st.rerun()
                     else:
                         st.error(msg)
 
@@ -799,8 +798,8 @@ def main():
                         )
                     if ok:
                         st.success(msg)
-                        st.session_state.vectorstore = get_vectorstore()
                         logger.info(msg)
+                        st.rerun()
                     else:
                         st.error(msg)
         else:
