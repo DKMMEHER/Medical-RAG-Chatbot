@@ -466,12 +466,13 @@ def display_error_message(error: Exception, error_type: str):
     logger.error(f"{error_type}: {str(error)}", exc_info=True)
 
 
-def rebuild_vectorstore_from_pdfs(uploaded_files, mode: str = "add") -> tuple:
+def rebuild_vectorstore_from_pdfs(pdf_files: list, mode: str = "add") -> tuple:
     """
     Build or update the FAISS index from uploaded PDF files.
 
     Args:
-        uploaded_files: List of Streamlit UploadedFile objects.
+        pdf_files: List of dicts with 'name' (str) and 'bytes' (bytes) keys.
+                   Pre-cached from st.file_uploader to survive Streamlit reruns.
         mode: "add" to merge with existing index, "rebuild" to start fresh.
 
     Returns:
@@ -479,7 +480,7 @@ def rebuild_vectorstore_from_pdfs(uploaded_files, mode: str = "add") -> tuple:
     """
     import tempfile
 
-    if not uploaded_files:
+    if not pdf_files:
         return False, "No files uploaded."
 
     try:
@@ -491,10 +492,10 @@ def rebuild_vectorstore_from_pdfs(uploaded_files, mode: str = "add") -> tuple:
         splitter = RecursiveCharacterTextSplitter(chunk_size=500, chunk_overlap=50)
 
         with tempfile.TemporaryDirectory() as tmp_dir:
-            for uploaded_file in uploaded_files:
-                tmp_file_path = os.path.join(tmp_dir, uploaded_file.name)
+            for pdf in pdf_files:
+                tmp_file_path = os.path.join(tmp_dir, pdf["name"])
                 with open(tmp_file_path, "wb") as f:
-                    f.write(uploaded_file.getbuffer())
+                    f.write(pdf["bytes"])
 
                 try:
                     loader = PyPDFLoader(tmp_file_path)
@@ -502,12 +503,12 @@ def rebuild_vectorstore_from_pdfs(uploaded_files, mode: str = "add") -> tuple:
                     chunks = splitter.split_documents(docs)
                     all_chunks.extend(chunks)
                     logger.info(
-                        f"Processed '{uploaded_file.name}': "
+                        f"Processed '{pdf['name']}': "
                         f"{len(docs)} pages, {len(chunks)} chunks"
                     )
                 except Exception as e:
-                    logger.warning(f"Failed to load '{uploaded_file.name}': {e}")
-                    return False, f"Failed to read '{uploaded_file.name}': {e}"
+                    logger.warning(f"Failed to load '{pdf['name']}': {e}")
+                    return False, f"Failed to read '{pdf['name']}': {e}"
 
         if not all_chunks:
             return False, "No content could be extracted from the uploaded PDFs."
@@ -552,7 +553,7 @@ def rebuild_vectorstore_from_pdfs(uploaded_files, mode: str = "add") -> tuple:
         # Also clear the cache so a fresh page load re-downloads from GCS
         get_vectorstore.clear()
 
-        n_files = len(uploaded_files)
+        n_files = len(pdf_files)
         n_chunks = len(all_chunks)
         gcs_note = " and uploaded to GCS ☁️" if gcs_ok else " (local only)"
         msg = (
@@ -763,8 +764,21 @@ def main():
             key="pdf_uploader",
         )
 
+        # Cache uploaded file bytes in session state immediately so they
+        # survive the Streamlit rerun triggered by the button click.
+        # Without this, st.file_uploader data is lost on Cloud Run reruns.
         if uploaded_files:
-            st.caption(f"📄 {len(uploaded_files)} file(s) selected")
+            st.session_state["cached_pdfs"] = [
+                {"name": f.name, "bytes": f.getbuffer().tobytes()}
+                for f in uploaded_files
+            ]
+        elif "cached_pdfs" not in st.session_state:
+            st.session_state["cached_pdfs"] = []
+
+        cached = st.session_state.get("cached_pdfs", [])
+
+        if cached:
+            st.caption(f"📄 {len(cached)} file(s) selected")
             col_add, col_rebuild = st.columns(2)
 
             with col_add:
@@ -775,12 +789,11 @@ def main():
                     key="btn_add_index",
                 ):
                     with st.spinner("Embedding and indexing PDFs..."):
-                        ok, msg = rebuild_vectorstore_from_pdfs(
-                            uploaded_files, mode="add"
-                        )
+                        ok, msg = rebuild_vectorstore_from_pdfs(cached, mode="add")
                     if ok:
                         st.success(msg)
                         logger.info(msg)
+                        st.session_state.pop("cached_pdfs", None)
                         st.rerun()
                     else:
                         st.error(msg)
@@ -793,12 +806,11 @@ def main():
                     key="btn_rebuild_index",
                 ):
                     with st.spinner("Rebuilding full index from scratch..."):
-                        ok, msg = rebuild_vectorstore_from_pdfs(
-                            uploaded_files, mode="rebuild"
-                        )
+                        ok, msg = rebuild_vectorstore_from_pdfs(cached, mode="rebuild")
                     if ok:
                         st.success(msg)
                         logger.info(msg)
+                        st.session_state.pop("cached_pdfs", None)
                         st.rerun()
                     else:
                         st.error(msg)
