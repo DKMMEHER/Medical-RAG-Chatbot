@@ -23,11 +23,19 @@ from src.storage.gcs_handler import GCSHandler
 from src.observability import (
     configure_langsmith,
     is_langsmith_enabled,
-    trace_chain,
     create_feedback,
     get_current_run_id,
 )
 from src.observability.tracing import add_run_metadata
+
+try:
+    from langsmith import traceable as ls_traceable
+except ImportError:
+    # Fallback: no-op decorator if langsmith not installed
+    def ls_traceable(**kwargs):
+        def decorator(func):
+            return func
+        return decorator
 
 # Initialize logger
 logger = get_logger(__name__, log_to_file=True)
@@ -277,11 +285,6 @@ Answer:"""
     return ChatPromptTemplate.from_template(template)
 
 
-@trace_chain(
-    name="medical_rag_query",
-    metadata={"model": DEFAULT_MODEL, "retriever_k": 3},
-    tags=["rag", "medical", "chatbot"],
-)
 def prepare_rag_context(query: str, vectorstore: FAISS, prompt) -> tuple:
     """
     Retrieve relevant documents and build the formatted prompt.
@@ -666,12 +669,24 @@ def main():
         # Process query and generate response
         try:
             with st.chat_message("assistant"):
+                # Wrap entire RAG flow in a single LangSmith trace
+                @ls_traceable(
+                    name="medical_rag_query",
+                    metadata={"model": DEFAULT_MODEL, "retriever_k": 3},
+                    tags=["rag", "medical", "chatbot"],
+                )
+                def _run_rag_pipeline(query, vectorstore, prompt_template, llm):
+                    """Single traced function covering retrieval → LLM → guardrails."""
+                    fp, docs = prepare_rag_context(query, vectorstore, prompt_template)
+                    return fp, docs
+
                 # Phase 1: Retrieve context (brief spinner)
                 with st.spinner("🔍 Searching knowledge base..."):
-                    formatted_prompt, retrieved_docs = prepare_rag_context(
+                    formatted_prompt, retrieved_docs = _run_rag_pipeline(
                         user_query,
                         st.session_state.vectorstore,
                         st.session_state.prompt,
+                        st.session_state.llm,
                     )
 
                 # Phase 2: Stream LLM response token by token
