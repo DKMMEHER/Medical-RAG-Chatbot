@@ -282,21 +282,23 @@ Answer:"""
     metadata={"model": DEFAULT_MODEL, "retriever_k": 3},
     tags=["rag", "medical", "chatbot"],
 )
-def process_query(query: str, vectorstore: FAISS, llm: Any, prompt) -> str:
+def prepare_rag_context(query: str, vectorstore: FAISS, prompt) -> tuple:
     """
-    Process user query through the RAG chain with error handling.
+    Retrieve relevant documents and build the formatted prompt.
+
+    This is the first half of the RAG pipeline — separated from LLM
+    generation so the UI can stream tokens directly.
 
     Args:
         query: User's question
         vectorstore: FAISS vector store
-        llm: Language model
         prompt: RAG prompt template
 
     Returns:
-        str: Generated answer
+        tuple: (formatted_prompt, retrieved_docs)
 
     Raises:
-        LLMError: If query processing fails
+        LLMError: If retrieval or prompt formatting fails
     """
     try:
         logger.info(f"Processing query: {query[:50]}...")
@@ -343,17 +345,12 @@ def process_query(query: str, vectorstore: FAISS, llm: Any, prompt) -> str:
                 f"Doc {i + 1}: {doc.page_content[:100]}... (source: {doc.metadata.get('source', 'unknown')})"
             )
 
-        # Helper function to format documents
-        def format_docs(docs):
-            formatted = "\n\n".join(doc.page_content for doc in docs)
-            logger.debug(f"📝 Formatted context length: {len(formatted)} chars")
-            return formatted
-
         # Format retrieved documents
-        context = format_docs(retrieved_docs)
+        context = "\n\n".join(doc.page_content for doc in retrieved_docs)
+        logger.debug(f"📝 Formatted context length: {len(context)} chars")
 
         # Create prompt with context
-        logger.info("🤖 Generating answer with LLM...")
+        logger.info("🤖 Preparing prompt for LLM...")
         formatted_prompt = prompt.format(context=context, input=query)
 
         # Log prompt details
@@ -365,68 +362,95 @@ def process_query(query: str, vectorstore: FAISS, llm: Any, prompt) -> str:
                 }
             )
 
-        # Invoke LLM
-        response = llm.invoke(formatted_prompt)
-
-        # Extract content from AIMessage object
-        if hasattr(response, "content"):
-            answer = response.content
-        else:
-            answer = str(response)
-
-        if not answer:
-            raise LLMError("Empty response from RAG chain")
-
-        logger.info(f"Successfully generated answer (length: {len(answer)})")
-
-        # ✅ VALIDATE OUTPUT WITH GUARDRAILS
-        logger.info("🛡️ Validating output with guardrails...")
-        is_safe, issues, safe_output = guardrails.validate_output(
-            llm_output=answer,
-            original_query=query,
-            retrieved_context=[doc.page_content for doc in retrieved_docs],
-        )
-
-        # Log validation results
-        if issues:
-            logger.warning(f"⚠️ Guardrails found {len(issues)} issue(s)")
-            for issue in issues:
-                logger.warning(f"  - {issue.issue_type}: {issue.description}")
-
-        # Add validation metadata to LangSmith
-        if is_langsmith_enabled():
-            add_run_metadata(
-                {
-                    "guardrails_safe": is_safe,
-                    "guardrails_issues_count": len(issues),
-                    "guardrails_issue_types": [issue.issue_type for issue in issues],
-                }
-            )
-
-        # Block unsafe output
-        if not is_safe:
-            logger.error("❌ Output blocked by guardrails")
-            # Determine block reason
-            if any(issue.issue_type.startswith("PII_") for issue in issues):
-                fallback = guardrails.get_fallback_response("pii")
-            elif any(issue.issue_type.startswith("TOXIC_") for issue in issues):
-                fallback = guardrails.get_fallback_response("toxic")
-            else:
-                fallback = guardrails.get_fallback_response("safety")
-
-            return fallback
-
-        # Return safe output (may have been modified, e.g., disclaimer added)
-        logger.info("✅ Output validated and safe")
-        return safe_output
+        return formatted_prompt, retrieved_docs
 
     except ValueError as e:
         logger.error(f"Validation error: {str(e)}")
         raise LLMError(f"Invalid input: {str(e)}")
     except Exception as e:
-        error_msg = f"Failed to process query: {str(e)}"
+        error_msg = f"Failed to prepare RAG context: {str(e)}"
         logger.error(error_msg)
         raise LLMError(error_msg)
+
+
+def stream_llm_tokens(llm: Any, formatted_prompt: str):
+    """
+    Generator that yields string tokens from the LLM for streaming display.
+
+    Works with st.write_stream() — yields plain strings, not AIMessage objects.
+
+    Args:
+        llm: Language model instance
+        formatted_prompt: The fully formatted prompt string
+
+    Yields:
+        str: Individual text tokens
+    """
+    for chunk in llm.stream(formatted_prompt):
+        # LangChain chat models yield AIMessageChunk objects
+        if hasattr(chunk, "content"):
+            yield chunk.content
+        else:
+            yield str(chunk)
+
+
+def validate_response(answer: str, query: str, retrieved_docs: list) -> tuple:
+    """
+    Run guardrails validation on the complete LLM response.
+
+    Called after streaming completes to check safety of the full answer.
+
+    Args:
+        answer: Complete LLM response text
+        query: Original user query
+        retrieved_docs: Documents used for context
+
+    Returns:
+        tuple: (is_safe, final_output) — final_output is the guardrails-approved
+               text (may include disclaimers) or a fallback if blocked.
+    """
+    if not answer:
+        return False, "I wasn't able to generate a response. Please try again."
+
+    logger.info(f"Successfully generated answer (length: {len(answer)})")
+
+    # ✅ VALIDATE OUTPUT WITH GUARDRAILS
+    logger.info("🛡️ Validating output with guardrails...")
+    is_safe, issues, safe_output = guardrails.validate_output(
+        llm_output=answer,
+        original_query=query,
+        retrieved_context=[doc.page_content for doc in retrieved_docs],
+    )
+
+    # Log validation results
+    if issues:
+        logger.warning(f"⚠️ Guardrails found {len(issues)} issue(s)")
+        for issue in issues:
+            logger.warning(f"  - {issue.issue_type}: {issue.description}")
+
+    # Add validation metadata to LangSmith
+    if is_langsmith_enabled():
+        add_run_metadata(
+            {
+                "guardrails_safe": is_safe,
+                "guardrails_issues_count": len(issues),
+                "guardrails_issue_types": [issue.issue_type for issue in issues],
+            }
+        )
+
+    # Block unsafe output
+    if not is_safe:
+        logger.error("❌ Output blocked by guardrails")
+        if any(issue.issue_type.startswith("PII_") for issue in issues):
+            fallback = guardrails.get_fallback_response("pii")
+        elif any(issue.issue_type.startswith("TOXIC_") for issue in issues):
+            fallback = guardrails.get_fallback_response("toxic")
+        else:
+            fallback = guardrails.get_fallback_response("safety")
+        return False, fallback
+
+    logger.info("✅ Output validated and safe")
+    return True, safe_output
 
 
 def display_error_message(error: Exception, error_type: str):
@@ -642,59 +666,83 @@ def main():
         # Process query and generate response
         try:
             with st.chat_message("assistant"):
-                with st.spinner("🤔 Thinking..."):
-                    answer = process_query(
+                # Phase 1: Retrieve context (brief spinner)
+                with st.spinner("🔍 Searching knowledge base..."):
+                    formatted_prompt, retrieved_docs = prepare_rag_context(
                         user_query,
                         st.session_state.vectorstore,
-                        st.session_state.llm,
                         st.session_state.prompt,
                     )
-                    st.markdown(answer)
 
-                    # Add feedback buttons (if LangSmith is enabled)
-                    if is_langsmith_enabled():
-                        st.markdown("---")
-                        st.markdown("**Was this answer helpful?**")
-                        col1, col2, col3 = st.columns([1, 1, 4])
+                # Phase 2: Stream LLM response token by token
+                response_container = st.empty()
+                with response_container:
+                    streamed_answer = st.write_stream(
+                        stream_llm_tokens(st.session_state.llm, formatted_prompt)
+                    )
 
-                        # Get current run ID for feedback
-                        run_id = get_current_run_id()
+                # Phase 3: Post-stream guardrails validation
+                is_safe, final_output = validate_response(
+                    streamed_answer, user_query, retrieved_docs
+                )
 
-                        with col1:
-                            if st.button(
-                                "👍 Yes",
-                                key=f"thumbs_up_{len(st.session_state.messages)}",
-                            ):
-                                if run_id:
-                                    create_feedback(
-                                        run_id=run_id,
-                                        key="user_rating",
-                                        score=1.0,
-                                        comment="Helpful answer",
-                                    )
-                                    st.success("Thanks for your feedback!")
-                                    logger.info(
-                                        f"Positive feedback recorded for run {run_id}"
-                                    )
+                if not is_safe:
+                    # Guardrails blocked — replace streamed content with fallback
+                    response_container.empty()
+                    response_container.warning(final_output)
+                    answer = final_output
+                elif final_output != streamed_answer:
+                    # Guardrails modified the output (e.g., added disclaimer)
+                    response_container.empty()
+                    response_container.markdown(final_output)
+                    answer = final_output
+                else:
+                    answer = streamed_answer
 
-                        with col2:
-                            if st.button(
-                                "👎 No",
-                                key=f"thumbs_down_{len(st.session_state.messages)}",
-                            ):
-                                if run_id:
-                                    create_feedback(
-                                        run_id=run_id,
-                                        key="user_rating",
-                                        score=0.0,
-                                        comment="Not helpful",
-                                    )
-                                    st.warning(
-                                        "Thanks for your feedback. We'll work to improve!"
-                                    )
-                                    logger.info(
-                                        f"Negative feedback recorded for run {run_id}"
-                                    )
+                # Add feedback buttons (if LangSmith is enabled)
+                if is_langsmith_enabled():
+                    st.markdown("---")
+                    st.markdown("**Was this answer helpful?**")
+                    col1, col2, col3 = st.columns([1, 1, 4])
+
+                    # Get current run ID for feedback
+                    run_id = get_current_run_id()
+
+                    with col1:
+                        if st.button(
+                            "👍 Yes",
+                            key=f"thumbs_up_{len(st.session_state.messages)}",
+                        ):
+                            if run_id:
+                                create_feedback(
+                                    run_id=run_id,
+                                    key="user_rating",
+                                    score=1.0,
+                                    comment="Helpful answer",
+                                )
+                                st.success("Thanks for your feedback!")
+                                logger.info(
+                                    f"Positive feedback recorded for run {run_id}"
+                                )
+
+                    with col2:
+                        if st.button(
+                            "👎 No",
+                            key=f"thumbs_down_{len(st.session_state.messages)}",
+                        ):
+                            if run_id:
+                                create_feedback(
+                                    run_id=run_id,
+                                    key="user_rating",
+                                    score=0.0,
+                                    comment="Not helpful",
+                                )
+                                st.warning(
+                                    "Thanks for your feedback. We'll work to improve!"
+                                )
+                                logger.info(
+                                    f"Negative feedback recorded for run {run_id}"
+                                )
 
             st.session_state.messages.append({"role": "assistant", "content": answer})
             logger.info("Query processed successfully")

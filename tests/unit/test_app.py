@@ -1,7 +1,7 @@
 """
 Unit tests for app.py
 Tests are focused on pure functions (validate_environment, initialize_llm,
-get_rag_prompt, process_query) that can be exercised without launching Streamlit.
+get_rag_prompt, prepare_rag_context, validate_response) that can be exercised without launching Streamlit.
 Streamlit, LangChain, and all heavy dependencies are mocked.
 """
 
@@ -211,11 +211,11 @@ class TestGetRagPrompt:
 
 
 # ---------------------------------------------------------------------------
-# process_query
+# prepare_rag_context / validate_response (was: process_query)
 # ---------------------------------------------------------------------------
 
 
-class TestProcessQuery:
+class TestPrepareRagContext:
     def _mock_vectorstore(self):
         vs = MagicMock()
         retriever = MagicMock()
@@ -226,23 +226,42 @@ class TestProcessQuery:
         vs.as_retriever.return_value = retriever
         return vs
 
-    def _mock_llm(self, answer="This is a safe medical answer."):
-        llm = MagicMock()
-        response = MagicMock()
-        response.content = answer
-        llm.invoke.return_value = response
-        return llm
-
     def _mock_prompt(self):
         prompt = MagicMock()
         prompt.format.return_value = "formatted prompt"
         return prompt
 
-    def test_process_query_success(self):
-        """Returns the safe output string for a valid query"""
+    def test_prepare_rag_context_success(self):
+        """Returns (formatted_prompt, retrieved_docs) for a valid query"""
         vs = self._mock_vectorstore()
-        llm = self._mock_llm()
         prompt = self._mock_prompt()
+
+        with patch("app.is_langsmith_enabled", return_value=False):
+            from app import prepare_rag_context
+
+            formatted_prompt, docs = prepare_rag_context(
+                "What is diabetes?", vs, prompt
+            )
+
+        assert formatted_prompt == "formatted prompt"
+        assert len(docs) == 1
+
+    def test_prepare_rag_context_empty_query(self):
+        """Raises LLMError for empty query string"""
+        vs = self._mock_vectorstore()
+        prompt = self._mock_prompt()
+
+        with patch("app.is_langsmith_enabled", return_value=False):
+            from app import prepare_rag_context
+            from src.utils.exceptions import LLMError
+
+            with pytest.raises((LLMError, ValueError)):
+                prepare_rag_context("   ", vs, prompt)
+
+
+class TestValidateResponse:
+    def test_validate_response_safe(self):
+        """Returns (True, output) for safe content"""
         mock_guardrails = MagicMock()
         mock_guardrails.validate_output.return_value = (
             True,
@@ -254,32 +273,20 @@ class TestProcessQuery:
             patch("app.guardrails", mock_guardrails),
             patch("app.is_langsmith_enabled", return_value=False),
         ):
-            from app import process_query
+            from app import validate_response
 
-            result = process_query("What is diabetes?", vs, llm, prompt)
+            is_safe, output = validate_response(
+                "This is a safe medical answer.",
+                "What is diabetes?",
+                [],
+            )
 
-        assert "safe medical answer" in result
+        assert is_safe is True
+        assert "safe medical answer" in output
 
-    def test_process_query_empty_query(self):
-        """Raises LLMError for empty query string"""
-        vs = self._mock_vectorstore()
-        llm = self._mock_llm()
-        prompt = self._mock_prompt()
-
-        with patch("app.is_langsmith_enabled", return_value=False):
-            from app import process_query
-            from src.utils.exceptions import LLMError
-
-            with pytest.raises((LLMError, ValueError)):
-                process_query("   ", vs, llm, prompt)
-
-    def test_process_query_blocked_by_guardrails(self):
-        """Returns fallback message when guardrails block the output"""
+    def test_validate_response_blocked_by_guardrails(self):
+        """Returns (False, fallback) when guardrails block the output"""
         from src.content_analyzer.config import ValidationIssue, ValidationSeverity
-
-        vs = self._mock_vectorstore()
-        llm = self._mock_llm("Patient SSN: 123-45-6789 needs treatment.")
-        prompt = self._mock_prompt()
 
         pii_issue = ValidationIssue(
             issue_type="PII_SSN",
@@ -298,11 +305,16 @@ class TestProcessQuery:
             patch("app.guardrails", mock_guardrails),
             patch("app.is_langsmith_enabled", return_value=False),
         ):
-            from app import process_query
+            from app import validate_response
 
-            result = process_query("Tell me about SSN 123-45-6789", vs, llm, prompt)
+            is_safe, output = validate_response(
+                "Patient SSN: 123-45-6789",
+                "Tell me about SSN 123-45-6789",
+                [],
+            )
 
-        assert "sensitive information" in result or "apologize" in result
+        assert is_safe is False
+        assert "sensitive information" in output or "apologize" in output
 
 
 # ---------------------------------------------------------------------------
