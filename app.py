@@ -1,4 +1,5 @@
 import os
+import time
 from typing import Optional, Any
 from datetime import datetime
 from pathlib import Path
@@ -466,7 +467,7 @@ def validate_response(answer: str, query: str, retrieved_docs: list) -> tuple:
 
 def display_error_message(error: Exception, error_type: str):
     """
-    Display user-friendly error messages in Streamlit.
+    Display user-friendly error messages using non-blocking toast notifications.
 
     Args:
         error: The exception that occurred
@@ -493,12 +494,13 @@ def display_error_message(error: Exception, error_type: str):
 
     error_info = error_messages.get(error_type, error_messages["default"])
 
-    st.error(f"**{error_info['title']}**")
-    st.error(f"Error: {str(error)}")
-    st.info(f"💡 {error_info['suggestion']}")
+    # Non-blocking toast notification
+    st.toast(f"{error_info['title']}: {str(error)[:100]}", icon="🚨")
 
     # Log the error
     logger.error(f"{error_type}: {str(error)}", exc_info=True)
+
+    return error_info
 
 
 def rebuild_vectorstore_from_pdfs(pdf_files: list, mode: str = "add") -> tuple:
@@ -656,10 +658,14 @@ def main():
                 st.success("✅ Chatbot ready!")
 
         except (VectorStoreError, ConfigurationError, LLMError) as e:
-            display_error_message(e, type(e).__name__)
+            error_info = display_error_message(e, type(e).__name__)
+            st.error(f"**{error_info['title']}**")
+            st.info(f"💡 {error_info['suggestion']}")
             st.stop()
         except Exception as e:
-            display_error_message(e, "default")
+            error_info = display_error_message(e, "default")
+            st.error(f"**{error_info['title']}**")
+            st.info(f"💡 {error_info['suggestion']}")
             st.stop()
 
     # Display chat history
@@ -667,8 +673,10 @@ def main():
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
 
-    # Chat input
-    if user_query := st.chat_input("💬 Ask your medical question here..."):
+    # Chat input — check for retry first, then new input
+    retry_query = st.session_state.pop("retry_query", None)
+    user_query = retry_query or st.chat_input("💬 Ask your medical question here...")
+    if user_query:
         # Display user message
         with st.chat_message("user"):
             st.markdown(user_query)
@@ -701,6 +709,7 @@ def main():
                     return fp, docs
 
                 # Phase 1: Retrieve context (brief spinner)
+                start_time = time.time()
                 with st.spinner("🔍 Searching knowledge base..."):
                     formatted_prompt, retrieved_docs = _run_rag_pipeline(
                         user_query,
@@ -781,12 +790,24 @@ def main():
                                 )
 
             st.session_state.messages.append({"role": "assistant", "content": answer})
-            logger.info("Query processed successfully")
+            elapsed = round(time.time() - start_time, 1)
+            st.caption(f"⏱️ Response generated in {elapsed}s")
+            logger.info(f"Query processed successfully in {elapsed}s")
 
         except LLMError as e:
-            display_error_message(e, "LLMError")
+            error_info = display_error_message(e, "LLMError")
+            with st.chat_message("assistant"):
+                st.warning(f"⚠️ {error_info['suggestion']}")
+                if st.button("🔄 Retry", key=f"retry_{len(st.session_state.messages)}"):
+                    st.session_state.retry_query = user_query
+                    st.rerun()
         except Exception as e:
-            display_error_message(e, "default")
+            error_info = display_error_message(e, "default")
+            with st.chat_message("assistant"):
+                st.warning(f"⚠️ {error_info['suggestion']}")
+                if st.button("🔄 Retry", key=f"retry_{len(st.session_state.messages)}"):
+                    st.session_state.retry_query = user_query
+                    st.rerun()
 
     # Sidebar with info
     with st.sidebar:
