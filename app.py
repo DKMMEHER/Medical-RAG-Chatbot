@@ -15,6 +15,9 @@ from langchain_community.document_loaders import PyPDFLoader
 
 from dotenv import load_dotenv
 
+# Load environment variables from .env file
+load_dotenv()
+
 # Import from src structure
 from src.utils.logger import get_logger
 from src.utils.exceptions import VectorStoreError, LLMError, ConfigurationError
@@ -206,11 +209,13 @@ def get_auth_config():
     """Build the configuration dict for streamlit-authenticator."""
     admin_user = os.getenv("ADMIN_USERNAME", "admin")
     admin_pass = os.getenv("ADMIN_PASSWORD", "admin")
+    std_user = os.getenv("STANDARD_USERNAME", "user")
+    std_pass = os.getenv("STANDARD_PASSWORD", "user")
     cookie_key = os.getenv("AUTH_COOKIE_KEY", "medical_chatbot_secret_key")
     
     # Pre-hash passwords (cached so it only happens once)
     admin_hashed = bcrypt.hashpw(admin_pass.encode(), bcrypt.gensalt()).decode()
-    user_hashed = bcrypt.hashpw("user".encode(), bcrypt.gensalt()).decode()
+    user_hashed = bcrypt.hashpw(std_pass.encode(), bcrypt.gensalt()).decode()
     
     return {
         "credentials": {
@@ -220,7 +225,7 @@ def get_auth_config():
                     "name": "Administrator",
                     "password": admin_hashed,
                 },
-                "user": {
+                std_user: {
                     "email": "user@example.com",
                     "name": "Standard User",
                     "password": user_hashed,
