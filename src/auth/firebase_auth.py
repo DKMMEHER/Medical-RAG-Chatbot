@@ -61,7 +61,11 @@ def sign_in(email: str, password: str) -> dict:
 
     if "error" in data:
         error_msg = data["error"].get("message", "Unknown error")
-        if error_msg in ("EMAIL_NOT_FOUND", "INVALID_PASSWORD", "INVALID_LOGIN_CREDENTIALS"):
+        if error_msg in (
+            "EMAIL_NOT_FOUND",
+            "INVALID_PASSWORD",
+            "INVALID_LOGIN_CREDENTIALS",
+        ):
             raise ValueError("Invalid email or password. Please try again.")
         raise ValueError(f"Authentication error: {error_msg}")
 
