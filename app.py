@@ -236,8 +236,7 @@ def get_auth_config():
             "expiry_days": 30,
             "key": cookie_key,
             "name": "medical_chatbot_auth"
-        },
-        "pre-authorized": {"emails": []}
+        }
     }
 
 
@@ -672,8 +671,7 @@ def main():
         config_auth['credentials'],
         config_auth['cookie']['name'],
         config_auth['cookie']['key'],
-        config_auth['cookie']['expiry_days'],
-        config_auth.get('pre-authorized')
+        config_auth['cookie']['expiry_days']
     )
     
     authenticator.login()
