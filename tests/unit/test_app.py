@@ -16,9 +16,13 @@ streamlit_mock = MagicMock()
 streamlit_mock.cache_resource = lambda func: func  # passthrough decorator
 sys.modules.setdefault("streamlit", streamlit_mock)
 
-# Also mock streamlit_authenticator which depends on streamlit internals
-stauth_mock = MagicMock()
-sys.modules.setdefault("streamlit_authenticator", stauth_mock)
+# Also mock firebase and firebase auth module which depend on external services
+firebase_admin_mock = MagicMock()
+sys.modules.setdefault("firebase_admin", firebase_admin_mock)
+sys.modules.setdefault("firebase_admin.auth", firebase_admin_mock.auth)
+sys.modules.setdefault("firebase_admin.credentials", firebase_admin_mock.credentials)
+firebase_auth_mock = MagicMock()
+sys.modules.setdefault("src.auth.firebase_auth", firebase_auth_mock)
 
 
 # ---------------------------------------------------------------------------

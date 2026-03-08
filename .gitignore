@@ -29,6 +29,11 @@ env/
 # Environment Variables
 .env
 
+# Firebase credentials (NEVER commit these!)
+firebase-service-account.json
+firebase-service-account*.json
+set_admin_claim.py
+
 # IDEs
 .vscode/
 .idea/
@@ -93,3 +98,6 @@ evaluation/
 
 # Example/demo scripts
 examples/
+
+# Pipeline file
+pipeline.txt

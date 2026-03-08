@@ -5,8 +5,7 @@ from datetime import datetime
 from pathlib import Path
 
 import streamlit as st
-import streamlit_authenticator as stauth
-import bcrypt
+from src.auth.firebase_auth import init_firebase, sign_in, verify_token
 
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
@@ -202,42 +201,6 @@ def validate_environment() -> dict:
         "provider": llm_config.get("provider"),
     }
 
-
-# --- Authentication Config ---
-@st.cache_data
-def get_auth_config():
-    """Build the configuration dict for streamlit-authenticator."""
-    admin_user = os.getenv("ADMIN_USERNAME", "admin")
-    admin_pass = os.getenv("ADMIN_PASSWORD", "admin")
-    std_user = os.getenv("STANDARD_USERNAME", "user")
-    std_pass = os.getenv("STANDARD_PASSWORD", "user")
-    cookie_key = os.getenv("AUTH_COOKIE_KEY", "medical_chatbot_secret_key")
-    
-    # Pre-hash passwords (cached so it only happens once)
-    admin_hashed = bcrypt.hashpw(admin_pass.encode(), bcrypt.gensalt()).decode()
-    user_hashed = bcrypt.hashpw(std_pass.encode(), bcrypt.gensalt()).decode()
-    
-    return {
-        "credentials": {
-            "usernames": {
-                admin_user: {
-                    "email": "admin@example.com",
-                    "name": "Administrator",
-                    "password": admin_hashed,
-                },
-                std_user: {
-                    "email": "user@example.com",
-                    "name": "Standard User",
-                    "password": user_hashed,
-                }
-            }
-        },
-        "cookie": {
-            "expiry_days": 30,
-            "key": cookie_key,
-            "name": "medical_chatbot_auth"
-        }
-    }
 
 
 def initialize_llm(config: dict):
@@ -665,27 +628,37 @@ def main():
     # Page configuration
     st.set_page_config(page_title="Medical Chatbot", page_icon="🏥", layout="centered")
 
-    # --- Authentication ---
-    config_auth = get_auth_config()
-    authenticator = stauth.Authenticate(
-        config_auth['credentials'],
-        config_auth['cookie']['name'],
-        config_auth['cookie']['key'],
-        config_auth['cookie']['expiry_days']
-    )
-    
-    authenticator.login()
-    
-    if st.session_state.get("authentication_status") is False:
-        st.error("Username/password is incorrect")
+    # --- Firebase Authentication ---
+    try:
+        init_firebase()
+    except EnvironmentError as e:
+        st.error(f"Firebase configuration error: {e}")
         st.stop()
-    elif st.session_state.get("authentication_status") is None:
-        st.warning("Please enter your username and password")
+
+    # If not logged in yet, show login form
+    if not st.session_state.get("id_token"):
+        st.title("🏥 Medical Chatbot")
+        st.subheader("🔐 Please sign in to continue")
+        with st.form("login_form"):
+            email = st.text_input("📧 Email address")
+            password = st.text_input("🔒 Password", type="password")
+            submitted = st.form_submit_button("➡️ Sign In", use_container_width=True)
+
+        if submitted:
+            if not email or not password:
+                st.warning("Please enter both email and password.")
+                st.stop()
+            try:
+                creds = sign_in(email, password)
+                user_info = verify_token(creds["id_token"])
+                st.session_state["id_token"] = creds["id_token"]
+                st.session_state["user_email"] = user_info["email"]
+                st.session_state["is_admin"] = user_info["is_admin"]
+                st.rerun()
+            except ValueError as e:
+                st.error(str(e))
         st.stop()
-        
-    current_username = st.session_state["username"]
-    st.session_state.is_admin = current_username == os.getenv("ADMIN_USERNAME", "admin")
-    # ----------------------
+    # --------------------------------
 
     st.title("🏥 Medical Chatbot")
     st.markdown("*Ask me anything about medical topics from the knowledge base*")
@@ -881,10 +854,17 @@ def main():
     # Sidebar with info
     with st.sidebar:
         # Auth info & Logout
-        st.markdown(f"👤 **{st.session_state.get('name', '')}**")
+        user_email = st.session_state.get("user_email", "")
+        st.markdown(f"👤 **{user_email}**")
         if st.session_state.get("is_admin", False):
             st.caption("🛡️ Admin User")
-        authenticator.logout("Logout", "sidebar")
+        else:
+            st.caption("👥 Standard User")
+        if st.button("🚪 Logout", use_container_width=True):
+            for key in ["id_token", "user_email", "is_admin", "messages",
+                        "initialized", "vectorstore", "llm", "config"]:
+                st.session_state.pop(key, None)
+            st.rerun()
         st.divider()
 
         st.header("ℹ️ About")
