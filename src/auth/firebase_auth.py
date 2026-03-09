@@ -9,11 +9,16 @@ Handles:
 
 import os
 import json
+from pathlib import Path
 import requests
 import firebase_admin
 from firebase_admin import auth, credentials
 
 _firebase_app = None
+
+# Absolute path to the project root (two levels up from src/auth/firebase_auth.py)
+_PROJECT_ROOT = Path(__file__).resolve().parent.parent.parent
+_SA_JSON_PATH = _PROJECT_ROOT / "firebase-service-account.json"
 
 
 def init_firebase() -> None:
@@ -25,12 +30,12 @@ def init_firebase() -> None:
     sa_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
     if sa_json:
         cred = credentials.Certificate(json.loads(sa_json))
-    elif os.path.exists("firebase-service-account.json"):
-        cred = credentials.Certificate("firebase-service-account.json")
+    elif _SA_JSON_PATH.exists():
+        cred = credentials.Certificate(str(_SA_JSON_PATH))
     else:
         raise EnvironmentError(
             "Firebase credentials not found. Set FIREBASE_SERVICE_ACCOUNT_JSON env var "
-            "or place firebase-service-account.json in the project root."
+            f"or place firebase-service-account.json in the project root ({_PROJECT_ROOT})."
         )
     _firebase_app = firebase_admin.initialize_app(cred)
 

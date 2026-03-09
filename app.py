@@ -12,10 +12,10 @@ from langchain_community.vectorstores import FAISS
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_community.document_loaders import PyPDFLoader
 
-from dotenv import load_dotenv
+from dotenv import load_dotenv, find_dotenv
 
-# Load environment variables from .env file
-load_dotenv()
+# Load environment variables — searches current dir and all parent dirs for .env
+load_dotenv(find_dotenv(usecwd=True), override=True)
 
 # Import from src structure
 from src.utils.logger import get_logger
