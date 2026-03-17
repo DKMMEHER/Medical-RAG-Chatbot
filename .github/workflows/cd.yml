@@ -115,4 +115,4 @@ jobs:
             --allow-unauthenticated \
             --env-vars-file=.env.yaml \
             --liveness-probe=httpGet.path=/health \
-            --readiness-probe=httpGet.path=/ready
+            --startup-probe=httpGet.path=/ready
