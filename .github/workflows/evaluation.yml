@@ -1,0 +1,52 @@
+name: RAGAS Automated Evaluation
+
+on:
+  workflow_dispatch: # Allow manual trigger
+  schedule:
+    - cron: '0 0 * * 0' # Run weekly on Sundays at midnight
+  pull_request:
+    paths:
+      - 'src/rag/**'
+      - 'src/model/**'
+      - 'src/evaluation/**'
+      - 'evaluation/**'
+
+jobs:
+  evaluate:
+    name: RAGAS Evaluation
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.13
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v4
+        with:
+          version: "latest"
+
+      - name: Install dependencies
+        run: uv sync --all-groups
+
+      - name: Run RAGAS Evaluation
+        run: |
+          uv run python src/evaluation/evaluate_rag.py
+        env:
+          GROQ_API_KEY: ${{ secrets.GROQ_API_KEY }}
+          OPENAI_API_KEY: ${{ secrets.OPENAI_API_KEY }}
+          LANGSMITH_API_KEY: ${{ secrets.LANGSMITH_API_KEY }}
+          # RAGAS needs access to LLM to evaluate faithfulness, relevancy, etc.
+          # Default config uses GPT-4o-mini for evaluation
+
+      - name: Upload Evaluation Results
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ragas-evaluation-results
+          path: evaluation/results/
+          retention-days: 30

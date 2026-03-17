@@ -142,6 +142,15 @@ class Settings:
         cfg_enabled = self.config.get("gcs", {}).get("enabled", True)
         return bool(self.gcs_bucket_name) and cfg_enabled
 
+    @property
+    def prompt_template(self) -> str:
+        """Get the prompt template text from src/prompts/medical_assistant.txt"""
+        prompt_path = Path(__file__).parent.parent / "prompts" / "medical_assistant.txt"
+        if prompt_path.exists():
+            return prompt_path.read_text()
+        logger.warning(f"Prompt template not found at {prompt_path}")
+        return ""
+
 
 # Global settings instance
 try:

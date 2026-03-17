@@ -4,7 +4,7 @@ from pathlib import Path
 from typing import List
 
 from langchain_community.document_loaders import PyPDFLoader, DirectoryLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
+from langchain_experimental.text_splitter import SemanticChunker
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_core.documents import Document
@@ -181,6 +181,11 @@ def load_pdf_files(data_path: str) -> List[Document]:
             logger.error(error_msg)
             raise DocumentLoadError(error_msg)
 
+        # Clean source paths to show only filenames (remove full path)
+        for doc in documents:
+            if "source" in doc.metadata:
+                doc.metadata["source"] = os.path.basename(doc.metadata["source"])
+
         logger.info(f"✅ Successfully loaded {len(documents)} pages from PDF files")
 
         # Log output metadata for LangSmith
@@ -201,41 +206,24 @@ def load_pdf_files(data_path: str) -> List[Document]:
         raise DocumentLoadError(error_msg)
 
 
-@traceable(name="create_text_chunks", tags=["chunking", "text_splitting"])
+@traceable(name="create_semantic_chunks", tags=["chunking", "semantic_splitting"])
 def create_chunks(
     documents: List[Document],
-    chunk_size: int = CHUNK_SIZE,
-    chunk_overlap: int = CHUNK_OVERLAP,
+    embedding_model: HuggingFaceEmbeddings
 ) -> List[Document]:
     """
-    Split documents into chunks with error handling.
-
-    Args:
-        documents: List of documents to chunk
-        chunk_size: Size of each chunk
-        chunk_overlap: Overlap between chunks
-
-    Returns:
-        List[Document]: List of chunked documents
-
-    Raises:
-        DocumentLoadError: If chunking fails
+    Split documents into semantic chunks using embeddings.
     """
     try:
-        logger.info(f"✂️  Creating chunks (size={chunk_size}, overlap={chunk_overlap})")
+        logger.info("✂️  Creating semantic chunks using AI-driven meaning boundaries")
 
         if not documents:
             raise ValueError("No documents provided for chunking")
 
-        # Validate parameters
-        if chunk_size <= 0:
-            raise ValueError(f"Invalid chunk_size: {chunk_size}")
-        if chunk_overlap < 0 or chunk_overlap >= chunk_size:
-            raise ValueError(f"Invalid chunk_overlap: {chunk_overlap}")
-
-        # Create text splitter
-        text_splitter = RecursiveCharacterTextSplitter(
-            chunk_size=chunk_size, chunk_overlap=chunk_overlap
+        # Create semantic text splitter
+        text_splitter = SemanticChunker(
+            embedding_model,
+            breakpoint_threshold_type="percentile"
         )
 
         # Split documents
@@ -419,16 +407,16 @@ def main():
         print(f"✅ Loaded {len(documents)} pages from PDF files")
         print()
 
-        # Step 2: Create chunks
-        print("✂️  Step 2: Creating text chunks...")
-        text_chunks = create_chunks(documents)
-        print(f"✅ Created {len(text_chunks)} text chunks")
-        print()
-
-        # Step 3: Load embedding model
-        print("🧠 Step 3: Loading embedding model...")
+        # Step 2: Load embedding model
+        print("🧠 Step 2: Loading embedding model...")
         embedding_model = get_embedding_model()
         print(f"✅ Loaded embedding model: {DEFAULT_EMBEDDING_MODEL}")
+        print()
+
+        # Step 3: Create semantic chunks
+        print("✂️  Step 3: Creating semantic chunks...")
+        text_chunks = create_chunks(documents, embedding_model)
+        print(f"✅ Created {len(text_chunks)} semantic chunks")
         print()
 
         # Step 4: Create and save vector store

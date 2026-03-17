@@ -207,6 +207,32 @@ def sanitize_for_logging(text: str, max_length: int = 100) -> str:
     return text
 
 
+def sanitize_filename(filename: str) -> str:
+    """
+    Sanitize a filename by removing special characters and preventing path traversal.
+    
+    Args:
+        filename: Original filename
+        
+    Returns:
+        Sanitized filename
+    """
+    import os
+    
+    # 1. Get only the basename to prevent path traversal (../../etc/passwd -> passwd)
+    base = os.path.basename(filename)
+    
+    # 2. Remove any characters that aren't alphanumeric, underscores, dots, or dashes
+    # [^a-zA-Z0-9._-] matches any char NOT in the set
+    sanitized = re.sub(r"[^a-zA-Z0-9._-]", "_", base)
+    
+    # 3. Ensure it's not empty and doesn't start with a dot (hidden files)
+    if not sanitized or sanitized.startswith("."):
+        sanitized = "uploaded_file_" + sanitized
+        
+    return sanitized
+
+
 def export_issues_to_dict(issues: List[ValidationIssue]) -> List[Dict[str, Any]]:
     """
     Export validation issues to dictionary format (for JSON serialization)

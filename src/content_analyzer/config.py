@@ -72,9 +72,11 @@ class ValidationConfig:
     toxic_block_on_critical: bool = True
     toxic_block_on_high: bool = False
 
-    # Detoxify-specific settings
-    detoxify_model_type: str = "original"  # 'original', 'unbiased', or 'multilingual'
     detoxify_threshold: float = 0.5  # Minimum confidence score (0.0-1.0)
+
+    # Prompt Injection Settings
+    enable_prompt_injection_detection: bool = True
+    prompt_injection_block_on_critical: bool = True
 
     # Logging Settings
     log_issues: bool = True
@@ -138,6 +140,30 @@ PII_PATTERNS = {
         "pattern": r"\b(Account|Acct)[\s#:]*\d{8,17}\b",
         "severity": ValidationSeverity.CRITICAL,
         "description": "Bank account number detected",
+    },
+}
+
+# Prompt Injection Detection Patterns
+PROMPT_INJECTION_PATTERNS = {
+    "ignore_previous": {
+        "pattern": r"(?i)(ignore|disregard|skip|forget)\s+(all\s+)?(previous|prior)\s+(instructions|directives|prompts|rules)",
+        "severity": ValidationSeverity.CRITICAL,
+        "description": "Attempt to bypass system instructions detected",
+    },
+    "system_commands": {
+        "pattern": r"(?i)(system\s+prompt|reveal\s+instruction|show\s+prompt|what\s+is\s+your\s+instruction)",
+        "severity": ValidationSeverity.HIGH,
+        "description": "Attempt to reveal system prompt detected",
+    },
+    "role_play_jailbreak": {
+        "pattern": r"(?i)(you\s+are\s+now|act\s+as|pretend\s+to\s+be|simulate)\s+(a|an)\s+(pirate|hacker|jailbroken|unfiltered|malicious)",
+        "severity": ValidationSeverity.HIGH,
+        "description": "Attempt to force role-play jailbreak detected",
+    },
+    "delimiters_bypass": {
+        "pattern": r"(?i)(---|\#\#\#|===)\s+(end\s+of\s+instruction|new\s+instruction|separator)",
+        "severity": ValidationSeverity.MEDIUM,
+        "description": "Attempt to use delimiters for prompt injection discovered",
     },
 }
 

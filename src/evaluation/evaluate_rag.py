@@ -32,7 +32,21 @@ from ragas.metrics import (
 )
 
 from dotenv import load_dotenv
-from llm_factory import load_config, get_generation_llm
+
+# Add project root to sys.path to allow consistent imports
+project_root = str(Path(__file__).parent.parent.parent)
+if project_root not in sys.path:
+    sys.path.append(project_root)
+
+try:
+    from src.model.llm_factory import load_config, get_generation_llm
+except ImportError:
+    # Fallback for different execution contexts
+    try:
+        from llm_factory import load_config, get_generation_llm
+    except ImportError:
+        logger.error("Could not import llm_factory. Ensure src/model is in PYTHONPATH.")
+        sys.exit(1)
 
 # Configure logging
 logging.basicConfig(
@@ -369,6 +383,11 @@ def save_results(results: List[Dict], evaluation_result, results_dir: str):
 
 def main():
     """Main evaluation function"""
+
+    # Extra check for API keys in CI
+    if not os.getenv("GROQ_API_KEY") and not os.getenv("OPENAI_API_KEY"):
+        logger.error("❌ No API keys found (neither GROQ_API_KEY nor OPENAI_API_KEY). Evaluation cannot proceed.")
+        return 1
 
     print("=" * 60)
     print("MEDICAL CHATBOT - RAG EVALUATION")

@@ -40,6 +40,7 @@ class GCSHandler:
         self,
         bucket_name: Optional[str] = None,
         index_prefix: str = "faiss-index",
+        tenant_id: Optional[str] = None,
     ):
         """
         Initialize GCS handler.
@@ -47,9 +48,11 @@ class GCSHandler:
         Args:
             bucket_name: GCS bucket name. Reads GCS_BUCKET_NAME env var if None.
             index_prefix: Folder prefix inside the bucket for index files.
+            tenant_id: Optional organization/tenant identifier for data isolation.
         """
         self.bucket_name = bucket_name or os.getenv("GCS_BUCKET_NAME", "")
         self.index_prefix = index_prefix.rstrip("/")
+        self.tenant_id = tenant_id
         self._client = None
         self._bucket = None
 
@@ -106,6 +109,8 @@ class GCSHandler:
 
     def _blob_name(self, filename: str) -> str:
         """Return the full GCS object path for a given filename."""
+        if self.tenant_id:
+            return f"tenants/{self.tenant_id}/{self.index_prefix}/{filename}"
         return f"{self.index_prefix}/{filename}"
 
     # ------------------------------------------------------------------

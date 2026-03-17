@@ -9,12 +9,15 @@ dependencies = [
     "datasets>=4.5.0",
     "detoxify>=0.5.2",
     "faiss-cpu>=1.13.2",
+    "fastapi>=0.135.1",
     "firebase-admin>=7.2.0",
     "google-cloud-storage>=2.19.0",
+    "httpx>=0.28.1",
     "langchain>=1.2.4",
     "langchain-anthropic>=1.3.1",
     "langchain-community>=0.4.1",
     "langchain-core>=1.2.7",
+    "langchain-experimental>=0.4.1",
     "langchain-google-genai>=4.2.0",
     "langchain-groq>=1.1.1",
     "langchain-huggingface>=1.2.0",
@@ -31,6 +34,8 @@ dependencies = [
     "pydantic-settings>=2.12.0",
     "pypdf>=6.6.0",
     "python-dotenv>=1.2.1",
+    "rank-bm25>=0.2.2",
+    "python-multipart>=0.0.22",
     "ragas>=0.4.3",
     "requests>=2.32.5",
     "seaborn>=0.13.2",
@@ -38,6 +43,7 @@ dependencies = [
     "spacy>=3.8.11",
     "streamlit>=1.53.0",
     "streamlit-authenticator>=0.4.2",
+    "uvicorn>=0.41.0",
 ]
 
 [dependency-groups]

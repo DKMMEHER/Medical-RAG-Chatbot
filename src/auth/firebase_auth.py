@@ -89,7 +89,7 @@ def verify_token(id_token: str) -> dict:
     Returns:
         dict with keys: uid, email, is_admin, name
     """
-    decoded = auth.verify_id_token(id_token)
+    decoded = auth.verify_id_token(id_token, clock_skew_seconds=10)
     claims = decoded.get("admin", False)
     return {
         "uid": decoded["uid"],

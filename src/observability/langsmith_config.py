@@ -54,7 +54,10 @@ def configure_langsmith(
         # Set environment variables for LangChain automatic tracing
         os.environ["LANGCHAIN_TRACING_V2"] = "true" if enable_tracing else "false"
         os.environ["LANGCHAIN_API_KEY"] = api_key
-        os.environ["LANGCHAIN_PROJECT"] = project_name
+        # Respect existing LANGCHAIN_PROJECT env var (e.g. set by Cloud Run)
+        # Only set it if not already configured
+        if not os.environ.get("LANGCHAIN_PROJECT"):
+            os.environ["LANGCHAIN_PROJECT"] = project_name
 
         if endpoint:
             os.environ["LANGCHAIN_ENDPOINT"] = endpoint
