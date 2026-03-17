@@ -1,9 +1,6 @@
 import os
 import time
-from typing import Optional, Any
-from datetime import datetime
 from pathlib import Path
-import tempfile
 import streamlit as st
 
 
@@ -19,7 +16,7 @@ load_dotenv(find_dotenv(usecwd=True), override=True)
 
 # Import from src structure
 from src.utils.logger import get_logger
-from src.utils.exceptions import LLMError, ConfigurationError
+from src.utils.exceptions import LLMError
 from src.config.settings import settings
 from src.utils.ui_helpers import display_error_message
 
@@ -27,10 +24,7 @@ from src.utils.ui_helpers import display_error_message
 from src.observability import (
     configure_langsmith,
     is_langsmith_enabled,
-    create_feedback,
-    get_current_run_id,
 )
-from src.observability.tracing import add_run_metadata
 
 try:
     from langsmith import traceable as ls_traceable
@@ -39,7 +33,9 @@ except ImportError:
     def ls_traceable(**kwargs):
         def decorator(func):
             return func
+
         return decorator
+
 
 # Initialize logger
 logger = get_logger(__name__, log_to_file=True)
@@ -48,6 +44,7 @@ logger = get_logger(__name__, log_to_file=True)
 # Use 127.0.0.1 instead of localhost to avoid IPv6 issues on some Windows setups
 API_BASE_URL = os.getenv("API_BASE_URL", "http://127.0.0.1:8000/api/v1")
 HEALTH_URL = f"{os.getenv('API_BASE_URL', 'http://127.0.0.1:8000')}/health"
+
 
 @st.cache_resource
 def init_globals():
@@ -59,38 +56,52 @@ def init_globals():
     max_retries = 15
     retry_delay = 3
     connected = False
-    
+
     with st.status("🔌 Connecting to backend...", expanded=True) as status:
         for i in range(max_retries):
             try:
                 response = requests.get(HEALTH_URL, timeout=5)
                 if response.status_code == 200:
                     logger.info("✅ Connected to FastAPI backend")
-                    status.update(label="✅ Connected to medical-chatbot API", state="complete")
+                    status.update(
+                        label="✅ Connected to medical-chatbot API", state="complete"
+                    )
                     connected = True
                     break
                 else:
-                    status.write(f"⚠️ Backend status {response.status_code}, retrying {i+1}/{max_retries}...")
+                    status.write(
+                        f"⚠️ Backend status {response.status_code}, retrying {i + 1}/{max_retries}..."
+                    )
             except requests.exceptions.ConnectionError:
                 if i < max_retries - 1:
-                    status.write(f"⏳ Waiting for backend to start... ({i+1}/{max_retries})")
+                    status.write(
+                        f"⏳ Waiting for backend to start... ({i + 1}/{max_retries})"
+                    )
                     time.sleep(retry_delay)
                 else:
-                    status.update(label="❌ Connection failed after multiple retries", state="error")
+                    status.update(
+                        label="❌ Connection failed after multiple retries",
+                        state="error",
+                    )
             except Exception as e:
                 status.update(label=f"❌ Unexpected error: {e}", state="error")
                 break
-    
+
     if not connected:
-        st.error("🔌 **Backend Connection Error**: The medical chatbot API is not responding. Please ensure the uvicorn server is running.")
+        st.error(
+            "🔌 **Backend Connection Error**: The medical chatbot API is not responding. Please ensure the uvicorn server is running."
+        )
         st.stop()
+
 
 @st.cache_resource
 def get_validator():
     """Cache the content validator to avoid re-initializing on every rerun."""
     from src.content_analyzer.validator import ContentValidator
     from src.content_analyzer.config import ValidationConfig
+
     return ContentValidator(ValidationConfig(enable_prompt_injection_detection=True))
+
 
 # Constants
 MAX_QUERY_LENGTH = 1000
@@ -105,6 +116,7 @@ DEFAULT_EMBEDDING_MODEL = (
 MAX_RETRIES = settings.max_retries if settings else 3
 MAX_QUERY_LENGTH = 1000
 
+
 @st.cache_data
 def get_rag_prompt() -> str:
     """Load the prompt template."""
@@ -112,7 +124,7 @@ def get_rag_prompt() -> str:
     if not prompt_path.exists():
         logger.error(f"Prompt template not found at {prompt_path}")
         return "Answer the following medical questions using the context provided.\nContext: {context}\nQuestion: {question}"
-    
+
     with open(prompt_path, "r", encoding="utf-8") as f:
         prompt_content = f.read()
     return prompt_content
@@ -125,7 +137,7 @@ def call_rag_api(query: str, history: list, id_token: str):
         f"{API_BASE_URL}/query",
         json={"query": query, "history": history},
         headers={"Authorization": f"Bearer {id_token}"},
-        timeout=None
+        timeout=None,
     ) as response:
         if response.status_code != 200:
             error_detail = response.read().decode()
@@ -134,7 +146,7 @@ def call_rag_api(query: str, history: list, id_token: str):
             except:
                 msg = error_detail
             raise LLMError(f"API Error: {msg}")
-            
+
         for chunk in response.iter_text():
             if chunk:
                 if chunk.startswith("[METADATA]:"):
@@ -142,41 +154,42 @@ def call_rag_api(query: str, history: list, id_token: str):
                         meta_str = chunk.replace("[METADATA]:", "").strip()
                         metadata = json.loads(meta_str)
                         st.session_state["last_run_id"] = metadata.get("run_id")
-                        continue # Skip to next chunk (the actual text)
+                        continue  # Skip to next chunk (the actual text)
                     except:
                         pass
-                
+
                 if chunk.startswith("[SOURCES]:"):
                     try:
                         sources_str = chunk.replace("[SOURCES]:", "").strip()
                         st.session_state["last_sources"] = json.loads(sources_str)
-                        continue # Skip to next chunk
+                        continue  # Skip to next chunk
                     except:
                         pass
 
                 yield chunk
+
 
 def rebuild_vectorstore_via_api(pdf_files: list, id_token: str) -> tuple:
     """Send PDFs to API for remote indexing and poll for status."""
     files = []
     for pdf in pdf_files:
         files.append(("files", (pdf["name"], pdf["bytes"], "application/pdf")))
-    
+
     try:
         # 1. Start the task
         response = requests.post(
             f"{API_BASE_URL}/upload",
             files=files,
             headers={"Authorization": f"Bearer {id_token}"},
-            timeout=30
+            timeout=30,
         )
-        
+
         if response.status_code != 200:
             return False, f"Upload failed ({response.status_code}): {response.text}"
-            
+
         res_json = response.json()
         task_id = res_json.get("task_id")
-        
+
         if not task_id:
             return True, res_json.get("message", "Success (but no task ID returned)")
 
@@ -186,16 +199,16 @@ def rebuild_vectorstore_via_api(pdf_files: list, id_token: str) -> tuple:
             status_response = requests.get(
                 f"{API_BASE_URL}/upload/status/{task_id}",
                 headers={"Authorization": f"Bearer {id_token}"},
-                timeout=10
+                timeout=10,
             )
-            
+
             if status_response.status_code != 200:
                 return False, f"Status check failed: {status_response.text}"
-            
+
             status_data = status_response.json()
             status = status_data["status"]
             message = status_data.get("message", "Processing...")
-            
+
             if status == "completed":
                 status_container.success(f"✅ {message}")
                 return True, message
@@ -204,8 +217,8 @@ def rebuild_vectorstore_via_api(pdf_files: list, id_token: str) -> tuple:
                 return False, message
             else:
                 status_container.info(f"⏳ {message}")
-                time.sleep(2) # Poll every 2 seconds
-                
+                time.sleep(2)  # Poll every 2 seconds
+
     except Exception as e:
         return False, f"Async processing failed: {str(e)}"
 
@@ -214,35 +227,35 @@ def render_admin_dashboard():
     """Display analytics visualizations for admins."""
     from src.utils.analytics import analytics_manager
     import pandas as pd
-    
+
     st.header("📊 Usage Analytics Dashboard")
     st.markdown("---")
-    
+
     with st.spinner("Fetching data..."):
         # This will fetch both GCS and local fallback logs
         events = analytics_manager.get_all_events()
-        
+
     if not events:
         st.warning("No analytics data found yet. Start chatting to generate logs!")
         return
 
     df = pd.DataFrame(events)
     # Convert timestamp string to datetime objects for plotting
-    df['timestamp'] = pd.to_datetime(df['timestamp'])
-    
+    df["timestamp"] = pd.to_datetime(df["timestamp"])
+
     # ── Key Metrics ──────────────────────────────────────────────────────────
     col1, col2, col3, col4 = st.columns(4)
     with col1:
         st.metric("Total Queries", len(df))
     with col2:
-        avg_time = df['response_time_sec'].mean()
+        avg_time = df["response_time_sec"].mean()
         st.metric("Avg Response Time", f"{avg_time:.2f}s")
     with col3:
-        error_count = df['is_error'].sum()
+        error_count = df["is_error"].sum()
         error_rate = (error_count / len(df)) * 100
         st.metric("Error Rate", f"{error_rate:.1f}%")
     with col4:
-        total_tokens = int(df['token_count'].sum())
+        total_tokens = int(df["token_count"].sum())
         st.metric("Total Tokens", f"{total_tokens:,}")
 
     st.divider()
@@ -251,24 +264,41 @@ def render_admin_dashboard():
     st.subheader("📈 Activity Timeline")
     # Resample to hourly buckets
     try:
-        df_timeline = df.set_index('timestamp').resample('H').size().reset_index(name='Queries')
-        st.bar_chart(df_timeline, x='timestamp', y='Queries', use_container_width=True)
+        df_timeline = (
+            df.set_index("timestamp").resample("H").size().reset_index(name="Queries")
+        )
+        st.bar_chart(df_timeline, x="timestamp", y="Queries", use_container_width=True)
     except Exception:
         st.info("Not enough data points for a timeline yet.")
 
     # ── Popular Topics & Sources ─────────────────────────────────────────────
     left_col, right_col = st.columns(2)
-    
+
     with left_col:
         st.subheader("🔍 Common Terms")
         # Very basic keyword count
-        stop_words = {'what', 'is', 'the', 'how', 'to', 'for', 'of', 'and', 'a', 'in', 'with', 'my'}
+        stop_words = {
+            "what",
+            "is",
+            "the",
+            "how",
+            "to",
+            "for",
+            "of",
+            "and",
+            "a",
+            "in",
+            "with",
+            "my",
+        }
         words = []
-        for q in df['query']:
-            words.extend([w.lower().strip('?') for w in q.split() if w.lower() not in stop_words])
+        for q in df["query"]:
+            words.extend(
+                [w.lower().strip("?") for w in q.split() if w.lower() not in stop_words]
+            )
         if words:
             word_counts = pd.Series(words).value_counts().head(10).reset_index()
-            word_counts.columns = ['Topic', 'Count']
+            word_counts.columns = ["Topic", "Count"]
             st.dataframe(word_counts, hide_index=True, use_container_width=True)
         else:
             st.caption("No keywords extracted.")
@@ -276,12 +306,12 @@ def render_admin_dashboard():
     with right_col:
         st.subheader("📄 Top Sources")
         all_sources = []
-        for s_list in df.get('sources', []):
+        for s_list in df.get("sources", []):
             if isinstance(s_list, list):
                 all_sources.extend(s_list)
         if all_sources:
             source_counts = pd.Series(all_sources).value_counts().head(10).reset_index()
-            source_counts.columns = ['Document', 'Citations']
+            source_counts.columns = ["Document", "Citations"]
             st.dataframe(source_counts, hide_index=True, use_container_width=True)
         else:
             st.caption("No sources cited yet.")
@@ -289,14 +319,17 @@ def render_admin_dashboard():
     # ── Raw Data ─────────────────────────────────────────────────────────────
     st.divider()
     with st.expander("📝 View Raw Logs"):
-        st.dataframe(df.sort_values('timestamp', ascending=False), use_container_width=True)
+        st.dataframe(
+            df.sort_values("timestamp", ascending=False), use_container_width=True
+        )
+
 
 def main():
     """Main application function with comprehensive error handling"""
 
     # Page configuration
     st.set_page_config(page_title="Medical Chatbot", page_icon="🏥", layout="centered")
-    
+
     # Initialize global singletons once per server process
     init_globals()
     input_validator = get_validator()
@@ -338,9 +371,11 @@ def main():
     if st.session_state.get("is_admin"):
         with st.sidebar:
             st.subheader("🕹️ Admin Console")
-            app_mode = st.radio("Navigation", ["💬 Chat", "📊 Admin Dashboard"], key="nav_radio")
+            app_mode = st.radio(
+                "Navigation", ["💬 Chat", "📊 Admin Dashboard"], key="nav_radio"
+            )
             st.divider()
-            
+
     if app_mode == "📊 Admin Dashboard":
         st.title("🛡️ Admin Console")
         render_admin_dashboard()
@@ -366,9 +401,13 @@ def main():
     for message in st.session_state.messages:
         with st.chat_message(message["role"]):
             st.markdown(message["content"])
-            
+
             # Show sources if available for assistant messages
-            if message["role"] == "assistant" and "sources" in message and message["sources"]:
+            if (
+                message["role"] == "assistant"
+                and "sources" in message
+                and message["sources"]
+            ):
                 with st.expander("📚 View Sources"):
                     for src in message["sources"]:
                         st.markdown(f"- 📄 **{src['file']}** (Page {src['page']})")
@@ -380,17 +419,21 @@ def main():
         # Display user message
         with st.chat_message("user"):
             st.markdown(user_query)
-        
+
         # 🛡️ INPUT VALIDATION 🛡️
         if len(user_query) > MAX_QUERY_LENGTH:
-            st.warning(f"⚠️ **Query too long**: Please keep your question under {MAX_QUERY_LENGTH} characters.")
+            st.warning(
+                f"⚠️ **Query too long**: Please keep your question under {MAX_QUERY_LENGTH} characters."
+            )
             st.stop()
-            
+
         is_safe, issues = input_validator.validate(user_query)
         if not is_safe:
             # Display warning and stop
             with st.chat_message("assistant"):
-                st.warning("⚠️ **Security Warning**: Your query was flagged for potentially unsafe content (PII, Toxic language, or Prompt Injection).")
+                st.warning(
+                    "⚠️ **Security Warning**: Your query was flagged for potentially unsafe content (PII, Toxic language, or Prompt Injection)."
+                )
                 for issue in issues:
                     st.caption(f"- {issue.description}")
             st.stop()
@@ -404,9 +447,9 @@ def main():
                 # Convert session history to API message format
                 history = [
                     {"role": m["role"], "content": m["content"]}
-                    for m in st.session_state.messages[:-1] # Exclude latest
+                    for m in st.session_state.messages[:-1]  # Exclude latest
                 ]
-                
+
                 # Call streaming API
                 st.session_state["last_sources"] = []
                 answer_placeholder = st.empty()
@@ -414,7 +457,7 @@ def main():
                     call_rag_api(user_query, history, st.session_state.id_token)
                 )
                 answer = full_response
-                
+
                 # Show sources immediately after streaming
                 current_sources = st.session_state.get("last_sources", [])
                 if current_sources:
@@ -422,25 +465,34 @@ def main():
                         for src in current_sources:
                             st.markdown(f"- 📄 **{src['file']}** (Page {src['page']})")
 
-            st.session_state.messages.append({
-                "role": "assistant", 
-                "content": answer,
-                "sources": st.session_state.get("last_sources", [])
-            })
+            st.session_state.messages.append(
+                {
+                    "role": "assistant",
+                    "content": answer,
+                    "sources": st.session_state.get("last_sources", []),
+                }
+            )
             elapsed = round(time.time() - start_time, 1)
             st.caption(f"⏱️ Response generated via API in {elapsed}s")
-            
+
             # 📝 FB FEEDBACK 📝
             if st.session_state.get("last_run_id"):
-                feedback = st.feedback("thumbs", key=f"fb_{st.session_state.last_run_id}")
+                feedback = st.feedback(
+                    "thumbs", key=f"fb_{st.session_state.last_run_id}"
+                )
                 if feedback is not None:
                     score = 1.0 if feedback == 1 else 0.0
                     try:
                         f_res = requests.post(
                             f"{API_BASE_URL}/feedback",
-                            json={"run_id": st.session_state.last_run_id, "score": score},
-                            headers={"Authorization": f"Bearer {st.session_state.id_token}"},
-                            timeout=5
+                            json={
+                                "run_id": st.session_state.last_run_id,
+                                "score": score,
+                            },
+                            headers={
+                                "Authorization": f"Bearer {st.session_state.id_token}"
+                            },
+                            timeout=5,
                         )
                         if f_res.status_code == 200:
                             st.toast("✅ Feedback recorded in LangSmith!")
@@ -469,6 +521,7 @@ def main():
     # Sidebar with info
     render_sidebar_info()
 
+
 def render_sidebar_info():
     """Renders the common sidebar information and logout button."""
     with st.sidebar:
@@ -477,7 +530,7 @@ def render_sidebar_info():
         # Extract and format org name
         tenant_id = extract_tenant_id(user_email)
         org_name = tenant_id.replace("-", " ").title()
-        
+
         st.markdown(f"👤 **{user_email}**")
         st.markdown(f"🏢 **Org: {org_name}**")
         if st.session_state.get("is_admin", False):
@@ -485,8 +538,17 @@ def render_sidebar_info():
         else:
             st.caption("👥 Standard User")
         if st.button("🚪 Logout", use_container_width=True):
-            for key in ["id_token", "user_email", "is_admin", "messages",
-                        "initialized", "vectorstore", "llm", "config", "rate_limit_data"]:
+            for key in [
+                "id_token",
+                "user_email",
+                "is_admin",
+                "messages",
+                "initialized",
+                "vectorstore",
+                "llm",
+                "config",
+                "rate_limit_data",
+            ]:
                 st.session_state.pop(key, None)
             st.rerun()
         st.divider()
@@ -577,7 +639,9 @@ def render_sidebar_info():
                     key="btn_add_index",
                 ):
                     with st.spinner("Embedding and indexing PDFs via API..."):
-                        ok, msg = rebuild_vectorstore_via_api(cached, st.session_state.id_token)
+                        ok, msg = rebuild_vectorstore_via_api(
+                            cached, st.session_state.id_token
+                        )
                     if ok:
                         st.success(msg)
                         logger.info(msg)
@@ -593,9 +657,13 @@ def render_sidebar_info():
                     use_container_width=True,
                     key="btn_rebuild_index",
                 ):
-                    st.warning("Rebuild mode via API will be implemented as 'add' for now.")
+                    st.warning(
+                        "Rebuild mode via API will be implemented as 'add' for now."
+                    )
                     with st.spinner("Embedding and indexing PDFs via API..."):
-                        ok, msg = rebuild_vectorstore_via_api(cached, st.session_state.id_token)
+                        ok, msg = rebuild_vectorstore_via_api(
+                            cached, st.session_state.id_token
+                        )
                     if ok:
                         st.success(msg)
                         logger.info(msg)

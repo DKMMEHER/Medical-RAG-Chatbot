@@ -230,7 +230,9 @@ class ContentValidator:
             injection_issues = self.detect_prompt_injection(text)
             all_issues.extend(injection_issues)
             if self.config.verbose and injection_issues:
-                logger.debug(f"Detected {len(injection_issues)} prompt injection issue(s)")
+                logger.debug(
+                    f"Detected {len(injection_issues)} prompt injection issue(s)"
+                )
 
         # Determine if content should be blocked
         is_safe = self._evaluate_safety(all_issues)
@@ -286,7 +288,9 @@ class ContentValidator:
         # Separate PII and toxic issues
         pii_issues = [i for i in issues if i.issue_type.startswith("PII_")]
         toxic_issues = [i for i in issues if i.issue_type.startswith("TOXIC_")]
-        injection_issues = [i for i in issues if i.issue_type.startswith("PROMPT_INJECTION_")]
+        injection_issues = [
+            i for i in issues if i.issue_type.startswith("PROMPT_INJECTION_")
+        ]
 
         # Check PII blocking rules
         if self.config.enable_pii_detection and pii_issues:
@@ -340,7 +344,9 @@ class ContentValidator:
         if self.config.enable_prompt_injection_detection and injection_issues:
             if self.config.prompt_injection_block_on_critical:
                 critical_injection = [
-                    i for i in injection_issues if i.severity == ValidationSeverity.CRITICAL
+                    i
+                    for i in injection_issues
+                    if i.severity == ValidationSeverity.CRITICAL
                 ]
                 if critical_injection:
                     logger.error(
@@ -421,20 +427,21 @@ class ContentValidator:
     def detect_prompt_injection(self, text: str) -> List[ValidationIssue]:
         """
         Detect potential prompt injection attempts using regex patterns.
-        
+
         Args:
             text: Text to analyze
-            
+
         Returns:
             List of ValidationIssue objects
         """
         import re
+
         issues = []
-        
+
         for name, info in PROMPT_INJECTION_PATTERNS.items():
             pattern = info["pattern"]
             matches = list(re.finditer(pattern, text))
-            
+
             for match in matches:
                 issues.append(
                     ValidationIssue(
@@ -442,10 +449,10 @@ class ContentValidator:
                         severity=info["severity"],
                         description=info["description"],
                         matched_text=match.group(),
-                        position=match.start()
+                        position=match.start(),
                     )
                 )
-        
+
         return issues
 
 

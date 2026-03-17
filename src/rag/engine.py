@@ -1,10 +1,7 @@
 import os
 import tempfile
-import logging
-from typing import List, Tuple, Dict, Any, Optional
+from typing import List, Tuple, Any, Optional
 from langchain_community.document_loaders import PyPDFLoader
-from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from src.utils.logger import get_logger
 from src.content_analyzer.utils import sanitize_filename
@@ -58,15 +55,19 @@ def rerank_documents(
         logger.warning(f"⚠️ Re-ranking failed — falling back to original order: {exc}")
         return docs[:top_k]
 
+
 def build_bm25_retriever(vectorstore, k: int = 5):
     """
     Build a BM25Retriever from the documents stored in a FAISS vectorstore.
     Extracts raw documents from the FAISS docstore so BM25 can index them.
     """
     from langchain_community.retrievers.bm25 import BM25Retriever
+
     docs = list(vectorstore.docstore._dict.values())
     if not docs:
-        logger.warning("⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped")
+        logger.warning(
+            "⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped"
+        )
         return None
     bm25 = BM25Retriever.from_documents(docs, k=k)
     logger.info(f"🔍 BM25 retriever built from {len(docs)} documents")
@@ -104,10 +105,8 @@ def prepare_rag_context(
             except ImportError:
                 # Fallback for newer LangChain v1.x structures
                 from langchain_classic.retrievers import EnsembleRetriever
-        
-        faiss_retriever = vectorstore.as_retriever(
-            search_kwargs={"k": retrieval_k}
-        )
+
+        faiss_retriever = vectorstore.as_retriever(search_kwargs={"k": retrieval_k})
         ensemble = EnsembleRetriever(
             retrievers=[faiss_retriever, bm25_retriever],
             weights=[0.6, 0.4],
@@ -119,7 +118,9 @@ def prepare_rag_context(
         logger.info(f"🔍 FAISS-only retrieval: {len(retrieved_docs)} docs")
 
     # ── Step 2: Re-rank ───────────────────────────────────────────────────
-    final_docs = rerank_documents(query, retrieved_docs, cross_encoder, top_k=rerank_top_k)
+    final_docs = rerank_documents(
+        query, retrieved_docs, cross_encoder, top_k=rerank_top_k
+    )
 
     # ── Step 3: Build prompt ──────────────────────────────────────────────
     context = "\n---\n".join([doc.page_content for doc in final_docs])
@@ -131,11 +132,9 @@ def prepare_rag_context(
     )
     return final_prompt, final_docs
 
+
 def rebuild_vectorstore_from_pdfs(
-    pdf_files: list, 
-    embedding_model, 
-    _gcs_handler=None, 
-    mode: str = "add"
+    pdf_files: list, embedding_model, _gcs_handler=None, mode: str = "add"
 ) -> Tuple[bool, str, int, Optional[Any]]:
     """
     Build or update the FAISS index from PDF files.
@@ -154,8 +153,7 @@ def rebuild_vectorstore_from_pdfs(
         all_chunks = []
         # Use semantic chunking based on embeddings
         splitter = SemanticChunker(
-            embedding_model, 
-            breakpoint_threshold_type="percentile"
+            embedding_model, breakpoint_threshold_type="percentile"
         )
 
         with tempfile.TemporaryDirectory() as tmp_dir:
@@ -170,10 +168,12 @@ def rebuild_vectorstore_from_pdfs(
                     # Clean the source path metadata to be just the filename
                     for doc in docs:
                         doc.metadata["source"] = pdf["name"]
-                    
+
                     chunks = splitter.split_documents(docs)
                     all_chunks.extend(chunks)
-                    logger.info(f"📄 Processed {pdf['name']}: {len(chunks)} semantic chunks")
+                    logger.info(
+                        f"📄 Processed {pdf['name']}: {len(chunks)} semantic chunks"
+                    )
                 except Exception as loader_err:
                     logger.error(f"Failed to load {pdf['name']}: {loader_err}")
 
@@ -183,10 +183,10 @@ def rebuild_vectorstore_from_pdfs(
         # Build index
         BATCH_SIZE = 100
         final_db = None
-        
+
         # If adding to existing index, we need to load or start from it
         # Actually, in this function, we assume embedding_model is passed in.
-        
+
         for i in range(0, len(all_chunks), BATCH_SIZE):
             batch = all_chunks[i : i + BATCH_SIZE]
             batch_db = FAISS.from_documents(batch, embedding_model)
@@ -196,23 +196,20 @@ def rebuild_vectorstore_from_pdfs(
                 final_db.merge_from(batch_db)
 
         # Upload if GCS is enabled
-        gcs_ok = False
         if _gcs_handler and _gcs_handler.gcs_enabled:
             with tempfile.TemporaryDirectory() as upload_dir:
                 final_db.save_local(upload_dir)
-                gcs_ok = _gcs_handler.upload_faiss_index(upload_dir)
-                
+                _gcs_handler.upload_faiss_index(upload_dir)
+
         return True, "Index updated successfully", len(all_chunks), final_db
 
     except Exception as e:
         logger.error(f"rebuild_vectorstore_from_pdfs failed: {e}", exc_info=True)
         return False, str(e), 0, None
 
+
 def validate_response(
-    llm_answer: str,
-    original_query: str,
-    retrieved_docs: list,
-    guardrails
+    llm_answer: str, original_query: str, retrieved_docs: list, guardrails
 ) -> Tuple[bool, str]:
     """
     Validates LLM output using guardrails and handles fallbacks.

@@ -6,14 +6,15 @@ from src.utils.logger import get_logger
 
 logger = get_logger(__name__)
 
+
 def display_error_message(error: Exception, error_type: str):
     """
     Display user-friendly error messages using non-blocking toast notifications.
-    
+
     Args:
         error: The exception object
         error_type: Category of error (e.g., VectorStoreError, LLMError)
-    
+
     Returns:
         dict: Information containing title and suggestion for remediation
     """
@@ -42,6 +43,7 @@ def display_error_message(error: Exception, error_type: str):
     try:
         import streamlit as st
         from streamlit.runtime.scriptrunner import get_script_run_ctx
+
         if get_script_run_ctx():
             st.toast(f"{error_info['title']}: {str(error)[:100]}", icon="🚨")
     except ImportError:

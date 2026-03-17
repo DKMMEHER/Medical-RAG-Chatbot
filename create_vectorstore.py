@@ -208,8 +208,7 @@ def load_pdf_files(data_path: str) -> List[Document]:
 
 @traceable(name="create_semantic_chunks", tags=["chunking", "semantic_splitting"])
 def create_chunks(
-    documents: List[Document],
-    embedding_model: HuggingFaceEmbeddings
+    documents: List[Document], embedding_model: HuggingFaceEmbeddings
 ) -> List[Document]:
     """
     Split documents into semantic chunks using embeddings.
@@ -222,8 +221,7 @@ def create_chunks(
 
         # Create semantic text splitter
         text_splitter = SemanticChunker(
-            embedding_model,
-            breakpoint_threshold_type="percentile"
+            embedding_model, breakpoint_threshold_type="percentile"
         )
 
         # Split documents
@@ -430,14 +428,20 @@ def main():
 
         gcs = GCSHandler()
         if gcs.gcs_enabled:
-            print(f"☁️  Step 5: Uploading FAISS index to GCS bucket '{gcs.bucket_name}'...")
+            print(
+                f"☁️  Step 5: Uploading FAISS index to GCS bucket '{gcs.bucket_name}'..."
+            )
             success = gcs.upload_faiss_index(DB_FAISS_PATH)
             if success:
-                print(f"✅ Vector store uploaded to GCS: gs://{gcs.bucket_name}/{gcs.index_prefix}/")
+                print(
+                    f"✅ Vector store uploaded to GCS: gs://{gcs.bucket_name}/{gcs.index_prefix}/"
+                )
             else:
                 print("⚠️  GCS upload failed — index is saved locally only.")
         else:
-            print("ℹ️  Step 5: GCS not configured (set GCS_BUCKET_NAME to enable cloud storage).")
+            print(
+                "ℹ️  Step 5: GCS not configured (set GCS_BUCKET_NAME to enable cloud storage)."
+            )
         print()
 
         # Success summary

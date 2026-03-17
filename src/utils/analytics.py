@@ -6,9 +6,9 @@ from typing import List, Dict, Any, Optional
 from pathlib import Path
 
 from .logger import get_logger
-from ..config.settings import settings
 
 logger = get_logger(__name__)
+
 
 class AnalyticsManager:
     """
@@ -31,20 +31,21 @@ class AnalyticsManager:
             return self._bucket
         if not self.enabled:
             return None
-        
+
         try:
             from google.cloud import storage
+
             self._client = storage.Client()
             self._bucket = self._client.bucket(self.bucket_name)
             return self._bucket
         except Exception as e:
             logger.warning(f"Analytics: Failed to connect to GCS: {e}")
-            self.bucket_name = "" # Disable for this session
+            self.bucket_name = ""  # Disable for this session
             return None
 
     def log_chat_event(self, event_data: Dict[str, Any]):
         """
-        Log a chat event to GCS. 
+        Log a chat event to GCS.
         schema: timestamp, user_email, query, response_time, tokens, sources, is_error
         """
         if not self.enabled:
@@ -61,13 +62,14 @@ class AnalyticsManager:
             timestamp = datetime.now().isoformat().replace(":", "-")
             event_id = str(uuid.uuid4())[:8]
             blob_name = f"{self.prefix}/chat_{timestamp}_{event_id}.json"
-            
+
             blob = bucket.blob(blob_name)
             blob.upload_from_string(
-                data=json.dumps(event_data, indent=2),
-                content_type="application/json"
+                data=json.dumps(event_data, indent=2), content_type="application/json"
             )
-            logger.info(f"📊 Analytics: Logged chat event to gs://{self.bucket_name}/{blob_name}")
+            logger.info(
+                f"📊 Analytics: Logged chat event to gs://{self.bucket_name}/{blob_name}"
+            )
         except Exception as e:
             logger.error(f"Analytics: Failed to log event to GCS: {e}")
             self._log_locally(event_data)
@@ -77,7 +79,7 @@ class AnalyticsManager:
         log_dir = Path("logs")
         log_dir.mkdir(exist_ok=True)
         log_file = log_dir / "usage_analytics.jsonl"
-        
+
         try:
             with open(log_file, "a", encoding="utf-8") as f:
                 f.write(json.dumps(event_data) + "\n")
@@ -88,7 +90,7 @@ class AnalyticsManager:
     def get_all_events(self) -> List[Dict[str, Any]]:
         """Fetch all logged events from GCS and local fallback."""
         events = []
-        
+
         # 1. Load from local fallback
         log_file = Path("logs/usage_analytics.jsonl")
         if log_file.exists():
@@ -114,6 +116,7 @@ class AnalyticsManager:
                 logger.error(f"Analytics: Failed to fetch logs from GCS: {e}")
 
         return events
+
 
 # Singleton instance
 analytics_manager = AnalyticsManager()

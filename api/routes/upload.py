@@ -11,14 +11,15 @@ from typing import List
 router = APIRouter()
 logger = get_logger(__name__)
 
+
 @router.post("/upload", response_model=UploadResponse)
 async def upload_pdfs(
     background_tasks: BackgroundTasks,
-    files: List[UploadFile] = File(...), 
-    user=Depends(get_current_user)
+    files: List[UploadFile] = File(...),
+    user=Depends(get_current_user),
 ):
     """Endpoint for admins to upload and index new medical documents asynchronously."""
-    
+
     if not user.get("is_admin", False):
         raise HTTPException(status_code=403, detail="Only admins can upload documents.")
 
@@ -30,27 +31,27 @@ async def upload_pdfs(
         if not file.filename.endswith(".pdf"):
             continue
         content = await file.read()
-        pdf_data.append({
-            "name": file.filename,
-            "bytes": content
-        })
+        pdf_data.append({"name": file.filename, "bytes": content})
 
     if not pdf_data:
         raise HTTPException(status_code=400, detail="No valid PDF files found.")
 
     # 1. Generate Task ID
     task_id = str(uuid.uuid4())
-    state["tasks"][task_id] = {"status": "processing", "message": "Queued for indexing..."}
+    state["tasks"][task_id] = {
+        "status": "processing",
+        "message": "Queued for indexing...",
+    }
 
     # 2. Extract models/params for task
     embedding_model = state.get("embeddings")
-    
+
     # 2.5 Multi-tenancy: Create a tenant-aware GCS handler
     tenant_id = extract_tenant_id(user["email"])
     gcs_handler = GCSHandler(
         bucket_name=settings.gcs_bucket_name if settings else None,
         index_prefix=settings.gcs_index_prefix if settings else "faiss-index",
-        tenant_id=tenant_id
+        tenant_id=tenant_id,
     )
 
     # 3. Launch background task
@@ -61,14 +62,15 @@ async def upload_pdfs(
         embedding_model,
         gcs_handler,
         state,
-        tenant_id  # Pass tenant_id to the task
+        tenant_id,  # Pass tenant_id to the task
     )
 
     return {
         "success": True,
         "message": "Files received. Indexing started in the background.",
-        "task_id": task_id
+        "task_id": task_id,
     }
+
 
 @router.get("/upload/status/{task_id}", response_model=TaskStatusResponse)
 async def get_upload_status(task_id: str, user=Depends(get_current_user)):
@@ -76,10 +78,10 @@ async def get_upload_status(task_id: str, user=Depends(get_current_user)):
     task = state["tasks"].get(task_id)
     if not task:
         raise HTTPException(status_code=404, detail="Task not found.")
-    
+
     return {
         "task_id": task_id,
         "status": task["status"],
         "message": task.get("message"),
-        "result": task.get("result")
+        "result": task.get("result"),
     }

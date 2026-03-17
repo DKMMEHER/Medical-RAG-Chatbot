@@ -386,7 +386,9 @@ def main():
 
     # Extra check for API keys in CI
     if not os.getenv("GROQ_API_KEY") and not os.getenv("OPENAI_API_KEY"):
-        logger.error("❌ No API keys found (neither GROQ_API_KEY nor OPENAI_API_KEY). Evaluation cannot proceed.")
+        logger.error(
+            "❌ No API keys found (neither GROQ_API_KEY nor OPENAI_API_KEY). Evaluation cannot proceed."
+        )
         return 1
 
     print("=" * 60)

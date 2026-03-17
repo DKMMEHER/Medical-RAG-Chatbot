@@ -342,13 +342,18 @@ class TestGetVectorstore:
 
     def test_get_vectorstore_embedding_failure(self):
         """Raises VectorStoreError when embedding model loading fails"""
-        with patch("app.HuggingFaceEmbeddings", side_effect=Exception("Embedding failed")):
+        with patch(
+            "app.HuggingFaceEmbeddings", side_effect=Exception("Embedding failed")
+        ):
             from app import get_vectorstore
             from src.utils.exceptions import VectorStoreError
 
             mock_handler = MagicMock()
             mock_handler.gcs_enabled = False
-            with pytest.raises(VectorStoreError, match="Failed to load embedding model: Embedding failed"):
+            with pytest.raises(
+                VectorStoreError,
+                match="Failed to load embedding model: Embedding failed",
+            ):
                 get_vectorstore(mock_handler)
 
 
@@ -362,22 +367,25 @@ class TestRebuildVectorstoreFromPdfs:
         """Successfully rebuilds vectorstore from PDFs."""
         mock_pdf = {"name": "test.pdf", "bytes": b"dummy pdf content"}
 
-        with patch("app.PyPDFLoader") as mock_pdf_loader_cls, \
-             patch("app.RecursiveCharacterTextSplitter") as mock_text_splitter_cls, \
-             patch("app.FAISS.from_documents") as mock_faiss_from_documents, \
-             patch("app.HuggingFaceEmbeddings") as mock_embeddings_cls, \
-             patch("app.DB_FAISS_PATH", "mock/path/db_faiss"), \
-             patch("app.os.makedirs"), \
-             patch("app.os.path.exists", return_value=False), \
-             patch("app.tempfile.NamedTemporaryFile") as mock_named_temp, \
-             patch("app.tempfile.mkdtemp") as mock_mkdtemp:
-
+        with (
+            patch("app.PyPDFLoader") as mock_pdf_loader_cls,
+            patch("app.RecursiveCharacterTextSplitter") as mock_text_splitter_cls,
+            patch("app.FAISS.from_documents") as mock_faiss_from_documents,
+            patch("app.HuggingFaceEmbeddings") as mock_embeddings_cls,
+            patch("app.DB_FAISS_PATH", "mock/path/db_faiss"),
+            patch("app.os.makedirs"),
+            patch("app.os.path.exists", return_value=False),
+            patch("app.tempfile.NamedTemporaryFile") as mock_named_temp,
+            patch("app.tempfile.mkdtemp") as mock_mkdtemp,
+        ):
             mock_loader = MagicMock()
             mock_loader.load.return_value = [MagicMock(page_content="doc1")]
             mock_pdf_loader_cls.return_value = mock_loader
 
             mock_splitter = MagicMock()
-            mock_splitter.split_documents.return_value = [MagicMock(page_content="chunk1")]
+            mock_splitter.split_documents.return_value = [
+                MagicMock(page_content="chunk1")
+            ]
             mock_text_splitter_cls.return_value = mock_splitter
 
             mock_embeddings = MagicMock()
@@ -385,7 +393,7 @@ class TestRebuildVectorstoreFromPdfs:
 
             mock_faiss_instance = MagicMock()
             mock_faiss_from_documents.return_value = mock_faiss_instance
-            
+
             mock_temp_file = MagicMock()
             mock_temp_file.name = "mock_temp_file.pdf"
             mock_named_temp.return_value.__enter__.return_value = mock_temp_file
@@ -402,12 +410,15 @@ class TestRebuildVectorstoreFromPdfs:
             mock_pdf_loader_cls.assert_called_once()
             mock_text_splitter_cls.assert_called_once()
             mock_embeddings_cls.assert_called_once()
-            mock_faiss_from_documents.assert_called_once_with([MagicMock(page_content="chunk1")], mock_embeddings)
+            mock_faiss_from_documents.assert_called_once_with(
+                [MagicMock(page_content="chunk1")], mock_embeddings
+            )
             mock_faiss_instance.save_local.assert_called_once_with("mock/path/db_faiss")
 
     def test_rebuild_vectorstore_from_pdfs_no_pdfs(self):
         """Returns failure if no PDFs are provided."""
         from app import rebuild_vectorstore_from_pdfs
+
         mock_handler = MagicMock()
         mock_handler.gcs_enabled = False
         success, msg = rebuild_vectorstore_from_pdfs([], mock_handler)
@@ -418,16 +429,20 @@ class TestRebuildVectorstoreFromPdfs:
         """Returns failure if embedding model loading fails."""
         mock_pdf = {"name": "test.pdf", "bytes": b"dummy pdf content"}
 
-        with patch("app.HuggingFaceEmbeddings", side_effect=Exception("Embedding failed")), \
-             patch("app.tempfile.NamedTemporaryFile") as mock_named_temp, \
-             patch("app.os.makedirs"), \
-             patch("app.os.path.exists", return_value=False):
-            
+        with (
+            patch(
+                "app.HuggingFaceEmbeddings", side_effect=Exception("Embedding failed")
+            ),
+            patch("app.tempfile.NamedTemporaryFile") as mock_named_temp,
+            patch("app.os.makedirs"),
+            patch("app.os.path.exists", return_value=False),
+        ):
             mock_temp_file = MagicMock()
             mock_temp_file.name = "mock_temp_file.pdf"
             mock_named_temp.return_value.__enter__.return_value = mock_temp_file
-            
+
             from app import rebuild_vectorstore_from_pdfs
+
             mock_handler = MagicMock()
             mock_handler.gcs_enabled = False
             success, msg = rebuild_vectorstore_from_pdfs([mock_pdf], mock_handler)
@@ -438,17 +453,19 @@ class TestRebuildVectorstoreFromPdfs:
         """Returns failure if PDF processing fails."""
         mock_pdf = {"name": "test.pdf", "bytes": b"dummy pdf content"}
 
-        with patch("app.PyPDFLoader", side_effect=Exception("PDF load error")), \
-             patch("app.HuggingFaceEmbeddings"), \
-             patch("app.tempfile.NamedTemporaryFile") as mock_named_temp, \
-             patch("app.os.makedirs"), \
-             patch("app.os.path.exists", return_value=False):
-             
+        with (
+            patch("app.PyPDFLoader", side_effect=Exception("PDF load error")),
+            patch("app.HuggingFaceEmbeddings"),
+            patch("app.tempfile.NamedTemporaryFile") as mock_named_temp,
+            patch("app.os.makedirs"),
+            patch("app.os.path.exists", return_value=False),
+        ):
             mock_temp_file = MagicMock()
             mock_temp_file.name = "mock_temp_file.pdf"
             mock_named_temp.return_value.__enter__.return_value = mock_temp_file
-            
+
             from app import rebuild_vectorstore_from_pdfs
+
             mock_handler = MagicMock()
             mock_handler.gcs_enabled = False
             success, msg = rebuild_vectorstore_from_pdfs([mock_pdf], mock_handler)
