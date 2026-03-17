@@ -32,7 +32,6 @@ env/
 # Firebase credentials (NEVER commit these!)
 firebase-service-account.json
 firebase-service-account*.json
-set_admin_claim.py
 
 # IDEs
 .vscode/
@@ -41,9 +40,14 @@ set_admin_claim.py
 *.swo
 *~
 
-# Logs
+# Logs and Temporary Test Data
 *.log
 logs/
+test_*.txt
+tests_*.txt
+pass_*.txt
+final_*.txt
+ruff_*.txt
 
 # Vector Store (too large for Git)
 vectorstore/

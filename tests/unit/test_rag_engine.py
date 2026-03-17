@@ -9,7 +9,7 @@ Unit tests for src/rag/engine.py — covering:
 import sys
 import types
 import pytest
-from unittest.mock import MagicMock, patch
+from unittest.mock import MagicMock, patch, mock_open
 from langchain_core.documents import Document
 
 
@@ -309,3 +309,133 @@ class TestPrepareRagContextIntegration:
         mock_rerank.assert_called_once()
         args, kwargs = mock_rerank.call_args
         assert kwargs["top_k"] == 5
+
+
+# ---------------------------------------------------------------------------
+# validate_response
+# ---------------------------------------------------------------------------
+
+
+class TestValidateResponse:
+    def test_validate_response_safe(self):
+        """Returns (True, output) for safe content"""
+        from src.rag.engine import validate_response
+
+        mock_guardrails = MagicMock()
+        mock_guardrails.validate_output.return_value = (
+            True,
+            [],
+            "This is a safe medical answer.",
+        )
+
+        is_safe, output = validate_response(
+            "This is a safe medical answer.",
+            "What is diabetes?",
+            [],
+            mock_guardrails,
+        )
+
+        assert is_safe is True
+        assert "safe medical answer" in output
+        # verify args: answer, query, context
+        mock_guardrails.validate_output.assert_called_once_with(
+            "This is a safe medical answer.", "What is diabetes?", []
+        )
+
+    def test_validate_response_blocked_by_guardrails(self):
+        """Returns (False, fallback) when guardrails block the output"""
+        from src.rag.engine import validate_response
+        from src.content_analyzer.config import ValidationIssue, ValidationSeverity
+
+        pii_issue = ValidationIssue(
+            issue_type="PII_SSN",
+            severity=ValidationSeverity.CRITICAL,
+            description="SSN detected",
+            matched_text="12***89",
+            position=8,
+        )
+        mock_guardrails = MagicMock()
+        mock_guardrails.validate_output.return_value = (False, [pii_issue], "")
+        mock_guardrails.get_fallback_response.return_value = (
+            "I apologize, but the response contained sensitive information."
+        )
+
+        is_safe, output = validate_response(
+            "Patient SSN: 123-45-6789",
+            "Tell me about SSN 123-45-6789",
+            [],
+            mock_guardrails,
+        )
+
+        assert is_safe is False
+        assert "sensitive information" in output
+
+
+# ---------------------------------------------------------------------------
+# rebuild_vectorstore_from_pdfs
+# ---------------------------------------------------------------------------
+
+
+class TestRebuildVectorstoreFromPdfs:
+    @patch("src.rag.engine.PyPDFLoader")
+    @patch("langchain_experimental.text_splitter.SemanticChunker")
+    @patch("langchain_community.vectorstores.FAISS.from_documents")
+    @patch("src.rag.engine.tempfile.TemporaryDirectory")
+    @patch("os.path.exists")
+    def test_success(
+        self,
+        mock_exists,
+        mock_temp_dir_cls,
+        mock_faiss_from_docs,
+        mock_chunker_cls,
+        mock_pdf_loader_cls,
+    ):
+        """Successfully rebuilds vectorstore from PDFs."""
+        from src.rag.engine import rebuild_vectorstore_from_pdfs
+
+        mock_pdf = {"name": "test.pdf", "bytes": b"pdf content"}
+        mock_exists.return_value = False
+
+        # Setup loader
+        mock_loader = MagicMock()
+        mock_loader.load.return_value = [Document(page_content="doc1")]
+        mock_pdf_loader_cls.return_value = mock_loader
+
+        # Setup splitter (SemanticChunker)
+        mock_splitter = MagicMock()
+        mock_splitter.split_documents.return_value = [Document(page_content="chunk1")]
+        mock_chunker_cls.return_value = mock_splitter
+
+        # Setup FAISS
+        mock_faiss_instance = MagicMock()
+        mock_faiss_from_docs.return_value = mock_faiss_instance
+
+        # Setup temp dir
+        mock_temp_dir = MagicMock()
+        mock_temp_dir.__enter__.return_value = "mock_temp_dir"
+        mock_temp_dir_cls.return_value = mock_temp_dir
+
+        # Correctly mock the open() for filename creation
+        # Since we use 'with open(tmp_file_path, "wb") as f:', we need to patch builtins.open
+
+        mock_handler = MagicMock()
+        mock_handler.gcs_enabled = True
+        mock_embeddings = MagicMock()
+
+        with patch("builtins.open", mock_open()):
+            success, msg, count, db = rebuild_vectorstore_from_pdfs(
+                [mock_pdf], mock_embeddings, mock_handler
+            )
+
+        assert success is True
+        assert count == 1
+        assert db == mock_faiss_instance
+        mock_faiss_instance.save_local.assert_called_once()
+        mock_handler.upload_faiss_index.assert_called_once()
+
+    def test_no_pdfs(self):
+        from src.rag.engine import rebuild_vectorstore_from_pdfs
+
+        success, msg, count, db = rebuild_vectorstore_from_pdfs([], None)
+        assert success is False
+        assert "No files provided" in msg

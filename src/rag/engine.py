@@ -140,7 +140,7 @@ def rebuild_vectorstore_from_pdfs(
     Build or update the FAISS index from PDF files.
     """
     if not pdf_files:
-        return False, "No files provided.", 0
+        return False, "No files provided.", 0, None
 
     # Sanitize filenames for safety
     for pdf in pdf_files:
@@ -178,7 +178,7 @@ def rebuild_vectorstore_from_pdfs(
                     logger.error(f"Failed to load {pdf['name']}: {loader_err}")
 
         if not all_chunks:
-            return False, "No chunks extracted from PDFs.", 0
+            return False, "No chunks extracted from PDFs.", 0, None
 
         # Build index
         BATCH_SIZE = 100

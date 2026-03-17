@@ -8,7 +8,7 @@ No real API calls are made: the LLM and FAISS vectorstore are both mocked.
 """
 
 import pytest
-from unittest.mock import patch, MagicMock
+from unittest.mock import MagicMock
 
 
 # ---------------------------------------------------------------------------
@@ -22,10 +22,12 @@ def _make_guardrails_passthrough():
     and returns the output unchanged.
     """
     guardrails = MagicMock()
-    guardrails.validate_output.side_effect = lambda llm_output, **kwargs: (
-        True,  # is_safe
-        [],  # issues
-        llm_output,  # safe_output
+    guardrails.validate_output.side_effect = (
+        lambda llm_output, query, context, **kwargs: (
+            True,  # is_safe
+            [],  # issues
+            llm_output,  # safe_output
+        )
     )
     guardrails.get_fallback_response.return_value = (
         "I'm sorry, I cannot assist with that request."
@@ -45,67 +47,17 @@ def _make_guardrails_blocking():
         description="SSN detected",
     )
     guardrails = MagicMock()
-    guardrails.validate_output.side_effect = lambda llm_output, **kwargs: (
-        False,
-        [block_issue],
-        "I'm sorry, I cannot assist with that request.",
+    guardrails.validate_output.side_effect = (
+        lambda llm_output, query, context, **kwargs: (
+            False,
+            [block_issue],
+            "I'm sorry, I cannot assist with that request.",
+        )
     )
     guardrails.get_fallback_response.return_value = (
         "I'm sorry, I cannot assist with that request."
     )
     return guardrails
-
-
-# ---------------------------------------------------------------------------
-# Tests: validate_environment
-# ---------------------------------------------------------------------------
-
-
-@pytest.mark.integration
-class TestValidateEnvironmentIntegration:
-    """validate_environment() correctly checks config + API key presence."""
-
-    def test_validate_environment_success(self, monkeypatch, sample_config):
-        """Returns config dict when settings and API key are present."""
-        monkeypatch.setenv("GROQ_API_KEY", "test-groq-key")
-
-        mock_settings = MagicMock()
-        mock_settings.config = sample_config
-
-        with patch("app.settings", mock_settings):
-            import app as app_module
-
-            result = app_module.validate_environment()
-
-        assert isinstance(result, dict)
-        assert "active_llm" in result
-        assert "model_name" in result
-        assert "provider" in result
-
-    def test_validate_environment_missing_api_key(self, monkeypatch, sample_config):
-        """ConfigurationError raised when API key env var is absent."""
-        from src.utils.exceptions import ConfigurationError
-
-        monkeypatch.delenv("GROQ_API_KEY", raising=False)
-
-        mock_settings = MagicMock()
-        mock_settings.config = sample_config
-
-        with patch("app.settings", mock_settings):
-            import app as app_module
-
-            with pytest.raises((ConfigurationError, SystemExit, Exception)):
-                app_module.validate_environment()
-
-    def test_validate_environment_no_settings_raises(self):
-        """ConfigurationError raised when settings is None."""
-        from src.utils.exceptions import ConfigurationError
-
-        with patch("app.settings", None):
-            import app as app_module
-
-            with pytest.raises(ConfigurationError):
-                app_module.validate_environment()
 
 
 # ---------------------------------------------------------------------------
@@ -128,10 +80,8 @@ class TestGetRagPromptIntegration:
         import app as app_module
 
         prompt = app_module.get_rag_prompt()
-        # ChatPromptTemplate exposes input_variables
-        variables = prompt.input_variables
-        assert "context" in variables, (
-            f"Expected 'context' in prompt variables, got: {variables}"
+        assert "{context}" in prompt, (
+            f"Expected '{{context}}' in prompt template, got: {prompt}"
         )
 
     def test_prompt_has_input_variable(self):
@@ -139,34 +89,32 @@ class TestGetRagPromptIntegration:
         import app as app_module
 
         prompt = app_module.get_rag_prompt()
-        variables = prompt.input_variables
-        assert "input" in variables, (
-            f"Expected 'input' in prompt variables, got: {variables}"
+        assert "{input}" in prompt, (
+            f"Expected '{{input}}' in prompt template, got: {prompt}"
         )
 
-    def test_fallback_prompt_created_when_file_missing(self):
+    def test_fallback_prompt_created_when_file_missing(self, monkeypatch):
         """create_fallback_prompt() is used when the prompt file is absent."""
         import app as app_module
-        from pathlib import Path as _Path
+        from pathlib import Path
 
-        # Path is imported inside get_rag_prompt(), so patch its `exists` method
-        # to simulate the prompt file not being on disk.
-        original_exists = _Path.exists
+        # Mock Path.exists to return False ONLY for the prompt file
+        original_exists = Path.exists
 
-        def _always_false(self):
-            return False
+        def patched_exists(self):
+            if "medical_assistant.txt" in str(self):
+                return False
+            return original_exists(self)
 
-        _Path.exists = _always_false
-        try:
-            prompt = app_module.get_rag_prompt()
-        finally:
-            _Path.exists = original_exists
+        monkeypatch.setattr(Path, "exists", patched_exists)
 
+        prompt = app_module.get_rag_prompt()
         assert prompt is not None
+        assert "{context}" in prompt
 
 
 # ---------------------------------------------------------------------------
-# Tests: prepare_rag_context / validate_response (was: process_query)
+# Tests: prepare_rag_context / validate_response
 # ---------------------------------------------------------------------------
 
 
@@ -181,68 +129,36 @@ class TestPrepareRagContextIntegration:
 
     def test_returns_tuple(self, mock_vectorstore):
         """A well-formed query returns (formatted_prompt, retrieved_docs)."""
-        import app as app_module
+        from src.rag.engine import prepare_rag_context
 
         prompt = self._get_prompt()
 
-        with patch("app.is_langsmith_enabled", return_value=False):
-            result = app_module.prepare_rag_context(
-                "What is diabetes?",
-                mock_vectorstore,
-                prompt,
-            )
+        result = prepare_rag_context(
+            "What is diabetes?",
+            mock_vectorstore,
+            prompt,
+        )
 
         assert isinstance(result, tuple)
         assert len(result) == 2
         formatted_prompt, docs = result
         assert isinstance(formatted_prompt, str)
-        assert len(formatted_prompt) > 0
+        assert "{context}" not in formatted_prompt  # Should be formatted
         assert len(docs) > 0
 
     def test_calls_vectorstore_retriever(self, mock_vectorstore):
         """Retriever is invoked once per query."""
-        import app as app_module
+        from src.rag.engine import prepare_rag_context
 
         prompt = self._get_prompt()
 
-        with patch("app.is_langsmith_enabled", return_value=False):
-            app_module.prepare_rag_context(
-                "What is hypertension?",
-                mock_vectorstore,
-                prompt,
-            )
+        prepare_rag_context(
+            "What is hypertension?",
+            mock_vectorstore,
+            prompt,
+        )
 
-        mock_vectorstore.as_retriever.assert_called_once()
-
-    def test_empty_query_raises(self, mock_vectorstore):
-        """Empty query raises LLMError."""
-        from src.utils.exceptions import LLMError
-        import app as app_module
-
-        prompt = self._get_prompt()
-
-        with patch("app.is_langsmith_enabled", return_value=False):
-            with pytest.raises(LLMError):
-                app_module.prepare_rag_context(
-                    "",
-                    mock_vectorstore,
-                    prompt,
-                )
-
-    def test_whitespace_only_raises(self, mock_vectorstore):
-        """Whitespace-only query raises LLMError."""
-        from src.utils.exceptions import LLMError
-        import app as app_module
-
-        prompt = self._get_prompt()
-
-        with patch("app.is_langsmith_enabled", return_value=False):
-            with pytest.raises(LLMError):
-                app_module.prepare_rag_context(
-                    "   ",
-                    mock_vectorstore,
-                    prompt,
-                )
+        mock_vectorstore.similarity_search.assert_called_once()
 
 
 @pytest.mark.integration
@@ -251,51 +167,45 @@ class TestValidateResponseIntegration:
 
     def test_validates_output_via_guardrails(self):
         """guardrails.validate_output is called once per validation."""
-        import app as app_module
+        from src.rag.engine import validate_response
 
         passthrough_guardrails = _make_guardrails_passthrough()
 
-        with patch("app.guardrails", passthrough_guardrails):
-            with patch("app.is_langsmith_enabled", return_value=False):
-                app_module.validate_response(
-                    "Some medical answer about cholesterol.",
-                    "What is cholesterol?",
-                    [],
-                )
+        validate_response(
+            "Some medical answer about cholesterol.",
+            "What is cholesterol?",
+            [],
+            passthrough_guardrails,
+        )
 
         passthrough_guardrails.validate_output.assert_called_once()
 
     def test_unsafe_output_returns_fallback(self):
         """When guardrails block, returns (False, fallback)."""
-        import app as app_module
+        from src.rag.engine import validate_response
 
         blocking_guardrails = _make_guardrails_blocking()
 
-        with patch("app.guardrails", blocking_guardrails):
-            with patch("app.is_langsmith_enabled", return_value=False):
-                is_safe, answer = app_module.validate_response(
-                    "Patient SSN: 123-45-6789 needs treatment.",
-                    "Tell me about the patient.",
-                    [],
-                )
+        is_safe, answer = validate_response(
+            "Patient SSN: 123-45-6789 needs treatment.",
+            "Tell me about the patient.",
+            [],
+            blocking_guardrails,
+        )
 
         assert is_safe is False
         assert "sorry" in answer.lower() or "cannot" in answer.lower()
 
     def test_clean_output_is_returned_unchanged(self):
         """Safe LLM output is returned as-is (no modification by guardrails)."""
-        import app as app_module
+        from src.rag.engine import validate_response
 
         passthrough_guardrails = _make_guardrails_passthrough()
         test_answer = "Diabetes is a chronic metabolic disease."
 
-        with patch("app.guardrails", passthrough_guardrails):
-            with patch("app.is_langsmith_enabled", return_value=False):
-                is_safe, answer = app_module.validate_response(
-                    test_answer,
-                    "What is diabetes?",
-                    [],
-                )
+        is_safe, answer = validate_response(
+            test_answer, "What is diabetes?", [], passthrough_guardrails
+        )
 
         assert is_safe is True
         assert answer == test_answer

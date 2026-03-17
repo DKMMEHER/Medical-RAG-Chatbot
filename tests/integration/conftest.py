@@ -139,6 +139,7 @@ def mock_vectorstore(fake_documents):
 
     vs = MagicMock()
     vs.as_retriever.return_value = retriever
+    vs.similarity_search.return_value = fake_documents
     return vs
 
 

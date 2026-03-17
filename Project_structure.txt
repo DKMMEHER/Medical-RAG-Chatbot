@@ -1,0 +1,76 @@
+Medical-RAG-Chatbot/
+├── data/
+│   ├── manual-medecins-sans-frontieres-diabetes-616.pdf
+│   └── The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf
+├── src/
+│   ├── api/
+│   │   ├── routes/
+│   │   │   ├── chat.py
+│   │   │   └── __init__.py
+│   │   ├── main.py
+│   │   ├── tasks.py
+│   │   └── __init__.py
+│   ├── auth/
+│   │   ├── firebase_auth.py
+│   │   └── __init__.py
+│   ├── content_analyzer/
+│   │   ├── config.py
+│   │   ├── core.py
+│   │   ├── utils.py
+│   │   └── __init__.py
+│   ├── factory/
+│   │   ├── llm_factory.py
+│   │   └── __init__.py
+│   ├── observability/
+│   │   ├── langsmith_trace.py
+│   │   └── __init__.py
+│   ├── prompts/
+│   │   ├── medical_assistant.txt
+│   │   └── __init__.py
+│   ├── rag/
+│   │   ├── engine.py
+│   │   └── __init__.py
+│   ├── storage/
+│   │   ├── gcs_handler.py
+│   │   └── __init__.py
+│   ├── utils/
+│   │   ├── analytics.py
+│   │   ├── chat_helper.py
+│   │   ├── exceptions.py
+│   │   ├── llm_helper.py
+│   │   ├── logger.py
+│   │   ├── rate_limiter.py
+│   │   ├── tenant_helper.py
+│   │   ├── ui_helpers.py
+│   │   └── __init__.py
+│   ├── multi_embedding.py
+│   └── __init__.py
+├── tests/
+│   ├── evaluation/
+│   ├── giskard/
+│   ├── integration/
+│   │   ├── conftest.py
+│   │   └── test_rag_pipeline_integration.py
+│   ├── promptfoo/
+│   ├── unit/
+│   │   └── test_rag_engine.py
+│   └── __init__.py
+├── evaluation/
+│   └── results/
+│       └── openai_132617.csv
+├── examples/
+├── vectorstore/
+│   └── db_faiss/
+│       ├── index.faiss
+│       └── index.pkl
+├── app.py
+├── check_admins.py
+├── create_vectorstore.py
+├── set_admin_claim.py
+├── pyproject.toml
+├── uv.lock
+├── README.md
+├── Project_structure.txt
+├── pipeline.txt
+├── .gitignore
+└── .env
