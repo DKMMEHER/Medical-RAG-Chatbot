@@ -113,6 +113,4 @@ jobs:
             --memory 4Gi \
             --cpu 2 \
             --allow-unauthenticated \
-            --env-vars-file=.env.yaml \
-            --liveness-probe=httpGet.path=/health \
-            --startup-probe=httpGet.path=/ready
+            --env-vars-file=.env.yaml
