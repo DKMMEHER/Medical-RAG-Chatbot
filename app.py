@@ -53,7 +53,7 @@ def init_globals():
     configure_langsmith(project_name="medical-chatbot", enable_tracing=True)
 
     # Check API health with retries to account for slow backend startup (GCS sync, model loading)
-    max_retries = 15
+    max_retries = 30
     retry_delay = 3
     connected = False
 
