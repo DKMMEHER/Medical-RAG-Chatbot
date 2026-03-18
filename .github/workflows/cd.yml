@@ -113,4 +113,6 @@ jobs:
             --memory 4Gi \
             --cpu 2 \
             --allow-unauthenticated \
-            --env-vars-file=.env.yaml
+            --env-vars-file=.env.yaml \
+            --clear-startup-probe \
+            --clear-liveness-probe
