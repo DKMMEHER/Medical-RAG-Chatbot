@@ -266,12 +266,13 @@ async def root():
 
 
 @app.get("/health", response_model=HealthStatus)
-async def health():
+async def health_check():
+    """Simple liveness probe."""
     return {
         "status": "healthy",
         "version": "0.1.0",
         "components": {
-            "firebase": "connected",
+            "api": "up",
             "llm": "ready" if "llm" in state else "error",
             "vectorstore": "ready" if "vectorstore" in state else "missing",
         },
@@ -287,12 +288,6 @@ async def stats(user=Depends(get_current_user)):
         if "vectorstore" in state
         else 0,
     }
-
-
-@app.get("/health", response_model=HealthStatus)
-async def health_check():
-    """Simple liveness probe."""
-    return {"status": "ok", "version": "1.0.0", "components": {"api": "up"}}
 
 
 @app.get("/ready", response_model=ReadyResponse)

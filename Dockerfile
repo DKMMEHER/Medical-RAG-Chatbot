@@ -29,6 +29,10 @@ RUN uv sync --frozen --no-dev
 # Copy application code
 COPY . /app/
 
+# Pre-download models to bake them into the image
+# This prevents Cloud Run startup timeouts during model downloads.
+RUN uv run python download_models.py
+
 # Copy Streamlit config (critical for WebSocket support on Cloud Run)
 COPY .streamlit /app/.streamlit
 
@@ -36,11 +40,6 @@ COPY .streamlit /app/.streamlit
 EXPOSE 8080
 
 # Configure Streamlit via ENV
-# NOTE: Do NOT set STREAMLIT_SERVER_PORT or STREAMLIT_SERVER_ADDRESS here.
-# Cloud Run exposes port 443 (HTTPS) externally. If Streamlit is told its
-# server port is 8080, it will build WebSocket URLs like wss://...app:8080/stream
-# which Cloud Run blocks — only 443 is publicly reachable.
-# The .streamlit/config.toml binds Streamlit to 0.0.0.0:8080 inside the container.
 ENV STREAMLIT_SERVER_HEADLESS=true
 ENV STREAMLIT_SERVER_ENABLE_CORS=false
 ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
@@ -48,9 +47,7 @@ ENV STREAMLIT_SERVER_ENABLE_XSRF_PROTECTION=false
 # GCS bucket name for FAISS persistence (injected by Cloud Run at deploy time)
 ENV GCS_BUCKET_NAME=""
 
-# Run the application
-# Port/address are set in .streamlit/config.toml only (not duplicated here)
-# to prevent Streamlit from hardcoding the WebSocket port in the browser URLs.
+# Run the application via start script
 COPY start.sh /app/start.sh
 RUN chmod +x /app/start.sh
 
