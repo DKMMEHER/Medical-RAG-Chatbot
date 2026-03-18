@@ -1,0 +1,1004 @@
+2026-03-10 11:11:12,790 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 11:11:12,981 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 11:11:12,982 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 11:11:12,982 - __main__ - INFO - init_globals:61 - ✅ LangSmith observability enabled
+2026-03-10 11:11:13,453 - __main__ - INFO - init_globals:80 - ✅ Output guardrails initialized
+2026-03-10 11:11:13,454 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 11:11:13,454 - __main__ - INFO - init_globals:88 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-10 11:11:40,834 - __main__ - CRITICAL - <module>:1020 - Critical error in main: Token used too early, 1773121300 < 1773121301. Check that your computer's clock is set correctly.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\_token_gen.py", line 396, in verify
+    verified_claims = google.oauth2.id_token.verify_token(
+        token,
+    ...<2 lines>...
+        certs_url=self.cert_url,
+        clock_skew_in_seconds=clock_skew_seconds)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\google\oauth2\id_token.py", line 153, in verify_token
+    return jwt.decode(
+           ~~~~~~~~~~^
+        id_token,
+        ^^^^^^^^^
+    ...<2 lines>...
+        clock_skew_in_seconds=clock_skew_in_seconds,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\google\auth\jwt.py", line 302, in decode
+    _verify_iat_and_exp(payload, clock_skew_in_seconds)
+    ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\google\auth\jwt.py", line 216, in _verify_iat_and_exp
+    raise exceptions.InvalidValue(
+    ...<3 lines>...
+    )
+google.auth.exceptions.InvalidValue: Token used too early, 1773121300 < 1773121301. Check that your computer's clock is set correctly.
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1018, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 661, in main
+    user_info = verify_token(creds["id_token"])
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 92, in verify_token
+    decoded = auth.verify_id_token(id_token)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\auth.py", line 227, in verify_id_token
+    return client.verify_id_token(
+           ~~~~~~~~~~~~~~~~~~~~~~^
+        id_token, check_revoked=check_revoked, clock_skew_seconds=clock_skew_seconds)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\_auth_client.py", line 130, in verify_id_token
+    verified_claims = self._token_verifier.verify_id_token(id_token, clock_skew_seconds)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\_token_gen.py", line 293, in verify_id_token
+    return self.id_token_verifier.verify(id_token, self.request, clock_skew_seconds)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\_token_gen.py", line 409, in verify
+    raise self._invalid_token_error(str(error), cause=error)
+firebase_admin._auth_utils.InvalidIdTokenError: Token used too early, 1773121300 < 1773121301. Check that your computer's clock is set correctly.
+2026-03-10 11:15:05,189 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 11:15:05,464 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 11:15:05,466 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 11:15:05,467 - __main__ - INFO - init_globals:61 - ✅ LangSmith observability enabled
+2026-03-10 11:15:06,285 - __main__ - INFO - init_globals:80 - ✅ Output guardrails initialized
+2026-03-10 11:15:06,287 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 11:15:06,287 - __main__ - INFO - init_globals:88 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-10 11:15:52,390 - __main__ - INFO - main:677 - Initialized new chat session
+2026-03-10 11:15:52,392 - __main__ - INFO - validate_environment:203 - Environment validation successful
+2026-03-10 11:15:57,769 - __main__ - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-10 11:15:57,770 - __main__ - INFO - get_vectorstore:129 - ☁️  Trying to load FAISS index from GCS...
+2026-03-10 11:16:11,235 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:16:11,477 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:16:12,476 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_vpwqaatd\index.faiss
+2026-03-10 11:16:12,850 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_vpwqaatd\index.pkl
+2026-03-10 11:16:12,851 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_vpwqaatd
+2026-03-10 11:16:13,657 - __main__ - INFO - get_vectorstore:136 - ✅ FAISS index loaded from GCS
+2026-03-10 11:16:13,662 - __main__ - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-10 11:16:13,664 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 11:16:15,023 - __main__ - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-10 11:16:15,026 - __main__ - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-10 11:16:15,134 - __main__ - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from src\prompts\medical_assistant.txt
+2026-03-10 11:16:15,148 - __main__ - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-10 11:16:15,149 - __main__ - INFO - main:703 - Chatbot initialization complete
+2026-03-10 11:16:15,381 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:17:02,038 - __main__ - INFO - prepare_rag_context:326 - Processing query: what is dibetic and way to get cures...
+2026-03-10 11:17:02,040 - __main__ - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-10 11:17:02,411 - __main__ - INFO - prepare_rag_context:364 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:17:02,411 - __main__ - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:17:03,331 - __main__ - ERROR - display_error_message:514 - default: validate_response() missing 1 required positional argument: 'guardrails'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 780, in main
+    is_safe, final_output = validate_response(
+                            ~~~~~~~~~~~~~~~~~^
+        streamed_answer, user_query, retrieved_docs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+TypeError: validate_response() missing 1 required positional argument: 'guardrails'
+2026-03-10 11:17:03,696 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:18:40,323 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:18:49,643 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 11:18:49,859 - __main__ - CRITICAL - <module>:1020 - Critical error in main: The default Firebase app already exists. This means you called initialize_app() more than once without providing an app name as the second argument. In most cases you only need to call initialize_app() once. But if you do want to initialize multiple apps, pass a second argument to initialize_app() to give each app a unique name.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1018, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 641, in main
+    init_firebase()
+    ~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 40, in init_firebase
+    _firebase_app = firebase_admin.initialize_app(cred)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\firebase_admin\__init__.py", line 74, in initialize_app
+    raise ValueError((
+    ...<5 lines>...
+        'a unique name.'))
+ValueError: The default Firebase app already exists. This means you called initialize_app() more than once without providing an app name as the second argument. In most cases you only need to call initialize_app() once. But if you do want to initialize multiple apps, pass a second argument to initialize_app() to give each app a unique name.
+2026-03-10 11:20:04,090 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 11:20:04,511 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 11:20:04,516 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 11:20:04,516 - __main__ - INFO - init_globals:61 - ✅ LangSmith observability enabled
+2026-03-10 11:20:05,344 - __main__ - INFO - init_globals:80 - ✅ Output guardrails initialized
+2026-03-10 11:20:05,345 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 11:20:05,345 - __main__ - INFO - init_globals:88 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-10 11:24:34,051 - __main__ - INFO - main:677 - Initialized new chat session
+2026-03-10 11:24:34,054 - __main__ - INFO - validate_environment:203 - Environment validation successful
+2026-03-10 11:24:39,362 - __main__ - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-10 11:24:39,362 - __main__ - INFO - get_vectorstore:129 - ☁️  Trying to load FAISS index from GCS...
+2026-03-10 11:24:43,423 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:24:43,652 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:24:44,601 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_o9i2h9b1\index.faiss
+2026-03-10 11:24:44,951 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_o9i2h9b1\index.pkl
+2026-03-10 11:24:44,951 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_o9i2h9b1
+2026-03-10 11:24:45,103 - __main__ - INFO - get_vectorstore:136 - ✅ FAISS index loaded from GCS
+2026-03-10 11:24:45,106 - __main__ - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-10 11:24:45,106 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 11:24:46,760 - __main__ - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-10 11:24:46,762 - __main__ - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-10 11:24:46,844 - __main__ - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from src\prompts\medical_assistant.txt
+2026-03-10 11:24:46,845 - __main__ - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-10 11:24:46,846 - __main__ - INFO - main:703 - Chatbot initialization complete
+2026-03-10 11:24:47,079 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:25:39,881 - __main__ - INFO - prepare_rag_context:326 - Processing query: what is The GALE
+ENCYCLOPEDIA
+ofMEDICINE...
+2026-03-10 11:25:39,882 - __main__ - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-10 11:25:40,057 - __main__ - INFO - prepare_rag_context:364 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:25:40,057 - __main__ - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:25:41,255 - __main__ - INFO - validate_response:440 - Successfully generated answer (length: 1394)
+2026-03-10 11:25:41,255 - __main__ - INFO - validate_response:443 - 🛡️ Validating output with guardrails...
+2026-03-10 11:25:41,451 - __main__ - INFO - validate_response:477 - ✅ Output validated and safe
+2026-03-10 11:25:41,457 - __main__ - INFO - main:845 - Query processed successfully in 1.7s
+2026-03-10 11:25:41,697 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:25:46,396 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:27:37,243 - __main__ - INFO - prepare_rag_context:326 - Processing query: Co-authors: Grace Dubois, Blandine Vasseur-Binacho...
+2026-03-10 11:27:37,244 - __main__ - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-10 11:27:37,348 - __main__ - INFO - prepare_rag_context:364 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:27:37,348 - __main__ - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:27:38,086 - __main__ - INFO - validate_response:440 - Successfully generated answer (length: 841)
+2026-03-10 11:27:38,088 - __main__ - INFO - validate_response:443 - 🛡️ Validating output with guardrails...
+2026-03-10 11:27:38,224 - __main__ - INFO - validate_response:477 - ✅ Output validated and safe
+2026-03-10 11:27:38,232 - __main__ - INFO - main:845 - Query processed successfully in 1.0s
+2026-03-10 11:27:38,476 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:51:43,848 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 11:51:44,058 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 11:51:44,060 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 11:51:44,063 - __main__ - INFO - init_globals:62 - ✅ LangSmith observability enabled
+2026-03-10 11:51:44,914 - __main__ - INFO - init_globals:81 - ✅ Output guardrails initialized
+2026-03-10 11:51:44,915 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 11:51:44,915 - __main__ - INFO - init_globals:89 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-10 11:52:26,228 - __main__ - INFO - main:678 - Initialized new chat session
+2026-03-10 11:52:26,230 - __main__ - INFO - validate_environment:204 - Environment validation successful
+2026-03-10 11:52:31,580 - __main__ - INFO - get_vectorstore:124 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-10 11:52:31,581 - __main__ - INFO - get_vectorstore:130 - ☁️  Trying to load FAISS index from GCS...
+2026-03-10 11:52:37,620 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:52:37,834 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:52:38,681 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_14vn4x81\index.faiss
+2026-03-10 11:52:39,007 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_14vn4x81\index.pkl
+2026-03-10 11:52:39,008 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_14vn4x81
+2026-03-10 11:52:39,199 - __main__ - INFO - get_vectorstore:137 - ✅ FAISS index loaded from GCS
+2026-03-10 11:52:39,203 - __main__ - INFO - initialize_llm:228 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-10 11:52:39,205 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 11:52:40,411 - __main__ - INFO - initialize_llm:233 - ✅ LLM initialized successfully: groq
+2026-03-10 11:52:40,414 - __main__ - INFO - get_rag_prompt:253 - Loading RAG prompt template from file...
+2026-03-10 11:52:40,500 - __main__ - INFO - get_rag_prompt:268 - ✅ Successfully loaded prompt from src\prompts\medical_assistant.txt
+2026-03-10 11:52:40,501 - __main__ - INFO - get_rag_prompt:269 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-10 11:52:40,502 - __main__ - INFO - main:705 - Chatbot initialization complete
+2026-03-10 11:52:40,735 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:58:20,104 - __main__ - INFO - prepare_rag_context:327 - Processing query: Machine Learning Engineer...
+2026-03-10 11:58:20,105 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 11:58:20,260 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:58:20,260 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:58:21,480 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1827)
+2026-03-10 11:58:21,481 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 11:58:21,655 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 11:58:21,664 - __main__ - INFO - main:863 - Query processed successfully in 1.7s
+2026-03-10 11:58:22,806 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:58:44,716 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:58:52,106 - __main__ - INFO - prepare_rag_context:327 - Processing query: what is merraiage...
+2026-03-10 11:58:52,106 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 11:58:52,166 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:58:52,166 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:58:52,813 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 750)
+2026-03-10 11:58:52,814 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 11:58:52,899 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 11:58:52,909 - __main__ - INFO - main:863 - Query processed successfully in 0.8s
+2026-03-10 11:58:53,174 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 11:59:07,198 - __main__ - INFO - prepare_rag_context:327 - Processing query: tell me something about india state...
+2026-03-10 11:59:07,198 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 11:59:07,267 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 11:59:07,267 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 11:59:07,876 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 898)
+2026-03-10 11:59:07,877 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 11:59:07,964 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 11:59:07,971 - __main__ - INFO - main:863 - Query processed successfully in 0.8s
+2026-03-10 11:59:08,220 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:25,101 - __main__ - INFO - prepare_rag_context:327 - Processing query: hi...
+2026-03-10 12:01:25,102 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:25,165 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:25,166 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:25,961 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 880)
+2026-03-10 12:01:25,963 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:26,088 - __main__ - WARNING - validate_response:453 - ⚠️ Guardrails found 1 issue(s)
+2026-03-10 12:01:26,089 - __main__ - WARNING - validate_response:455 -   - PII_PHONE: Phone number detected
+2026-03-10 12:01:26,089 - __main__ - ERROR - validate_response:469 - ❌ Output blocked by guardrails
+2026-03-10 12:01:26,099 - __main__ - INFO - main:863 - Query processed successfully in 1.0s
+2026-03-10 12:01:26,355 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:30,367 - __main__ - INFO - prepare_rag_context:327 - Processing query: hello...
+2026-03-10 12:01:30,369 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:30,428 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:30,428 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:30,984 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 908)
+2026-03-10 12:01:30,985 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:31,073 - __main__ - WARNING - validate_response:453 - ⚠️ Guardrails found 1 issue(s)
+2026-03-10 12:01:31,074 - __main__ - WARNING - validate_response:455 -   - PII_PHONE: Phone number detected
+2026-03-10 12:01:31,074 - __main__ - ERROR - validate_response:469 - ❌ Output blocked by guardrails
+2026-03-10 12:01:31,087 - __main__ - INFO - main:863 - Query processed successfully in 0.7s
+2026-03-10 12:01:31,321 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:35,365 - __main__ - INFO - prepare_rag_context:327 - Processing query: how r you...
+2026-03-10 12:01:35,365 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:35,428 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:35,429 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:36,109 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 900)
+2026-03-10 12:01:36,111 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:36,198 - __main__ - WARNING - validate_response:453 - ⚠️ Guardrails found 1 issue(s)
+2026-03-10 12:01:36,199 - __main__ - WARNING - validate_response:455 -   - PII_PASSPORT: Potential passport number detected
+2026-03-10 12:01:36,199 - __main__ - ERROR - validate_response:469 - ❌ Output blocked by guardrails
+2026-03-10 12:01:36,207 - __main__ - INFO - main:863 - Query processed successfully in 0.9s
+2026-03-10 12:01:36,445 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:38,350 - __main__ - INFO - prepare_rag_context:327 - Processing query: sss...
+2026-03-10 12:01:38,353 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:38,413 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:38,414 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:38,899 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1001)
+2026-03-10 12:01:38,899 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:38,996 - __main__ - WARNING - validate_response:453 - ⚠️ Guardrails found 1 issue(s)
+2026-03-10 12:01:38,997 - __main__ - WARNING - validate_response:455 -   - HALLUCINATION_RISK: Potentially overconfident or absolute statement
+2026-03-10 12:01:38,998 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:39,008 - __main__ - INFO - main:863 - Query processed successfully in 0.7s
+2026-03-10 12:01:39,247 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:39,929 - __main__ - INFO - prepare_rag_context:327 - Processing query: lfkf...
+2026-03-10 12:01:39,929 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:40,008 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:40,009 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:40,583 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1284)
+2026-03-10 12:01:40,584 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:40,679 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:40,691 - __main__ - INFO - main:863 - Query processed successfully in 0.8s
+2026-03-10 12:01:40,953 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:41,586 - __main__ - INFO - prepare_rag_context:327 - Processing query: mlkm;f...
+2026-03-10 12:01:41,588 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:41,644 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:41,644 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:42,317 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1249)
+2026-03-10 12:01:42,318 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:42,376 - __main__ - INFO - prepare_rag_context:327 - Processing query: mmmf...
+2026-03-10 12:01:42,379 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:42,449 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:42,801 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:42,802 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:43,354 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1070)
+2026-03-10 12:01:43,355 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:43,431 - __main__ - WARNING - validate_response:453 - ⚠️ Guardrails found 1 issue(s)
+2026-03-10 12:01:43,432 - __main__ - WARNING - validate_response:455 -   - HALLUCINATION_RISK: Potentially overconfident or absolute statement
+2026-03-10 12:01:43,432 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:43,438 - __main__ - INFO - main:863 - Query processed successfully in 1.1s
+2026-03-10 12:01:43,548 - __main__ - INFO - prepare_rag_context:327 - Processing query: llmf...
+2026-03-10 12:01:43,549 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:43,620 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:43,621 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:43,682 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:44,418 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 1223)
+2026-03-10 12:01:44,420 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:44,510 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:44,519 - __main__ - INFO - main:863 - Query processed successfully in 1.0s
+2026-03-10 12:01:44,621 - __main__ - INFO - prepare_rag_context:327 - Processing query: lmlmlf...
+2026-03-10 12:01:44,622 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:44,679 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:44,679 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:44,781 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:45,488 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 869)
+2026-03-10 12:01:45,489 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:45,547 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:45,552 - __main__ - INFO - main:863 - Query processed successfully in 0.9s
+2026-03-10 12:01:45,773 - __main__ - INFO - prepare_rag_context:327 - Processing query: lkmlmf...
+2026-03-10 12:01:45,773 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:45,785 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:01:45,841 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:45,841 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:46,871 - __main__ - INFO - prepare_rag_context:327 - Processing query: lmlmf...
+2026-03-10 12:01:46,871 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:01:46,934 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:01:46,934 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:01:56,097 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 864)
+2026-03-10 12:01:56,097 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:01:56,159 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:01:56,165 - __main__ - INFO - main:863 - Query processed successfully in 9.3s
+2026-03-10 12:01:56,397 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:02:15,259 - __main__ - INFO - prepare_rag_context:327 - Processing query: what is Dibetic...
+2026-03-10 12:02:15,259 - __main__ - INFO - prepare_rag_context:350 - 🔍 Starting document retrieval...
+2026-03-10 12:02:15,314 - __main__ - INFO - prepare_rag_context:365 - ✅ Retrieved 3 relevant documents
+2026-03-10 12:02:15,315 - __main__ - INFO - prepare_rag_context:376 - 🤖 Preparing prompt for LLM...
+2026-03-10 12:02:15,944 - __main__ - INFO - validate_response:441 - Successfully generated answer (length: 977)
+2026-03-10 12:02:15,944 - __main__ - INFO - validate_response:444 - 🛡️ Validating output with guardrails...
+2026-03-10 12:02:16,019 - __main__ - INFO - validate_response:478 - ✅ Output validated and safe
+2026-03-10 12:02:16,027 - __main__ - INFO - main:863 - Query processed successfully in 0.8s
+2026-03-10 12:02:16,269 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 12:02:40,438 - __main__ - INFO - main:678 - Initialized new chat session
+2026-03-10 12:02:40,440 - __main__ - INFO - validate_environment:204 - Environment validation successful
+2026-03-10 12:02:40,443 - __main__ - INFO - initialize_llm:228 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-10 12:02:40,446 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 12:02:41,509 - __main__ - INFO - initialize_llm:233 - ✅ LLM initialized successfully: groq
+2026-03-10 12:02:41,512 - __main__ - INFO - get_rag_prompt:253 - Loading RAG prompt template from file...
+2026-03-10 12:02:41,514 - __main__ - INFO - get_rag_prompt:268 - ✅ Successfully loaded prompt from src\prompts\medical_assistant.txt
+2026-03-10 12:02:41,515 - __main__ - INFO - get_rag_prompt:269 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-10 12:02:41,516 - __main__ - INFO - main:705 - Chatbot initialization complete
+2026-03-10 12:02:41,751 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 14:52:01,777 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 14:52:49,552 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 14:52:49,702 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 14:52:49,702 - src.model.llm_factory - ERROR - create_llm:73 - LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 14:52:49,703 - api.main - ERROR - lifespan:45 - Failed to initialize Models: LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 14:52:49,703 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 14:53:00,265 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 14:53:00,539 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 14:53:01,541 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_j9u4f586\index.faiss
+2026-03-10 14:53:01,863 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_j9u4f586\index.pkl
+2026-03-10 14:53:01,864 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_j9u4f586
+2026-03-10 14:53:01,864 - api.main - ERROR - lifespan:71 - Failed to load Vectorstore: 'embeddings'
+2026-03-10 14:53:02,600 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 14:53:02,600 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 14:53:02,601 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 14:53:02,601 - api.main - INFO - lifespan:85 - 🛡️ Security Layer initialized
+2026-03-10 15:07:34,894 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:07:40,675 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:07:40,705 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:07:40,705 - src.model.llm_factory - ERROR - create_llm:73 - LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 15:07:40,705 - api.main - ERROR - lifespan:45 - Failed to initialize Models: LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 15:07:40,705 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:07:44,603 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:07:44,842 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:07:45,716 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_89eiqakz\index.faiss
+2026-03-10 15:07:45,992 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_89eiqakz\index.pkl
+2026-03-10 15:07:45,992 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_89eiqakz
+2026-03-10 15:07:45,993 - api.main - ERROR - lifespan:71 - Failed to load Vectorstore: 'embeddings'
+2026-03-10 15:07:46,499 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:07:46,499 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:07:46,499 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:07:46,499 - api.main - INFO - lifespan:85 - 🛡️ Security Layer initialized
+2026-03-10 15:08:44,443 - api.main - INFO - lifespan:89 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:08:49,270 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:08:54,789 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:08:54,818 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:08:54,818 - src.model.llm_factory - ERROR - create_llm:73 - LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 15:08:54,819 - api.main - ERROR - lifespan:45 - Failed to initialize Models: LLM 'llama-3.1-8b-instant' not found in config.yaml
+2026-03-10 15:08:54,819 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:08:58,424 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:08:58,663 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:08:59,633 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_1iniqqq2\index.faiss
+2026-03-10 15:08:59,837 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → C:\Users\dhire\AppData\Local\Temp\faiss_gcs_1iniqqq2\index.pkl
+2026-03-10 15:08:59,838 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\faiss_gcs_1iniqqq2
+2026-03-10 15:08:59,838 - api.main - ERROR - lifespan:71 - Failed to load Vectorstore: 'embeddings'
+2026-03-10 15:09:00,323 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:09:00,323 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:09:00,323 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:09:00,323 - api.main - INFO - lifespan:85 - 🛡️ Security Layer initialized
+2026-03-10 15:11:29,738 - api.main - INFO - lifespan:89 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:11:32,182 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:11:39,259 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:11:39,288 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:11:44,763 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:11:44,763 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:11:46,394 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:11:46,395 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:11:46,395 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:11:51,935 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:11:52,800 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:11:53,195 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:11:53,195 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:11:53,751 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:11:55,368 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:11:55,369 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:11:55,369 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:11:55,370 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 15:14:46,685 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:14:52,237 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:14:52,266 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:14:57,016 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:14:57,017 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:14:57,507 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:14:57,508 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:14:57,508 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:15:01,348 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:15:02,401 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:15:02,630 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:15:02,631 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:15:02,677 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:15:03,172 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:15:03,173 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:15:03,173 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:15:03,173 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 15:36:09,766 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:36:11,203 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:36:16,855 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:36:16,884 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:36:21,554 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:36:21,554 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:36:22,176 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:36:22,176 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:36:22,177 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:36:26,578 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:36:27,580 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:36:27,855 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:36:27,855 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:36:27,902 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:36:28,445 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:36:28,445 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:36:28,446 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:36:28,446 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 15:37:09,677 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:37:12,420 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:37:25,558 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:37:25,713 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:37:31,155 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:37:31,156 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:37:32,746 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:37:32,747 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:37:32,748 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:37:38,607 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:37:39,508 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:37:39,790 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:37:39,791 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:37:39,923 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:37:41,467 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:37:41,468 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:37:41,468 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:37:41,469 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 15:48:49,587 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:48:50,012 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 15:48:50,013 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 15:48:52,061 - __main__ - INFO - init_globals:59 - ✅ Connected to FastAPI backend
+2026-03-10 15:48:57,605 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:48:57,606 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:48:57,606 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:49:15,359 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:49:15,360 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:49:15,360 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:49:17,543 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:49:17,543 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:49:17,544 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:49:17,545 - __main__ - INFO - main:193 - Initialized new thin-client chat session
+2026-03-10 15:49:17,546 - __main__ - INFO - main:198 - Thin client initialized
+2026-03-10 15:49:27,207 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:49:27,208 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:49:27,208 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:49:31,883 - src.utils.ui_helpers - ERROR - display_error_message:46 - default: peer closed connection without sending complete message body (incomplete chunked read)
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+                ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 342, in __iter__
+    raise exc
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 213, in _receive_event
+    with map_exceptions({h11.RemoteProtocolError: RemoteProtocolError}):
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 241, in main
+    full_response = st.write_stream(
+        call_rag_api(user_query, history, st.session_state.id_token)
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\elements\write.py", line 209, in write_stream
+    for chunk in stream:  # type: ignore
+                 ^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 110, in call_rag_api
+    for chunk in response.iter_text():
+                 ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 916, in iter_text
+    for byte_content in self.iter_bytes():
+                        ~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_client.py", line 153, in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 126, in __iter__
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+2026-03-10 15:50:07,231 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:50:07,232 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:50:07,232 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:50:24,634 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:51:49,309 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:51:54,951 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:51:54,980 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:51:59,544 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:51:59,545 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:52:00,806 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:52:00,807 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:52:00,807 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:52:06,527 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:52:07,493 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:52:07,777 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:52:07,778 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:52:07,898 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:52:09,359 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:52:09,359 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:52:09,359 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:52:09,360 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 15:52:59,801 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:53:00,358 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 15:53:00,359 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 15:53:02,437 - __main__ - INFO - init_globals:59 - ✅ Connected to FastAPI backend
+2026-03-10 15:53:10,221 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:53:10,221 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:53:10,222 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:53:28,104 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:53:28,105 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:53:28,105 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:53:29,541 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:53:29,542 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:53:29,542 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:53:31,443 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:53:31,443 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:53:31,443 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:53:31,444 - __main__ - INFO - main:193 - Initialized new thin-client chat session
+2026-03-10 15:53:31,444 - __main__ - INFO - main:198 - Thin client initialized
+2026-03-10 15:53:54,376 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:53:54,376 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:53:54,377 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:53:58,485 - src.utils.ui_helpers - ERROR - display_error_message:46 - default: peer closed connection without sending complete message body (incomplete chunked read)
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+                ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 342, in __iter__
+    raise exc
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 213, in _receive_event
+    with map_exceptions({h11.RemoteProtocolError: RemoteProtocolError}):
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 241, in main
+    full_response = st.write_stream(
+        call_rag_api(user_query, history, st.session_state.id_token)
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\elements\write.py", line 209, in write_stream
+    for chunk in stream:  # type: ignore
+                 ^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 110, in call_rag_api
+    for chunk in response.iter_text():
+                 ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 916, in iter_text
+    for byte_content in self.iter_bytes():
+                        ~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_client.py", line 153, in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 126, in __iter__
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+2026-03-10 15:54:40,582 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 15:54:42,032 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 15:54:47,683 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 15:54:47,713 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 15:54:52,406 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 15:54:52,406 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 15:54:52,913 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 15:54:52,914 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 15:54:52,914 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 15:54:56,651 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 15:54:57,511 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 15:54:57,841 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 15:54:57,841 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 15:54:57,890 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 15:54:58,410 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 15:54:58,410 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 15:54:58,410 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 15:54:58,410 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 16:46:19,601 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 16:46:25,377 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 16:46:25,406 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 16:46:30,557 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 16:46:30,558 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 16:46:31,972 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 16:46:31,972 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 16:46:31,973 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 16:46:32,103 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 16:46:32,541 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 16:46:32,542 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 16:46:36,646 - __main__ - ERROR - init_globals:63 - ❌ Could not connect to backend API: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-10 16:46:37,819 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 16:46:38,742 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 16:46:39,041 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 16:46:39,041 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 16:46:39,149 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 16:46:40,425 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:46:40,426 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:46:40,426 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:46:40,427 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 16:46:42,716 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:46:42,716 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:46:42,716 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:46:57,261 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:46:57,262 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:46:57,262 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:46:59,425 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:46:59,426 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:46:59,426 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:46:59,428 - __main__ - INFO - main:193 - Initialized new thin-client chat session
+2026-03-10 16:46:59,429 - __main__ - INFO - main:198 - Thin client initialized
+2026-03-10 16:47:12,872 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:47:12,872 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:47:12,872 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:47:17,691 - src.utils.ui_helpers - ERROR - display_error_message:46 - default: peer closed connection without sending complete message body (incomplete chunked read)
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 101, in map_httpcore_exceptions
+    yield
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 127, in __iter__
+    for part in self._httpcore_stream:
+                ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 407, in __iter__
+    raise exc from None
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\connection_pool.py", line 403, in __iter__
+    for part in self._stream:
+                ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 342, in __iter__
+    raise exc
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 334, in __iter__
+    for chunk in self._connection._receive_response_body(**kwargs):
+                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 203, in _receive_response_body
+    event = self._receive_event(timeout=timeout)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_sync\http11.py", line 213, in _receive_event
+    with map_exceptions({h11.RemoteProtocolError: RemoteProtocolError}):
+         ~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpcore\_exceptions.py", line 14, in map_exceptions
+    raise to_exc(exc) from exc
+httpcore.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+
+The above exception was the direct cause of the following exception:
+
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 241, in main
+    full_response = st.write_stream(
+        call_rag_api(user_query, history, st.session_state.id_token)
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 532, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\streamlit\elements\write.py", line 209, in write_stream
+    for chunk in stream:  # type: ignore
+                 ^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 110, in call_rag_api
+    for chunk in response.iter_text():
+                 ~~~~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 916, in iter_text
+    for byte_content in self.iter_bytes():
+                        ~~~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 897, in iter_bytes
+    for raw_bytes in self.iter_raw():
+                     ~~~~~~~~~~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_models.py", line 951, in iter_raw
+    for raw_stream_bytes in self.stream:
+                            ^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_client.py", line 153, in __iter__
+    for chunk in self._stream:
+                 ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 126, in __iter__
+    with map_httpcore_exceptions():
+         ~~~~~~~~~~~~~~~~~~~~~~~^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\contextlib.py", line 162, in __exit__
+    self.gen.throw(value)
+    ~~~~~~~~~~~~~~^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\httpx\_transports\default.py", line 118, in map_httpcore_exceptions
+    raise mapped_exc(message) from exc
+httpx.RemoteProtocolError: peer closed connection without sending complete message body (incomplete chunked read)
+2026-03-10 16:49:06,123 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 16:49:07,543 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 16:49:13,103 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 16:49:13,131 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 16:49:18,427 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 16:49:18,427 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 16:49:18,934 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 16:49:18,934 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 16:49:18,935 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 16:49:22,571 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 16:49:23,471 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 16:49:23,781 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 16:49:23,782 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 16:49:23,833 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 16:49:24,328 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:49:24,328 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:49:24,329 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:49:24,329 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 16:49:24,439 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 16:49:25,794 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 16:49:31,354 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 16:49:31,384 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 16:49:36,186 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 16:49:36,186 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 16:49:36,680 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 16:49:36,680 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 16:49:36,680 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 16:49:40,330 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 16:49:41,240 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 16:49:41,522 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 16:49:41,522 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 16:49:41,571 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 16:49:42,076 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 16:49:42,076 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 16:49:42,076 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 16:49:42,076 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 17:01:59,387 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 17:02:05,300 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 17:02:05,331 - api.main - INFO - lifespan:32 - 🔥 Firebase initialized
+2026-03-10 17:02:10,220 - api.main - INFO - lifespan:41 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 17:02:10,221 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 17:02:10,987 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 17:02:11,425 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 17:02:11,426 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 17:02:11,648 - api.main - INFO - lifespan:46 - 🤖 LLM initialized using key: groq
+2026-03-10 17:02:11,648 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 17:02:11,649 - api.main - INFO - lifespan:65 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 17:02:15,500 - __main__ - ERROR - init_globals:63 - ❌ Could not connect to backend API: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-10 17:02:17,230 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 17:02:18,114 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 17:02:18,432 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 17:02:18,432 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 17:02:18,554 - api.main - INFO - lifespan:69 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 17:02:20,004 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:02:20,005 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:02:20,005 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:02:20,005 - api.main - INFO - lifespan:94 - 🛡️ Security Layer initialized
+2026-03-10 17:02:22,330 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:02:22,330 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:02:22,330 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:02:55,649 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:02:55,650 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:02:55,650 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:03:12,108 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:03:12,108 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:03:12,109 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:03:14,212 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:03:14,212 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:03:14,213 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:03:14,216 - __main__ - INFO - main:193 - Initialized new thin-client chat session
+2026-03-10 17:03:14,216 - __main__ - INFO - main:198 - Thin client initialized
+2026-03-10 17:03:42,614 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 17:03:42,615 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 17:03:42,615 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 17:03:53,856 - src.rag.engine - INFO - validate_response:123 - ✅ Output validated and safe
+2026-03-10 17:03:53,859 - __main__ - INFO - main:249 - Query processed successfully in 11.2s
+2026-03-10 18:47:56,149 - api.main - INFO - lifespan:98 - 🛑 Shutting down FastAPI backend...
+2026-03-10 18:47:59,196 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 18:48:11,721 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 18:48:11,727 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 18:48:11,729 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 18:48:11,869 - api.main - INFO - lifespan:36 - 🔥 Firebase initialized
+2026-03-10 18:48:18,475 - api.main - INFO - lifespan:45 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 18:48:18,475 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 18:48:19,949 - api.main - INFO - lifespan:50 - 🤖 LLM initialized using key: groq
+2026-03-10 18:48:19,950 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 18:48:19,950 - api.main - INFO - lifespan:69 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 18:48:25,632 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 18:48:26,632 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 18:48:26,921 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 18:48:26,922 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 18:48:27,079 - api.main - INFO - lifespan:73 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 18:48:28,439 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 18:48:28,439 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 18:48:28,440 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 18:48:28,440 - api.main - INFO - lifespan:98 - 🛡️ Security Layer initialized
+2026-03-10 18:48:28,551 - api.main - INFO - lifespan:102 - 🛑 Shutting down FastAPI backend...
+2026-03-10 18:48:30,108 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 18:48:35,859 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 18:48:35,861 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 18:48:35,862 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 18:48:35,892 - api.main - INFO - lifespan:36 - 🔥 Firebase initialized
+2026-03-10 18:48:41,029 - api.main - INFO - lifespan:45 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 18:48:41,029 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 18:48:41,526 - api.main - INFO - lifespan:50 - 🤖 LLM initialized using key: groq
+2026-03-10 18:48:41,527 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 18:48:41,527 - api.main - INFO - lifespan:69 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 18:48:45,172 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 18:48:46,098 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 18:48:46,387 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 18:48:46,387 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 18:48:46,433 - api.main - INFO - lifespan:73 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 18:48:46,926 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 18:48:46,926 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 18:48:46,926 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 18:48:46,926 - api.main - INFO - lifespan:98 - 🛡️ Security Layer initialized
+2026-03-10 18:49:48,775 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 18:49:54,371 - api.main - INFO - lifespan:27 - 🚀 Starting FastAPI backend...
+2026-03-10 18:49:54,372 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 18:49:54,373 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 18:49:54,402 - api.main - INFO - lifespan:36 - 🔥 Firebase initialized
+2026-03-10 18:49:59,788 - api.main - INFO - lifespan:45 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 18:49:59,788 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 18:50:01,133 - api.main - INFO - lifespan:50 - 🤖 LLM initialized using key: groq
+2026-03-10 18:50:01,134 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 18:50:01,134 - api.main - INFO - lifespan:69 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 18:50:02,807 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 18:50:03,223 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 18:50:03,224 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 18:50:06,733 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 18:50:07,332 - __main__ - ERROR - init_globals:63 - ❌ Could not connect to backend API: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-10 18:50:07,665 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 18:50:07,942 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 18:50:07,942 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 18:50:08,049 - api.main - INFO - lifespan:73 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 18:50:09,489 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 18:50:09,489 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 18:50:09,490 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 18:50:09,490 - api.main - INFO - lifespan:98 - 🛡️ Security Layer initialized
+2026-03-10 18:50:13,968 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 18:50:13,969 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 18:50:13,969 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:15:05,262 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:15:05,263 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:15:05,264 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:15:09,971 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:15:09,971 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:15:09,972 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:15:09,973 - __main__ - INFO - main:193 - Initialized new thin-client chat session
+2026-03-10 19:15:09,973 - __main__ - INFO - main:198 - Thin client initialized
+2026-03-10 19:15:22,328 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:15:22,328 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:15:22,329 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:15:30,633 - src.rag.engine - INFO - validate_response:126 - ✅ Output validated and safe
+2026-03-10 19:15:30,637 - __main__ - INFO - main:249 - Query processed successfully in 8.3s
+2026-03-10 19:50:28,657 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 19:50:34,458 - api.main - INFO - lifespan:29 - 🚀 Starting FastAPI backend...
+2026-03-10 19:50:34,459 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 19:50:34,460 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 19:50:34,489 - api.main - INFO - lifespan:38 - 🔥 Firebase initialized
+2026-03-10 19:50:40,172 - api.main - INFO - lifespan:47 - 🧬 Embeddings initialized: BAAI/bge-base-en-v1.5
+2026-03-10 19:50:40,172 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-10 19:50:41,063 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-10 19:50:41,545 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-10 19:50:41,546 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-10 19:50:41,600 - api.main - INFO - lifespan:52 - 🤖 LLM initialized using key: groq
+2026-03-10 19:50:41,601 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-10 19:50:41,601 - api.main - INFO - lifespan:71 - ☁️ Syncing Vectorstore from GCS to vectorstore/db_faiss...
+2026-03-10 19:50:45,628 - __main__ - ERROR - init_globals:63 - ❌ Could not connect to backend API: HTTPConnectionPool(host='localhost', port=8000): Max retries exceeded with url: /health (Caused by NewConnectionError("HTTPConnection(host='localhost', port=8000): Failed to establish a new connection: [WinError 10061] No connection could be made because the target machine actively refused it"))
+2026-03-10 19:50:47,374 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-10 19:50:48,360 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (5244.0 KB) → vectorstore\db_faiss\index.faiss
+2026-03-10 19:50:48,636 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (983.2 KB) → vectorstore\db_faiss\index.pkl
+2026-03-10 19:50:48,636 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to vectorstore/db_faiss
+2026-03-10 19:50:48,747 - api.main - INFO - lifespan:75 - ✅ Vectorstore synced and loaded from GCS
+2026-03-10 19:50:50,227 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:50:50,228 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:50:50,228 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:50:50,229 - api.main - INFO - lifespan:100 - 🛡️ Security Layer initialized
+2026-03-10 19:50:52,155 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:50:52,156 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:50:52,156 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:52:21,657 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:52:21,659 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:52:21,659 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:52:23,840 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:52:23,841 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:52:23,842 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:52:23,844 - __main__ - INFO - main:220 - Initialized new thin-client chat session
+2026-03-10 19:52:23,844 - __main__ - INFO - main:225 - Thin client initialized
+2026-03-10 19:55:37,063 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:55:37,064 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:55:37,064 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:55:43,491 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:55:43,492 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:55:43,493 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:55:46,528 - api.tasks - INFO - process_pdf_indexing_task:20 - ⏳ Task 4a4ffbbb-96d2-47bf-ba69-48f8e97722c6: Starting background indexing for 1 files
+2026-03-10 19:55:49,271 - src.rag.engine - INFO - rebuild_vectorstore_from_pdfs:65 - 📄 Processed CPAA-ANNUAL-REPORT-2024-25.pdf: 149 chunks
+2026-03-10 19:56:11,127 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.faiss (447.0 KB) → gs://medical-chatbot-faiss/faiss-index/index.faiss
+2026-03-10 19:56:11,360 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.pkl (80.2 KB) → gs://medical-chatbot-faiss/faiss-index/index.pkl
+2026-03-10 19:56:11,361 - src.storage.gcs_handler - INFO - upload_faiss_index:178 - ✅ GCS: FAISS index uploaded to gs://medical-chatbot-faiss/faiss-index/
+2026-03-10 19:56:11,366 - api.tasks - INFO - process_pdf_indexing_task:38 - ✅ Task 4a4ffbbb-96d2-47bf-ba69-48f8e97722c6: Completed successfully
+2026-03-10 19:56:12,988 - __main__ - INFO - main:397 - Successfully indexed 1 files into 149 chunks.
+2026-03-10 19:56:13,190 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:56:13,190 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:56:13,191 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:57:47,623 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:57:47,624 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:57:47,625 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:57:48,203 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 19:57:48,204 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 19:57:48,204 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 19:57:50,602 - api.tasks - INFO - process_pdf_indexing_task:20 - ⏳ Task 86e0aded-a7bd-4ce4-b067-2dc2a707c48e: Starting background indexing for 2 files
+2026-03-10 19:57:52,807 - src.rag.engine - INFO - rebuild_vectorstore_from_pdfs:65 - 📄 Processed CPAA-ANNUAL-REPORT-2024-25.pdf: 149 chunks
+2026-03-10 19:58:19,661 - src.rag.engine - INFO - rebuild_vectorstore_from_pdfs:65 - 📄 Processed The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf: 7080 chunks
+2026-03-10 20:04:12,935 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 20:04:12,941 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 20:04:12,947 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 20:04:23,156 - src.rag.engine - INFO - validate_response:126 - ✅ Output validated and safe
+2026-03-10 20:04:23,162 - __main__ - INFO - main:276 - Query processed successfully in 10.2s
+2026-03-10 20:04:31,692 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 20:04:31,698 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 20:04:31,703 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 20:04:39,885 - src.rag.engine - INFO - validate_response:126 - ✅ Output validated and safe
+2026-03-10 20:04:39,891 - __main__ - INFO - main:276 - Query processed successfully in 8.2s
+2026-03-10 20:05:05,822 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 20:05:05,824 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 20:05:05,825 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist
+2026-03-10 20:05:08,496 - api.tasks - INFO - process_pdf_indexing_task:20 - ⏳ Task e8ffb0e1-09c1-4d31-a103-4e4172d9a15e: Starting background indexing for 2 files
+2026-03-10 20:05:11,578 - src.rag.engine - INFO - rebuild_vectorstore_from_pdfs:65 - 📄 Processed CPAA-ANNUAL-REPORT-2024-25.pdf: 149 chunks
+2026-03-10 20:05:47,807 - src.rag.engine - INFO - rebuild_vectorstore_from_pdfs:65 - 📄 Processed The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf: 7080 chunks
+2026-03-10 20:24:15,549 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.faiss (21687.0 KB) → gs://medical-chatbot-faiss/faiss-index/index.faiss
+2026-03-10 20:24:19,174 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.pkl (4712.8 KB) → gs://medical-chatbot-faiss/faiss-index/index.pkl
+2026-03-10 20:24:19,177 - src.storage.gcs_handler - INFO - upload_faiss_index:178 - ✅ GCS: FAISS index uploaded to gs://medical-chatbot-faiss/faiss-index/
+2026-03-10 20:24:19,213 - api.tasks - INFO - process_pdf_indexing_task:38 - ✅ Task 86e0aded-a7bd-4ce4-b067-2dc2a707c48e: Completed successfully
+2026-03-10 20:31:39,471 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.faiss (21687.0 KB) → gs://medical-chatbot-faiss/faiss-index/index.faiss
+2026-03-10 20:31:43,098 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.pkl (4712.8 KB) → gs://medical-chatbot-faiss/faiss-index/index.pkl
+2026-03-10 20:31:43,098 - src.storage.gcs_handler - INFO - upload_faiss_index:178 - ✅ GCS: FAISS index uploaded to gs://medical-chatbot-faiss/faiss-index/
+2026-03-10 20:31:43,123 - api.tasks - INFO - process_pdf_indexing_task:38 - ✅ Task e8ffb0e1-09c1-4d31-a103-4e4172d9a15e: Completed successfully
+2026-03-10 20:31:44,700 - __main__ - INFO - main:415 - Successfully indexed 2 files into 7229 chunks.
+2026-03-10 20:31:44,906 - src.content_analyzer.validator - INFO - __init__:54 - Initialized regex-based PII detector
+2026-03-10 20:31:44,906 - src.content_analyzer.validator - INFO - __init__:97 - Initialized word-list toxic detector
+2026-03-10 20:31:44,906 - src.content_analyzer.validator - INFO - __init__:128 - ContentValidator initialized - PII Mode: regex, Toxic Mode: wordlist

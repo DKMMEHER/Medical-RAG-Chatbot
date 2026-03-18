@@ -1,0 +1,341 @@
+2026-01-15 13:03:58,505 - __main__ - INFO - ============================================================
+2026-01-15 13:03:58,505 - __main__ - INFO - Starting vector store creation process
+2026-01-15 13:03:58,505 - __main__ - INFO - ============================================================
+2026-01-15 13:03:58,505 - __main__ - INFO - Loading PDF files from data/
+2026-01-15 13:03:58,506 - __main__ - INFO - Found 1 PDF file(s) in data/
+2026-01-15 13:03:58,506 - __main__ - INFO -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-01-15 13:04:05,999 - __main__ - INFO - Successfully loaded 759 pages from PDF files
+2026-01-15 13:04:06,000 - __main__ - INFO - Creating chunks (size=500, overlap=50)
+2026-01-15 13:04:06,099 - __main__ - INFO - Successfully created 7080 text chunks
+2026-01-15 13:04:06,100 - __main__ - INFO - Average chunk size: 452 characters
+2026-01-15 13:04:06,100 - __main__ - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-01-15 13:19:20,693 - __main__ - INFO - ============================================================
+2026-01-15 13:19:20,694 - __main__ - INFO - Starting vector store creation process
+2026-01-15 13:19:20,694 - __main__ - INFO - ============================================================
+2026-01-15 13:19:20,694 - __main__ - INFO - Loading PDF files from data/
+2026-01-15 13:19:20,694 - __main__ - ERROR - Data directory not found: data/
+2026-01-15 13:19:20,694 - __main__ - ERROR - Vector store creation failed: Data directory not found: data/
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_memory_for_llm.py", line 293, in main
+    documents = load_pdf_files(DATA_PATH)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_memory_for_llm.py", line 112, in load_pdf_files
+    validate_data_directory(data_path)
+    ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_memory_for_llm.py", line 69, in validate_data_directory
+    raise DocumentLoadError(error_msg)
+DocumentLoadError: Data directory not found: data/
+2026-01-15 15:24:08,828 - __main__ - INFO - ============================================================
+2026-01-15 15:24:08,829 - __main__ - INFO - Starting vector store creation process
+2026-01-15 15:24:08,829 - __main__ - INFO - ============================================================
+2026-01-15 15:24:08,829 - __main__ - INFO - Loading PDF files from data/
+2026-01-15 15:24:08,829 - __main__ - INFO - Found 1 PDF file(s) in data/
+2026-01-15 15:24:08,829 - __main__ - INFO -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-01-15 15:24:21,412 - __main__ - INFO - Successfully loaded 759 pages from PDF files
+2026-01-15 15:24:21,412 - __main__ - INFO - Creating chunks (size=500, overlap=50)
+2026-01-15 15:24:21,509 - __main__ - INFO - Successfully created 7080 text chunks
+2026-01-15 15:24:21,510 - __main__ - INFO - Average chunk size: 452 characters
+2026-01-15 15:24:21,511 - __main__ - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-01-15 15:24:21,514 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-01-15 15:24:21,515 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-01-15 15:24:26,612 - __main__ - INFO - Embedding model loaded successfully
+2026-01-15 15:24:26,613 - __main__ - INFO - Creating FAISS vector store with 7080 chunks
+2026-01-15 15:24:26,614 - __main__ - INFO - Output directory: vectorstore
+2026-01-15 15:25:57,705 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-01-15 15:25:57,839 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-01-15 15:25:57,979 - __main__ - INFO - Successfully saved vector store to vectorstore/db_faiss
+2026-01-15 15:25:57,982 - __main__ - INFO - Vector store creation completed successfully
+2026-01-15 15:33:48,727 - __main__ - INFO - ============================================================
+2026-01-15 15:33:48,727 - __main__ - INFO - Starting vector store creation process
+2026-01-15 15:33:48,727 - __main__ - INFO - ============================================================
+2026-01-15 15:33:48,727 - __main__ - INFO - Loading PDF files from data/
+2026-01-15 15:33:48,728 - __main__ - INFO - Found 1 PDF file(s) in data/
+2026-01-15 15:33:48,728 - __main__ - INFO -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-01-15 15:33:56,994 - __main__ - INFO - Successfully loaded 759 pages from PDF files
+2026-01-15 15:33:56,994 - __main__ - INFO - Creating chunks (size=500, overlap=50)
+2026-01-15 15:33:57,090 - __main__ - INFO - Successfully created 7080 text chunks
+2026-01-15 15:33:57,092 - __main__ - INFO - Average chunk size: 452 characters
+2026-01-15 15:33:57,092 - __main__ - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-01-15 15:33:57,093 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-01-15 15:33:57,094 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-01-15 15:34:01,986 - __main__ - INFO - Embedding model loaded successfully
+2026-01-15 15:34:01,986 - __main__ - INFO - Creating FAISS vector store with 7080 chunks
+2026-01-15 15:34:01,986 - __main__ - INFO - Output directory: vectorstore
+2026-01-15 15:36:18,987 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-01-15 15:36:19,062 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-01-15 15:36:19,484 - __main__ - INFO - Successfully saved vector store to vectorstore/db_faiss
+2026-01-15 15:36:19,496 - __main__ - INFO - Vector store creation completed successfully
+2026-01-31 17:10:25,166 - __main__ - INFO - ============================================================
+2026-01-31 17:10:25,166 - __main__ - INFO - Starting vector store creation process
+2026-01-31 17:10:25,166 - __main__ - INFO - ============================================================
+2026-01-31 17:10:25,166 - __main__ - INFO - Loading PDF files from data/
+2026-01-31 17:10:25,167 - __main__ - INFO - Found 11 PDF file(s) in data/
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Buddhadev Meher 1st Dose Certificate.pdf (411.20 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Dhirendra Meher 2nd Dose Certificate.pdf (589.95 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Max_Bupa_Claims Guarantee.pdf (87.17 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Padmini Meher 1st Dose Certificate.pdf (593.73 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Padmini Meher 2nd Dose Certificate.pdf (593.58 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - PolicySoftCopy_333051326.pdf (1414.86 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Pradeep Meher 1st Dose Certificate.pdf (593.23 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Pradeep Meher 2nd Dose Certificate.pdf (593.34 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - TERM INSURANCE .pdf (3330.98 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - Term Insurance_Dhirendra Meher.pdf (3334.16 KB)
+2026-01-31 17:10:25,167 - __main__ - INFO -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-01-31 17:10:25,252 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:25,397 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:25,403 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:25,408 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:25,785 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:25,789 - pypdf._page - WARNING - Impossible to decode XFormObject /GOFPDITPL0: 'bbox'
+2026-01-31 17:10:36,375 - __main__ - INFO - Successfully loaded 895 pages from PDF files
+2026-01-31 17:10:36,375 - __main__ - INFO - Creating chunks (size=500, overlap=50)
+2026-01-31 17:10:36,502 - __main__ - INFO - Successfully created 8077 text chunks
+2026-01-31 17:10:36,503 - __main__ - INFO - Average chunk size: 449 characters
+2026-01-31 17:10:36,503 - __main__ - INFO - Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-01-31 17:10:36,505 - sentence_transformers.SentenceTransformer - INFO - Use pytorch device_name: cpu
+2026-01-31 17:10:36,505 - sentence_transformers.SentenceTransformer - INFO - Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2026-01-31 17:10:41,398 - __main__ - INFO - Embedding model loaded successfully
+2026-01-31 17:10:41,400 - __main__ - INFO - Creating FAISS vector store with 8077 chunks
+2026-01-31 17:10:41,401 - __main__ - INFO - Output directory: vectorstore
+2026-01-31 17:11:58,355 - faiss.loader - INFO - Loading faiss with AVX2 support.
+2026-01-31 17:11:58,377 - faiss.loader - INFO - Successfully loaded faiss with AVX2 support.
+2026-01-31 17:11:58,548 - __main__ - INFO - Successfully saved vector store to vectorstore/db_faiss
+2026-01-31 17:11:58,550 - __main__ - INFO - Vector store creation completed successfully
+2026-02-04 09:44:34,046 - __main__ - INFO - <module>:37 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-04 09:44:34,227 - __main__ - INFO - main:306 - ============================================================
+2026-02-04 09:44:34,228 - __main__ - INFO - main:307 - Starting vector store creation process
+2026-02-04 09:44:34,228 - __main__ - INFO - main:308 - ============================================================
+2026-02-04 09:44:34,229 - __main__ - INFO - load_pdf_files:121 - 📄 Loading PDF files from data/
+2026-02-04 09:44:34,229 - __main__ - INFO - validate_data_directory:95 - Found 11 PDF file(s) in data/
+2026-02-04 09:44:34,230 - __main__ - INFO - validate_data_directory:97 -   - Buddhadev Meher 1st Dose Certificate.pdf (411.20 KB)
+2026-02-04 09:44:34,230 - __main__ - INFO - validate_data_directory:97 -   - Dhirendra Meher 2nd Dose Certificate.pdf (589.95 KB)
+2026-02-04 09:44:34,230 - __main__ - INFO - validate_data_directory:97 -   - Max_Bupa_Claims Guarantee.pdf (87.17 KB)
+2026-02-04 09:44:34,231 - __main__ - INFO - validate_data_directory:97 -   - Padmini Meher 1st Dose Certificate.pdf (593.73 KB)
+2026-02-04 09:44:34,231 - __main__ - INFO - validate_data_directory:97 -   - Padmini Meher 2nd Dose Certificate.pdf (593.58 KB)
+2026-02-04 09:44:34,232 - __main__ - INFO - validate_data_directory:97 -   - PolicySoftCopy_333051326.pdf (1414.86 KB)
+2026-02-04 09:44:34,232 - __main__ - INFO - validate_data_directory:97 -   - Pradeep Meher 1st Dose Certificate.pdf (593.23 KB)
+2026-02-04 09:44:34,233 - __main__ - INFO - validate_data_directory:97 -   - Pradeep Meher 2nd Dose Certificate.pdf (593.34 KB)
+2026-02-04 09:44:34,233 - __main__ - INFO - validate_data_directory:97 -   - TERM INSURANCE .pdf (3330.98 KB)
+2026-02-04 09:44:34,234 - __main__ - INFO - validate_data_directory:97 -   - Term Insurance_Dhirendra Meher.pdf (3334.16 KB)
+2026-02-04 09:44:34,234 - __main__ - INFO - validate_data_directory:97 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-04 09:45:09,348 - __main__ - INFO - load_pdf_files:142 - ✅ Successfully loaded 895 pages from PDF files
+2026-02-04 09:45:09,350 - __main__ - INFO - create_chunks:170 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-04 09:45:09,681 - __main__ - INFO - create_chunks:195 - ✅ Successfully created 8077 text chunks
+2026-02-04 09:45:09,685 - __main__ - INFO - create_chunks:199 - 📊 Average chunk size: 449 characters
+2026-02-04 09:45:09,687 - __main__ - INFO - get_embedding_model:226 - 🧠 Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-04 09:45:15,110 - __main__ - INFO - get_embedding_model:230 - ✅ Embedding model loaded successfully
+2026-02-04 09:45:15,111 - __main__ - INFO - create_vector_store:254 - 💾 Creating FAISS vector store with 8077 chunks
+2026-02-04 09:45:15,111 - __main__ - INFO - create_vector_store:262 - 📁 Output directory: vectorstore
+2026-02-04 09:47:29,969 - __main__ - INFO - create_vector_store:270 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-04 09:47:29,972 - __main__ - INFO - main:345 - Vector store creation completed successfully
+2026-02-04 17:23:11,058 - __main__ - INFO - <module>:33 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-04 17:23:11,059 - __main__ - INFO - <module>:34 - 📊 Project: medical-chatbot-vectorstore
+2026-02-04 17:23:11,232 - __main__ - INFO - main:354 - ============================================================
+2026-02-04 17:23:11,232 - __main__ - INFO - main:355 - Starting vector store creation process
+2026-02-04 17:23:11,232 - __main__ - INFO - main:356 - ============================================================
+2026-02-04 17:23:11,233 - __main__ - INFO - load_pdf_files:119 - 📄 Loading PDF files from data/
+2026-02-04 17:23:11,235 - __main__ - INFO - validate_data_directory:92 - Found 11 PDF file(s) in data/
+2026-02-04 17:23:11,235 - __main__ - INFO - validate_data_directory:94 -   - Buddhadev Meher 1st Dose Certificate.pdf (411.20 KB)
+2026-02-04 17:23:11,235 - __main__ - INFO - validate_data_directory:94 -   - Dhirendra Meher 2nd Dose Certificate.pdf (589.95 KB)
+2026-02-04 17:23:11,236 - __main__ - INFO - validate_data_directory:94 -   - Max_Bupa_Claims Guarantee.pdf (87.17 KB)
+2026-02-04 17:23:11,236 - __main__ - INFO - validate_data_directory:94 -   - Padmini Meher 1st Dose Certificate.pdf (593.73 KB)
+2026-02-04 17:23:11,237 - __main__ - INFO - validate_data_directory:94 -   - Padmini Meher 2nd Dose Certificate.pdf (593.58 KB)
+2026-02-04 17:23:11,237 - __main__ - INFO - validate_data_directory:94 -   - PolicySoftCopy_333051326.pdf (1414.86 KB)
+2026-02-04 17:23:11,238 - __main__ - INFO - validate_data_directory:94 -   - Pradeep Meher 1st Dose Certificate.pdf (593.23 KB)
+2026-02-04 17:23:11,238 - __main__ - INFO - validate_data_directory:94 -   - Pradeep Meher 2nd Dose Certificate.pdf (593.34 KB)
+2026-02-04 17:23:11,238 - __main__ - INFO - validate_data_directory:94 -   - TERM INSURANCE .pdf (3330.98 KB)
+2026-02-04 17:23:11,238 - __main__ - INFO - validate_data_directory:94 -   - Term Insurance_Dhirendra Meher.pdf (3334.16 KB)
+2026-02-04 17:23:11,238 - __main__ - INFO - validate_data_directory:94 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-04 17:23:47,850 - __main__ - INFO - load_pdf_files:140 - ✅ Successfully loaded 895 pages from PDF files
+2026-02-04 17:23:47,851 - __main__ - ERROR - load_pdf_files:158 - Failed to load PDF files: property 'metadata' of 'RunTree' object has no setter
+2026-02-04 17:23:48,068 - __main__ - ERROR - main:423 - Vector store creation failed: Failed to load PDF files: property 'metadata' of 'RunTree' object has no setter
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_vectorstore.py", line 146, in load_pdf_files
+    run.metadata = run.metadata or {}
+    ^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\langsmith\run_trees.py", line 328, in __setattr__
+    return super().__setattr__(name, value)
+           ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\pydantic\main.py", line 1033, in __setattr__
+    setattr_handler(self, name, value)  # call here to not memo on possibly unknown fields
+    ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\pydantic\main.py", line 1073, in <lambda>
+    return lambda model, _name, val: attr.__set__(model, val)
+                                     ~~~~~~~~~~~~^^^^^^^^^^^^
+AttributeError: property 'metadata' of 'RunTree' object has no setter
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_vectorstore.py", line 358, in main
+    documents = load_pdf_files(DATA_PATH)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\langsmith\run_helpers.py", line 716, in wrapper
+    function_result = run_container["context"].run(
+        func, *args, **kwargs
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\create_vectorstore.py", line 159, in load_pdf_files
+    raise DocumentLoadError(error_msg)
+DocumentLoadError: Failed to load PDF files: property 'metadata' of 'RunTree' object has no setter
+2026-02-04 17:26:39,826 - __main__ - INFO - <module>:33 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-04 17:26:39,826 - __main__ - INFO - <module>:34 - 📊 Project: medical-chatbot-vectorstore
+2026-02-04 17:26:39,889 - __main__ - INFO - main:354 - ============================================================
+2026-02-04 17:26:39,889 - __main__ - INFO - main:355 - Starting vector store creation process
+2026-02-04 17:26:39,889 - __main__ - INFO - main:356 - ============================================================
+2026-02-04 17:26:39,890 - __main__ - INFO - load_pdf_files:119 - 📄 Loading PDF files from data/
+2026-02-04 17:26:39,890 - __main__ - INFO - validate_data_directory:92 - Found 11 PDF file(s) in data/
+2026-02-04 17:26:39,890 - __main__ - INFO - validate_data_directory:94 -   - Buddhadev Meher 1st Dose Certificate.pdf (411.20 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Dhirendra Meher 2nd Dose Certificate.pdf (589.95 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Max_Bupa_Claims Guarantee.pdf (87.17 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Padmini Meher 1st Dose Certificate.pdf (593.73 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Padmini Meher 2nd Dose Certificate.pdf (593.58 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - PolicySoftCopy_333051326.pdf (1414.86 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Pradeep Meher 1st Dose Certificate.pdf (593.23 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Pradeep Meher 2nd Dose Certificate.pdf (593.34 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - TERM INSURANCE .pdf (3330.98 KB)
+2026-02-04 17:26:39,891 - __main__ - INFO - validate_data_directory:94 -   - Term Insurance_Dhirendra Meher.pdf (3334.16 KB)
+2026-02-04 17:26:39,892 - __main__ - INFO - validate_data_directory:94 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-04 17:26:50,868 - __main__ - INFO - load_pdf_files:140 - ✅ Successfully loaded 895 pages from PDF files
+2026-02-04 17:26:50,894 - __main__ - INFO - create_chunks:180 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-04 17:26:51,003 - __main__ - INFO - create_chunks:205 - ✅ Successfully created 8077 text chunks
+2026-02-04 17:26:51,004 - __main__ - INFO - create_chunks:209 - 📊 Average chunk size: 449 characters
+2026-02-04 17:26:51,047 - __main__ - INFO - get_embedding_model:249 - 🧠 Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-04 17:26:56,047 - __main__ - INFO - get_embedding_model:253 - ✅ Embedding model loaded successfully
+2026-02-04 17:26:56,085 - __main__ - INFO - create_vector_store:288 - 💾 Creating FAISS vector store with 8077 chunks
+2026-02-04 17:26:56,088 - __main__ - INFO - create_vector_store:296 - 📁 Output directory: vectorstore
+2026-02-04 17:29:05,424 - __main__ - INFO - create_vector_store:304 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-04 17:29:05,544 - __main__ - INFO - main:393 - Vector store creation completed successfully
+2026-02-09 11:11:32,818 - __main__ - INFO - <module>:33 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-09 11:11:32,819 - __main__ - INFO - <module>:34 - 📊 Project: medical-chatbot-vectorstore
+2026-02-09 11:11:32,901 - __main__ - INFO - main:354 - ============================================================
+2026-02-09 11:11:32,901 - __main__ - INFO - main:355 - Starting vector store creation process
+2026-02-09 11:11:32,902 - __main__ - INFO - main:356 - ============================================================
+2026-02-09 11:11:32,902 - __main__ - INFO - load_pdf_files:119 - 📄 Loading PDF files from data/
+2026-02-09 11:11:32,902 - __main__ - INFO - validate_data_directory:92 - Found 1 PDF file(s) in data/
+2026-02-09 11:11:32,902 - __main__ - INFO - validate_data_directory:94 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-09 11:11:50,950 - __main__ - INFO - load_pdf_files:140 - ✅ Successfully loaded 759 pages from PDF files
+2026-02-09 11:11:50,972 - __main__ - INFO - create_chunks:180 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-09 11:11:51,073 - __main__ - INFO - create_chunks:205 - ✅ Successfully created 7080 text chunks
+2026-02-09 11:11:51,075 - __main__ - INFO - create_chunks:209 - 📊 Average chunk size: 452 characters
+2026-02-09 11:11:51,121 - __main__ - INFO - get_embedding_model:249 - 🧠 Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-09 11:11:56,119 - __main__ - INFO - get_embedding_model:253 - ✅ Embedding model loaded successfully
+2026-02-09 11:11:56,178 - __main__ - INFO - create_vector_store:288 - 💾 Creating FAISS vector store with 7080 chunks
+2026-02-09 11:11:56,180 - __main__ - INFO - create_vector_store:296 - 📁 Output directory: vectorstore
+2026-02-09 11:13:07,343 - __main__ - INFO - create_vector_store:304 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-09 11:13:07,376 - __main__ - INFO - main:393 - Vector store creation completed successfully
+2026-02-09 11:28:30,750 - __main__ - INFO - <module>:40 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-09 11:28:30,750 - __main__ - INFO - <module>:41 - 📊 Project: medical-chatbot-vectorstore
+2026-02-09 11:28:30,867 - __main__ - INFO - main:361 - ============================================================
+2026-02-09 11:28:30,867 - __main__ - INFO - main:362 - Starting vector store creation process
+2026-02-09 11:28:30,868 - __main__ - INFO - main:363 - ============================================================
+2026-02-09 11:28:30,868 - __main__ - INFO - load_pdf_files:126 - 📄 Loading PDF files from data/
+2026-02-09 11:28:30,868 - __main__ - INFO - validate_data_directory:99 - Found 1 PDF file(s) in data/
+2026-02-09 11:28:30,869 - __main__ - INFO - validate_data_directory:101 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-09 11:28:39,221 - __main__ - INFO - load_pdf_files:147 - ✅ Successfully loaded 759 pages from PDF files
+2026-02-09 11:28:39,246 - __main__ - INFO - create_chunks:187 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-09 11:28:39,342 - __main__ - INFO - create_chunks:212 - ✅ Successfully created 7080 text chunks
+2026-02-09 11:28:39,344 - __main__ - INFO - create_chunks:216 - 📊 Average chunk size: 452 characters
+2026-02-09 11:28:39,388 - __main__ - INFO - get_embedding_model:256 - 🧠 Loading embedding model: sentence-transformers/all-MiniLM-L6-v2
+2026-02-09 11:28:44,178 - __main__ - INFO - get_embedding_model:260 - ✅ Embedding model loaded successfully
+2026-02-09 11:28:44,217 - __main__ - INFO - create_vector_store:295 - 💾 Creating FAISS vector store with 7080 chunks
+2026-02-09 11:28:44,217 - __main__ - INFO - create_vector_store:303 - 📁 Output directory: vectorstore
+2026-02-09 11:29:39,457 - __main__ - INFO - create_vector_store:311 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-09 11:29:39,490 - __main__ - INFO - main:400 - Vector store creation completed successfully
+2026-02-09 12:00:25,062 - __main__ - INFO - <module>:40 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-09 12:00:25,062 - __main__ - INFO - <module>:41 - 📊 Project: medical-chatbot-vectorstore
+2026-02-09 12:00:25,071 - __main__ - INFO - load_config:54 - ✅ Configuration loaded from src\config\config.yaml
+2026-02-09 12:00:25,071 - __main__ - INFO - <module>:76 - 📝 Using embedding model: BAAI/bge-base-en-v1.5
+2026-02-09 12:00:25,071 - __main__ - INFO - <module>:77 - 📝 Embedding strategy: single
+2026-02-09 12:00:25,161 - __main__ - INFO - main:394 - ============================================================
+2026-02-09 12:00:25,161 - __main__ - INFO - main:395 - Starting vector store creation process
+2026-02-09 12:00:25,161 - __main__ - INFO - main:396 - ============================================================
+2026-02-09 12:00:25,162 - __main__ - INFO - load_pdf_files:159 - 📄 Loading PDF files from data/
+2026-02-09 12:00:25,162 - __main__ - INFO - validate_data_directory:132 - Found 1 PDF file(s) in data/
+2026-02-09 12:00:25,163 - __main__ - INFO - validate_data_directory:134 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-09 12:00:36,626 - __main__ - INFO - load_pdf_files:180 - ✅ Successfully loaded 759 pages from PDF files
+2026-02-09 12:00:36,678 - __main__ - INFO - create_chunks:220 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-09 12:00:36,961 - __main__ - INFO - create_chunks:245 - ✅ Successfully created 7080 text chunks
+2026-02-09 12:00:36,964 - __main__ - INFO - create_chunks:249 - 📊 Average chunk size: 452 characters
+2026-02-09 12:00:37,075 - __main__ - INFO - get_embedding_model:289 - 🧠 Loading embedding model: BAAI/bge-base-en-v1.5
+2026-02-09 12:01:30,920 - __main__ - INFO - get_embedding_model:293 - ✅ Embedding model loaded successfully
+2026-02-09 12:01:31,014 - __main__ - INFO - create_vector_store:328 - 💾 Creating FAISS vector store with 7080 chunks
+2026-02-09 12:01:31,015 - __main__ - INFO - create_vector_store:336 - 📁 Output directory: vectorstore
+2026-02-09 12:11:52,996 - __main__ - INFO - create_vector_store:344 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-09 12:11:53,032 - __main__ - INFO - main:433 - Vector store creation completed successfully
+2026-02-26 16:27:04,976 - __main__ - INFO - <module>:41 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-26 16:27:04,978 - __main__ - INFO - <module>:42 - 📊 Project: medical-chatbot-vectorstore
+2026-02-26 16:27:04,989 - __main__ - INFO - load_config:55 - ✅ Configuration loaded from src\config\config.yaml
+2026-02-26 16:27:04,989 - __main__ - INFO - <module>:77 - 📝 Using embedding model: BAAI/bge-base-en-v1.5
+2026-02-26 16:27:04,990 - __main__ - INFO - <module>:78 - 📝 Embedding strategy: single
+2026-02-26 16:27:05,170 - __main__ - INFO - main:393 - ============================================================
+2026-02-26 16:27:05,170 - __main__ - INFO - main:394 - Starting vector store creation process
+2026-02-26 16:27:05,171 - __main__ - INFO - main:395 - ============================================================
+2026-02-26 16:27:05,172 - __main__ - INFO - load_pdf_files:158 - 📄 Loading PDF files from data/
+2026-02-26 16:27:05,173 - __main__ - INFO - validate_data_directory:131 - Found 1 PDF file(s) in data/
+2026-02-26 16:27:05,173 - __main__ - INFO - validate_data_directory:133 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-26 16:27:20,668 - __main__ - INFO - load_pdf_files:179 - ✅ Successfully loaded 759 pages from PDF files
+2026-02-26 16:27:20,692 - __main__ - INFO - create_chunks:219 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-26 16:27:20,793 - __main__ - INFO - create_chunks:244 - ✅ Successfully created 7080 text chunks
+2026-02-26 16:27:20,794 - __main__ - INFO - create_chunks:248 - 📊 Average chunk size: 452 characters
+2026-02-26 16:27:20,856 - __main__ - INFO - get_embedding_model:288 - 🧠 Loading embedding model: BAAI/bge-base-en-v1.5
+2026-02-26 16:27:27,688 - __main__ - INFO - get_embedding_model:292 - ✅ Embedding model loaded successfully
+2026-02-26 16:27:27,822 - __main__ - INFO - create_vector_store:327 - 💾 Creating FAISS vector store with 7080 chunks
+2026-02-26 16:27:27,824 - __main__ - INFO - create_vector_store:335 - 📁 Output directory: vectorstore
+2026-02-26 16:50:22,361 - __main__ - INFO - <module>:41 - ✅ LangSmith tracing enabled for vector store creation
+2026-02-26 16:50:22,362 - __main__ - INFO - <module>:42 - 📊 Project: medical-chatbot-vectorstore
+2026-02-26 16:50:22,369 - __main__ - INFO - load_config:55 - ✅ Configuration loaded from src\config\config.yaml
+2026-02-26 16:50:22,369 - __main__ - INFO - <module>:77 - 📝 Using embedding model: BAAI/bge-base-en-v1.5
+2026-02-26 16:50:22,369 - __main__ - INFO - <module>:78 - 📝 Embedding strategy: single
+2026-02-26 16:50:22,441 - __main__ - INFO - main:393 - ============================================================
+2026-02-26 16:50:22,442 - __main__ - INFO - main:394 - Starting vector store creation process
+2026-02-26 16:50:22,442 - __main__ - INFO - main:395 - ============================================================
+2026-02-26 16:50:22,442 - __main__ - INFO - load_pdf_files:158 - 📄 Loading PDF files from data/
+2026-02-26 16:50:22,443 - __main__ - INFO - validate_data_directory:131 - Found 1 PDF file(s) in data/
+2026-02-26 16:50:22,443 - __main__ - INFO - validate_data_directory:133 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-02-26 16:50:34,909 - __main__ - INFO - load_pdf_files:179 - ✅ Successfully loaded 759 pages from PDF files
+2026-02-26 16:50:34,927 - __main__ - INFO - create_chunks:219 - ✂️  Creating chunks (size=500, overlap=50)
+2026-02-26 16:50:35,028 - __main__ - INFO - create_chunks:244 - ✅ Successfully created 7080 text chunks
+2026-02-26 16:50:35,030 - __main__ - INFO - create_chunks:248 - 📊 Average chunk size: 452 characters
+2026-02-26 16:50:35,072 - __main__ - INFO - get_embedding_model:288 - 🧠 Loading embedding model: BAAI/bge-base-en-v1.5
+2026-02-26 16:50:39,997 - __main__ - INFO - get_embedding_model:292 - ✅ Embedding model loaded successfully
+2026-02-26 16:50:40,031 - __main__ - INFO - create_vector_store:327 - 💾 Creating FAISS vector store with 7080 chunks
+2026-02-26 16:50:40,031 - __main__ - INFO - create_vector_store:335 - 📁 Output directory: vectorstore
+2026-02-26 16:59:02,461 - __main__ - INFO - create_vector_store:343 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-02-26 16:59:02,495 - __main__ - INFO - main:432 - Vector store creation completed successfully
+2026-03-01 20:11:01,211 - __main__ - INFO - <module>:42 - ✅ LangSmith tracing enabled for vector store creation
+2026-03-01 20:11:01,213 - __main__ - INFO - <module>:43 - 📊 Project: medical-chatbot-vectorstore
+2026-03-01 20:11:01,221 - __main__ - INFO - load_config:57 - ✅ Configuration loaded from src\config\config.yaml
+2026-03-01 20:11:01,221 - __main__ - INFO - <module>:83 - 📝 Using embedding model: BAAI/bge-base-en-v1.5
+2026-03-01 20:11:01,221 - __main__ - INFO - <module>:84 - 📝 Embedding strategy: single
+2026-03-01 20:11:01,293 - __main__ - INFO - main:414 - ============================================================
+2026-03-01 20:11:01,293 - __main__ - INFO - main:415 - Starting vector store creation process
+2026-03-01 20:11:01,293 - __main__ - INFO - main:416 - ============================================================
+2026-03-01 20:11:01,294 - __main__ - INFO - load_pdf_files:166 - 📄 Loading PDF files from data/
+2026-03-01 20:11:01,294 - __main__ - INFO - validate_data_directory:139 - Found 2 PDF file(s) in data/
+2026-03-01 20:11:01,295 - __main__ - INFO - validate_data_directory:141 -   - CPAA-ANNUAL-REPORT-2024-25.pdf (26832.90 KB)
+2026-03-01 20:11:01,295 - __main__ - INFO - validate_data_directory:141 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-03-01 20:11:10,540 - __main__ - INFO - load_pdf_files:184 - ✅ Successfully loaded 799 pages from PDF files
+2026-03-01 20:11:10,561 - __main__ - INFO - create_chunks:225 - ✂️  Creating chunks (size=500, overlap=50)
+2026-03-01 20:11:10,670 - __main__ - INFO - create_chunks:249 - ✅ Successfully created 7229 text chunks
+2026-03-01 20:11:10,671 - __main__ - INFO - create_chunks:255 - 📊 Average chunk size: 451 characters
+2026-03-01 20:11:10,714 - __main__ - INFO - get_embedding_model:300 - 🧠 Loading embedding model: BAAI/bge-base-en-v1.5
+2026-03-01 20:11:18,179 - __main__ - INFO - get_embedding_model:304 - ✅ Embedding model loaded successfully
+2026-03-01 20:11:18,213 - __main__ - INFO - create_vector_store:340 - 💾 Creating FAISS vector store with 7229 chunks
+2026-03-01 20:11:18,214 - __main__ - INFO - create_vector_store:348 - 📁 Output directory: vectorstore
+2026-03-01 20:21:58,563 - __main__ - INFO - create_vector_store:356 - ✅ Successfully saved vector store to vectorstore/db_faiss
+2026-03-01 20:22:12,133 - __main__ - INFO - main:468 - Vector store creation completed successfully
+2026-03-11 15:20:31,632 - __main__ - INFO - <module>:42 - ✅ LangSmith tracing enabled for vector store creation
+2026-03-11 15:20:31,633 - __main__ - INFO - <module>:43 - 📊 Project: medical-chatbot-vectorstore
+2026-03-11 15:20:31,640 - __main__ - INFO - load_config:57 - ✅ Configuration loaded from src\config\config.yaml
+2026-03-11 15:20:31,641 - __main__ - INFO - <module>:83 - 📝 Using embedding model: BAAI/bge-base-en-v1.5
+2026-03-11 15:20:31,641 - __main__ - INFO - <module>:84 - 📝 Embedding strategy: single
+2026-03-11 15:20:31,758 - __main__ - INFO - main:397 - ============================================================
+2026-03-11 15:20:31,758 - __main__ - INFO - main:398 - Starting vector store creation process
+2026-03-11 15:20:31,758 - __main__ - INFO - main:399 - ============================================================
+2026-03-11 15:20:31,759 - __main__ - INFO - load_pdf_files:166 - 📄 Loading PDF files from data/
+2026-03-11 15:20:31,759 - __main__ - INFO - validate_data_directory:139 - Found 3 PDF file(s) in data/
+2026-03-11 15:20:31,759 - __main__ - INFO - validate_data_directory:141 -   - clinical-guidelines-diagnosis-and-treatment-manual-medecins-sans-frontieres-616.pdf (4180.02 KB)
+2026-03-11 15:20:31,759 - __main__ - INFO - validate_data_directory:141 -   - CPAA-ANNUAL-REPORT-2024-25.pdf (26832.90 KB)
+2026-03-11 15:20:31,760 - __main__ - INFO - validate_data_directory:141 -   - The_GALE_ENCYCLOPEDIA_of_MEDICINE_SECOND.pdf (11940.37 KB)
+2026-03-11 15:20:48,206 - __main__ - INFO - load_pdf_files:184 - ✅ Successfully loaded 1208 pages from PDF files
+2026-03-11 15:20:48,226 - __main__ - INFO - get_embedding_model:283 - 🧠 Loading embedding model: BAAI/bge-base-en-v1.5
+2026-03-11 15:20:53,012 - __main__ - INFO - get_embedding_model:287 - ✅ Embedding model loaded successfully
+2026-03-11 15:20:53,028 - __main__ - INFO - create_chunks:213 - ✂️  Creating semantic chunks using AI-driven meaning boundaries

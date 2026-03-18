@@ -1,0 +1,1496 @@
+2026-03-09 16:58:54,104 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 16:58:54,451 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 16:58:54,454 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 16:58:54,456 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 16:58:55,522 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 16:58:55,524 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 16:58:55,524 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 16:59:40,321 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 16:59:40,322 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 16:59:40,324 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 16:59:41,038 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 16:59:41,040 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 16:59:41,040 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 16:59:41,049 - __main__ - CRITICAL - <module>:1012 - Critical error in main: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1010, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 652, in main
+    creds = sign_in(email, password)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 56, in sign_in
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+2026-03-09 16:59:51,503 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 16:59:51,503 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 16:59:51,504 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 16:59:52,237 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 16:59:52,238 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 16:59:52,239 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 16:59:52,246 - __main__ - CRITICAL - <module>:1012 - Critical error in main: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1010, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 652, in main
+    creds = sign_in(email, password)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 56, in sign_in
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+2026-03-09 16:59:57,115 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 16:59:57,116 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 16:59:57,117 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 16:59:57,797 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 16:59:57,798 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 16:59:57,798 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 16:59:57,804 - __main__ - CRITICAL - <module>:1012 - Critical error in main: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1010, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 652, in main
+    creds = sign_in(email, password)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 56, in sign_in
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+2026-03-09 17:02:44,212 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 17:02:44,404 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:02:44,406 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:02:44,407 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:02:45,186 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:02:45,186 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:02:45,186 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:03:00,206 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:03:00,207 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:03:00,207 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:03:00,911 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:03:00,912 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:03:00,912 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:03:00,918 - __main__ - CRITICAL - <module>:1012 - Critical error in main: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 1010, in <module>
+    main()
+    ~~~~^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 652, in main
+    creds = sign_in(email, password)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\src\auth\firebase_auth.py", line 56, in sign_in
+    raise RuntimeError(
+    ...<2 lines>...
+    )
+RuntimeError: FIREBASE_API_KEY environment variable is not set. Get it from Firebase Console → Project Settings → General → Web API Key.
+2026-03-09 17:10:53,070 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 17:10:53,243 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:10:53,244 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:10:53,245 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:10:54,010 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:10:54,013 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:10:54,014 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:11:23,702 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:11:23,704 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:11:23,705 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:11:24,411 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:11:24,411 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:11:24,412 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:11:41,536 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:11:41,536 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:11:41,538 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:11:42,164 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:11:42,164 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:11:42,164 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:12:20,066 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:12:20,067 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:12:20,068 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:12:20,746 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:12:20,746 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:12:20,746 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:13:35,689 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:13:35,691 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:13:35,691 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:13:36,383 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:13:36,384 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:13:36,384 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:13:51,276 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 17:13:51,277 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 17:13:51,277 - __main__ - INFO - <module>:58 - ✅ LangSmith observability enabled
+2026-03-09 17:13:51,977 - __main__ - INFO - <module>:85 - ✅ Output guardrails initialized
+2026-03-09 17:13:51,978 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 17:13:51,978 - __main__ - INFO - <module>:93 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss
+2026-03-09 17:29:12,966 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 17:29:13,188 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 17:29:13,190 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 17:29:13,193 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 17:29:13,194 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 17:29:13,196 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 17:29:13,199 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 17:29:13,199 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 17:29:13,200 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 17:29:13,201 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 17:29:13,208 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 17:29:13,248 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-43\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 17:29:13,248 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 17:29:13,250 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 17:29:13,251 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2316250738576'>, using fallback
+2026-03-09 17:29:13,251 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 17:29:13,252 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 17:29:13,255 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 17:29:13,255 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 17:29:13,255 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 17:29:13,255 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 17:29:13,257 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 17:29:13,257 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:10:04,434 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:10:04,697 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:10:04,700 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:10:04,702 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:10:04,703 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:10:04,705 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:10:04,707 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:10:04,707 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:10:04,709 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:10:04,709 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:10:04,715 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:10:04,753 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-44\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:10:04,753 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:10:04,755 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:10:04,755 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2281736563952'>, using fallback
+2026-03-09 19:10:04,755 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:10:04,757 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:10:04,760 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:10:04,760 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:10:04,760 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:10:04,760 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:10:04,762 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:10:04,762 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:10:59,145 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:10:59,475 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:10:59,480 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:10:59,484 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:10:59,487 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:10:59,490 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:10:59,494 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:10:59,494 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:10:59,498 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:10:59,499 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:10:59,512 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:10:59,557 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-45\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:10:59,557 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:10:59,560 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:10:59,561 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1265885959504'>, using fallback
+2026-03-09 19:10:59,561 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:10:59,563 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:10:59,569 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:10:59,570 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:10:59,570 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:10:59,570 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:10:59,574 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:10:59,574 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:11:05,590 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:11:05,590 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-45\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:11:05,591 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-45\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:11:05,605 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpb103h3kh\\MagicMock/mock.__getitem__()/1265911303536'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpb103h3kh\\MagicMock/mock.__getitem__()/1265911303536'
+2026-03-09 19:11:05,619 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:11:10,282 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpncp5tffe\\MagicMock/mock.__getitem__()/1265908813840'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpncp5tffe\\MagicMock/mock.__getitem__()/1265908813840'
+2026-03-09 19:11:51,996 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:11:52,970 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:11:52,977 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:11:52,981 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:11:52,985 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:11:52,989 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:11:52,993 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:11:52,994 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:11:52,999 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:11:52,999 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:11:53,017 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:11:53,115 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-46\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:11:53,115 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:11:53,120 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:11:53,122 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2303223082224'>, using fallback
+2026-03-09 19:11:53,123 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:11:53,127 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:11:53,134 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:11:53,134 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:11:53,134 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:11:53,135 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:11:53,140 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:11:53,141 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:11:59,451 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:11:59,451 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-46\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:11:59,452 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-46\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:11:59,470 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp_op926xv\\MagicMock/mock.__getitem__()/2303229197488'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp_op926xv\\MagicMock/mock.__getitem__()/2303229197488'
+2026-03-09 19:11:59,541 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:12:04,483 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpy6jkfmrm\\MagicMock/mock.__getitem__()/2303224050896'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpy6jkfmrm\\MagicMock/mock.__getitem__()/2303224050896'
+2026-03-09 19:12:32,458 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:12:32,931 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp5ety86kj\\MagicMock/mock.__getitem__()/2586927258256'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp5ety86kj\\MagicMock/mock.__getitem__()/2586927258256'
+2026-03-09 19:12:33,000 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:12:38,955 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpzayfl_dq\\MagicMock/mock.__getitem__()/2586945048592'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpzayfl_dq\\MagicMock/mock.__getitem__()/2586945048592'
+2026-03-09 19:15:03,613 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:15:03,842 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpgdiu7rxm\\MagicMock/mock.__getitem__()/2638201591456'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpgdiu7rxm\\MagicMock/mock.__getitem__()/2638201591456'
+2026-03-09 19:15:03,861 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:15:08,854 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpcpqug792\\MagicMock/mock.__getitem__()/2638219414560'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpcpqug792\\MagicMock/mock.__getitem__()/2638219414560'
+2026-03-09 19:15:33,931 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:15:34,168 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpxumxjd84\\MagicMock/mock.__getitem__()/1656802269840'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpxumxjd84\\MagicMock/mock.__getitem__()/1656802269840'
+2026-03-09 19:15:34,191 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:15:39,222 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpf39zm_gt\\MagicMock/mock.__getitem__()/1656803528048'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpf39zm_gt\\MagicMock/mock.__getitem__()/1656803528048'
+2026-03-09 19:16:55,284 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:16:55,501 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp33tzn837\\MagicMock/mock.__getitem__()/2249474201248'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp33tzn837\\MagicMock/mock.__getitem__()/2249474201248'
+2026-03-09 19:16:55,522 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:17:00,602 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp9rjkkd1j\\MagicMock/mock.__getitem__()/2249476147584'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp9rjkkd1j\\MagicMock/mock.__getitem__()/2249476147584'
+2026-03-09 19:17:38,517 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:17:38,747 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpdvg7gnbh\\MagicMock/mock.__getitem__()/1257223837344'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpdvg7gnbh\\MagicMock/mock.__getitem__()/1257223837344'
+2026-03-09 19:17:38,768 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:17:43,724 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpmqs3bhev\\MagicMock/mock.__getitem__()/1257242364288'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpmqs3bhev\\MagicMock/mock.__getitem__()/1257242364288'
+2026-03-09 19:18:53,583 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:18:53,810 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:18:53,812 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:18:53,815 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:18:53,817 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:18:53,819 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:18:53,821 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:18:53,821 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:18:53,823 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:18:53,823 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:18:53,832 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:18:53,871 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-47\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:18:53,871 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:18:53,873 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:18:53,873 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1992153617744'>, using fallback
+2026-03-09 19:18:53,873 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:18:53,875 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:18:53,877 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:18:53,877 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:18:53,877 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:18:53,878 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:18:53,880 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:18:53,880 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:18:59,083 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:18:59,083 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-47\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:18:59,084 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-47\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:19:20,889 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:19:21,121 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:19:21,123 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:19:21,125 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:19:21,126 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:19:21,128 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:19:21,130 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:19:21,131 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:19:21,132 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:19:21,132 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:19:21,139 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:19:21,175 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-48\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:19:21,175 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:19:21,176 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:19:21,177 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1422985587952'>, using fallback
+2026-03-09 19:19:21,177 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:19:21,178 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:19:21,181 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:19:21,181 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:19:21,181 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:19:21,181 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:19:21,183 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:19:21,184 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:19:26,370 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:19:26,370 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-48\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:19:26,370 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-48\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:19:59,369 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:20:37,983 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:20:38,575 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:20:38,579 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:20:38,583 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:20:38,590 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:20:38,596 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:20:38,608 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:20:38,609 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:20:38,616 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:20:38,619 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:20:38,646 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:20:38,784 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-49\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:20:38,784 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:20:38,790 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:20:38,791 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2797029659984'>, using fallback
+2026-03-09 19:20:38,791 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:20:38,796 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:20:38,804 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:20:38,805 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:20:38,805 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:20:38,806 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:20:38,813 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:20:38,814 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:20:44,728 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:20:44,728 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-49\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:20:44,728 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-49\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:20:44,752 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2797055054176'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2797055054176'
+2026-03-09 19:20:44,775 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:20:49,661 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpw5cga8j4\\MagicMock/mock.__getitem__()/2797035950096'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpw5cga8j4\\MagicMock/mock.__getitem__()/2797035950096'
+2026-03-09 19:21:14,728 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:21:14,956 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:21:14,958 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:21:14,960 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:21:14,961 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:21:14,963 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:21:14,965 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:21:14,965 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:21:14,966 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:21:14,966 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:21:14,972 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:21:15,007 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-50\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:21:15,008 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:21:15,009 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:21:15,010 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2823067266288'>, using fallback
+2026-03-09 19:21:15,010 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:21:15,011 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:21:15,014 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:21:15,014 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:21:15,014 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:21:15,014 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:21:15,016 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:21:15,016 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:21:20,277 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:21:20,277 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-50\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:21:20,277 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-50\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:21:20,283 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2823087980960'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2823087980960'
+2026-03-09 19:21:20,306 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:21:24,894 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp8wrmcodh\\MagicMock/mock.__getitem__()/2823088991808'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp8wrmcodh\\MagicMock/mock.__getitem__()/2823088991808'
+2026-03-09 19:21:50,094 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:21:50,314 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:21:50,317 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:21:50,318 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:21:50,320 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:21:50,321 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:21:50,323 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:21:50,323 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:21:50,326 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:21:50,326 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:21:50,334 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:21:50,368 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-51\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:21:50,368 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:21:50,370 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:21:50,370 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2958336716016'>, using fallback
+2026-03-09 19:21:50,370 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:21:50,372 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:21:50,374 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:21:50,374 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:21:50,374 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:21:50,374 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:21:50,377 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:21:50,377 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:21:55,651 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:21:55,652 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-51\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:21:55,652 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-51\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:21:55,657 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2958357692832'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/2958357692832'
+2026-03-09 19:21:55,678 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:22:00,268 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpzscnrzcv\\MagicMock/mock.__getitem__()/2958358441536'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpzscnrzcv\\MagicMock/mock.__getitem__()/2958358441536'
+2026-03-09 19:22:24,401 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:22:24,628 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/1987514342704'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock/temp/faiss\\MagicMock/mock.__getitem__()/1987514342704'
+2026-03-09 19:22:24,650 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 537, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:22:29,669 - app - ERROR - rebuild_vectorstore_from_pdfs:627 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpvy95palm\\MagicMock/mock.__getitem__()/1987532295872'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 546, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpvy95palm\\MagicMock/mock.__getitem__()/1987532295872'
+2026-03-09 19:24:20,341 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:24:20,809 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:24:20,816 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:24:20,823 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:24:20,830 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:24:20,834 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:24:20,840 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:24:20,840 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:24:20,848 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:24:20,849 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:24:20,877 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:24:21,031 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-52\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:24:21,032 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:24:21,040 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:24:21,040 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2406533289296'>, using fallback
+2026-03-09 19:24:21,041 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:24:21,050 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:24:21,060 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:24:21,061 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:24:21,061 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:24:21,062 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:24:21,072 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:24:21,072 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:24:26,946 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:24:26,947 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-52\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:24:26,947 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-52\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:39:22,553 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:39:22,769 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:39:22,771 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:39:22,773 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:39:22,774 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:39:22,776 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:39:22,777 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:39:22,778 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:39:22,779 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:39:22,780 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:39:22,787 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:39:22,819 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-53\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:39:22,819 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:39:22,821 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:39:22,821 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2879092763888'>, using fallback
+2026-03-09 19:39:22,821 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:39:22,823 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:39:22,825 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:39:22,825 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:39:22,825 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:39:22,825 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:39:22,827 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:39:22,827 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:39:28,410 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:39:28,411 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-53\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:39:28,411 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-53\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:40:23,968 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:40:24,350 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:40:24,357 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:40:24,363 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:40:24,367 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:40:24,373 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:40:24,380 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:40:24,381 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:40:24,386 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:40:24,386 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:40:24,412 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:40:24,498 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-54\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:40:24,498 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:40:24,504 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:40:24,504 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2222201467104'>, using fallback
+2026-03-09 19:40:24,505 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:40:24,511 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:40:24,519 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:40:24,520 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:40:24,520 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:40:24,521 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:40:24,531 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:40:24,531 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:40:30,826 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:40:30,826 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-54\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:40:30,827 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-54\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:40:30,848 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2222220162928'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2222220162928'
+2026-03-09 19:40:30,870 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:40:35,791 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpjv8e13e9\\MagicMock/mock.__getitem__()/2222224573840'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpjv8e13e9\\MagicMock/mock.__getitem__()/2222224573840'
+2026-03-09 19:40:59,398 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:40:59,624 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:40:59,626 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:40:59,627 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:40:59,629 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:40:59,630 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:40:59,633 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:40:59,633 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:40:59,634 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:40:59,634 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:40:59,642 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:40:59,675 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-55\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:40:59,675 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:40:59,677 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:40:59,677 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2180148047088'>, using fallback
+2026-03-09 19:40:59,677 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:40:59,679 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:40:59,681 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:40:59,681 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:40:59,681 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:40:59,681 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:40:59,683 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:40:59,683 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:41:05,417 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:41:05,417 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-55\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:41:05,417 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-55\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:41:05,434 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2180168630688'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2180168630688'
+2026-03-09 19:41:05,500 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:41:10,347 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp56jpmfgs\\MagicMock/mock.__getitem__()/2180170001984'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp56jpmfgs\\MagicMock/mock.__getitem__()/2180170001984'
+2026-03-09 19:41:29,550 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:42:12,664 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:42:13,198 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:42:13,205 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:42:13,211 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:42:13,218 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:42:13,226 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:42:13,235 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:42:13,236 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:42:13,243 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:42:13,244 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:42:13,269 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:42:13,398 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-56\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:42:13,398 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:42:13,405 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:42:13,406 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2058430305616'>, using fallback
+2026-03-09 19:42:13,406 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:42:13,411 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:42:13,421 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:42:13,421 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:42:13,422 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:42:13,422 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:42:13,431 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:42:13,431 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:42:19,258 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:42:19,258 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-56\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:42:19,259 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-56\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:42:19,279 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2058455699808'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2058455699808'
+2026-03-09 19:42:19,297 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:42:19,325 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Could not find a suitable TLS CA certificate bundle, invalid path: C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\certifi\cacert.pem
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\langchain_huggingface\embeddings\huggingface.py", line 97, in __init__
+    self._client = model_cls(
+                   ~~~~~~~~~^
+        self.model_name, cache_folder=self.cache_folder, **self.model_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 339, in __init__
+    modules = self._load_auto_model(
+        model_name_or_path,
+    ...<8 lines>...
+        has_modules=has_modules,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 2112, in _load_auto_model
+    transformer_model = Transformer(
+        model_name_or_path,
+    ...<4 lines>...
+        backend=self.backend,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 88, in __init__
+    config, is_peft_model = self._load_config(model_name_or_path, cache_dir, backend, config_args)
+                            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 139, in _load_config
+    find_adapter_config_file(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        model_name_or_path,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        local_files_only=config_args.get("local_files_only", False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\peft_utils.py", line 88, in find_adapter_config_file
+    adapter_cached_filename = cached_file(
+        model_id,
+    ...<12 lines>...
+        _raise_exceptions_for_connection_errors=False,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 567, in cached_files
+    raise e
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 479, in cached_files
+    hf_hub_download(
+    ~~~~~~~~~~~~~~~^
+        path_or_repo_id,
+        ^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        local_files_only=local_files_only,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+        # Destination
+    ...<14 lines>...
+        force_download=force_download,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1070, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, xet_file_data, head_call_error) = _get_metadata_or_catch_error(
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        repo_id=repo_id,
+        ^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        relative_filename=relative_filename,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1543, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+        url=url, proxies=proxies, timeout=etag_timeout, headers=headers, token=token, endpoint=endpoint
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1460, in get_hf_file_metadata
+    r = _request_wrapper(
+        method="HEAD",
+    ...<5 lines>...
+        timeout=timeout,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+        method=method,
+    ...<2 lines>...
+        **params,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 306, in _request_wrapper
+    response = http_backoff(method=method, url=url, **params)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 306, in http_backoff
+    response = session.request(method=method, url=url, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 95, in send
+    return super().send(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\adapters.py", line 616, in send
+    self.cert_verify(conn, request.url, verify, cert)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\adapters.py", line 303, in cert_verify
+    raise OSError(
+    ...<2 lines>...
+    )
+OSError: Could not find a suitable TLS CA certificate bundle, invalid path: C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\certifi\cacert.pem
+2026-03-09 19:43:53,701 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:43:54,130 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:43:54,137 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:43:54,142 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:43:54,147 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:43:54,151 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:43:54,155 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:43:54,156 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:43:54,159 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:43:54,159 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:43:54,176 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:43:54,256 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-57\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:43:54,257 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:43:54,260 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:43:54,261 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1697385491696'>, using fallback
+2026-03-09 19:43:54,261 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:43:54,265 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:43:54,271 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:43:54,271 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:43:54,271 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:43:54,272 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:43:54,277 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:43:54,277 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:44:00,597 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:44:00,598 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-57\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:44:00,598 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-57\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:44:00,617 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1697403912608'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1697403912608'
+2026-03-09 19:44:00,653 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:44:00,716 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Could not find a suitable TLS CA certificate bundle, invalid path: C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\certifi\cacert.pem
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\langchain_huggingface\embeddings\huggingface.py", line 97, in __init__
+    self._client = model_cls(
+                   ~~~~~~~~~^
+        self.model_name, cache_folder=self.cache_folder, **self.model_kwargs
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 339, in __init__
+    modules = self._load_auto_model(
+        model_name_or_path,
+    ...<8 lines>...
+        has_modules=has_modules,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\SentenceTransformer.py", line 2112, in _load_auto_model
+    transformer_model = Transformer(
+        model_name_or_path,
+    ...<4 lines>...
+        backend=self.backend,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 88, in __init__
+    config, is_peft_model = self._load_config(model_name_or_path, cache_dir, backend, config_args)
+                            ~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\sentence_transformers\models\Transformer.py", line 139, in _load_config
+    find_adapter_config_file(
+    ~~~~~~~~~~~~~~~~~~~~~~~~^
+        model_name_or_path,
+        ^^^^^^^^^^^^^^^^^^^
+    ...<3 lines>...
+        local_files_only=config_args.get("local_files_only", False),
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\peft_utils.py", line 88, in find_adapter_config_file
+    adapter_cached_filename = cached_file(
+        model_id,
+    ...<12 lines>...
+        _raise_exceptions_for_connection_errors=False,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 322, in cached_file
+    file = cached_files(path_or_repo_id=path_or_repo_id, filenames=[filename], **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 567, in cached_files
+    raise e
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\transformers\utils\hub.py", line 479, in cached_files
+    hf_hub_download(
+    ~~~~~~~~~~~~~~~^
+        path_or_repo_id,
+        ^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        local_files_only=local_files_only,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1007, in hf_hub_download
+    return _hf_hub_download_to_cache_dir(
+        # Destination
+    ...<14 lines>...
+        force_download=force_download,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1070, in _hf_hub_download_to_cache_dir
+    (url_to_download, etag, commit_hash, expected_size, xet_file_data, head_call_error) = _get_metadata_or_catch_error(
+                                                                                          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^
+        repo_id=repo_id,
+        ^^^^^^^^^^^^^^^^
+    ...<10 lines>...
+        relative_filename=relative_filename,
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+    )
+    ^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1543, in _get_metadata_or_catch_error
+    metadata = get_hf_file_metadata(
+        url=url, proxies=proxies, timeout=etag_timeout, headers=headers, token=token, endpoint=endpoint
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_validators.py", line 114, in _inner_fn
+    return fn(*args, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 1460, in get_hf_file_metadata
+    r = _request_wrapper(
+        method="HEAD",
+    ...<5 lines>...
+        timeout=timeout,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 283, in _request_wrapper
+    response = _request_wrapper(
+        method=method,
+    ...<2 lines>...
+        **params,
+    )
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\file_download.py", line 306, in _request_wrapper
+    response = http_backoff(method=method, url=url, **params)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 306, in http_backoff
+    response = session.request(method=method, url=url, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\sessions.py", line 589, in request
+    resp = self.send(prep, **send_kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\sessions.py", line 703, in send
+    r = adapter.send(request, **kwargs)
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\huggingface_hub\utils\_http.py", line 95, in send
+    return super().send(request, *args, **kwargs)
+           ~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\adapters.py", line 616, in send
+    self.cert_verify(conn, request.url, verify, cert)
+    ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\requests\adapters.py", line 303, in cert_verify
+    raise OSError(
+    ...<2 lines>...
+    )
+OSError: Could not find a suitable TLS CA certificate bundle, invalid path: C:\Study\GenAI\Project\RAG\Medical-chatbot\.venv\Lib\site-packages\certifi\cacert.pem
+2026-03-09 19:44:51,531 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:44:51,929 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:44:51,935 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:44:51,941 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:44:51,950 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:44:51,957 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:44:51,964 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:44:51,964 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:44:51,969 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:44:51,970 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:44:51,998 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:44:52,120 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-58\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:44:52,121 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:44:52,129 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:44:52,132 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2378349139280'>, using fallback
+2026-03-09 19:44:52,133 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:44:52,140 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:44:52,150 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:44:52,150 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:44:52,151 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:44:52,151 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:44:52,164 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:44:52,164 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:44:57,981 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:44:57,982 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-58\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:44:57,983 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-58\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:44:58,011 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2378374222176'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2378374222176'
+2026-03-09 19:44:58,035 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:44:58,050 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpt_v1bmoa\\MagicMock/mock.__getitem__()/2378374221168'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpt_v1bmoa\\MagicMock/mock.__getitem__()/2378374221168'
+2026-03-09 19:51:52,572 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:51:52,788 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:51:52,791 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:51:52,792 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:51:52,794 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:51:52,796 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:51:52,797 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:51:52,798 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:51:52,799 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:51:52,799 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:51:52,807 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:51:52,840 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-59\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:51:52,840 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:51:52,842 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:51:52,842 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1817252277488'>, using fallback
+2026-03-09 19:51:52,842 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:51:52,843 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:51:52,845 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:51:52,846 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:51:52,846 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:51:52,846 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:51:52,848 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:51:52,848 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:51:58,025 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:51:58,025 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-59\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:51:58,026 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-59\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:51:58,032 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1817256706464'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1817256706464'
+2026-03-09 19:51:58,045 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:51:58,062 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpv1ebmu_6\\MagicMock/mock.__getitem__()/1817257392992'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpv1ebmu_6\\MagicMock/mock.__getitem__()/1817257392992'
+2026-03-09 19:53:16,382 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:53:17,080 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:53:17,087 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:53:17,095 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:53:17,101 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:53:17,107 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:53:17,118 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:53:17,118 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:53:17,125 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:53:17,125 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:53:17,146 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:53:17,259 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-60\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:53:17,259 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:53:17,265 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:53:17,265 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2291947132240'>, using fallback
+2026-03-09 19:53:17,266 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:53:17,270 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:53:17,281 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:53:17,282 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:53:17,282 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:53:17,282 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:53:17,289 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:53:17,289 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:53:23,082 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:53:23,083 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-60\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:53:23,083 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-60\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:53:23,105 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2291972165984'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/2291972165984'
+2026-03-09 19:53:23,125 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:53:23,141 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpz06vpnt0\\MagicMock/mock.__getitem__()/2291972164976'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmpz06vpnt0\\MagicMock/mock.__getitem__()/2291972164976'
+2026-03-09 19:59:49,964 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 19:59:50,225 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 19:59:50,227 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:59:50,229 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 19:59:50,230 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 19:59:50,232 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 19:59:50,233 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:59:50,233 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 19:59:50,235 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 19:59:50,235 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 19:59:50,243 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:59:50,275 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-61\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 19:59:50,275 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 19:59:50,276 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 19:59:50,277 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1796738133232'>, using fallback
+2026-03-09 19:59:50,277 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:59:50,278 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 19:59:50,280 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 19:59:50,280 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 19:59:50,280 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 19:59:50,280 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 19:59:50,282 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 19:59:50,282 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 19:59:55,437 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 19:59:55,438 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-61\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 19:59:55,438 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-61\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 19:59:55,444 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1796758815136'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\MagicMock/mock.__getitem__()/1796758815136'
+2026-03-09 19:59:55,455 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 19:59:55,471 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp4v2m96xm\\MagicMock/mock.__getitem__()/1796759747424'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'C:\\Users\\dhire\\AppData\\Local\\Temp\\tmp4v2m96xm\\MagicMock/mock.__getitem__()/1796759747424'
+2026-03-09 20:02:54,741 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 20:02:55,022 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 20:02:55,027 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 20:02:55,029 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 20:02:55,032 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 20:02:55,034 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 20:02:55,037 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 20:02:55,037 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 20:02:55,039 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 20:02:55,039 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 20:02:55,047 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 20:02:55,101 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-62\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 20:02:55,101 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 20:02:55,104 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 20:02:55,104 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='2341874865824'>, using fallback
+2026-03-09 20:02:55,104 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 20:02:55,106 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 20:02:55,109 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 20:02:55,109 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 20:02:55,109 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 20:02:55,109 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 20:02:55,113 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 20:02:55,113 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 20:03:00,833 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 20:03:00,833 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-62\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 20:03:00,833 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-62\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 20:03:00,840 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+2026-03-09 20:03:00,853 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 20:03:00,870 - app - WARNING - rebuild_vectorstore_from_pdfs:557 - Failed to load 'test.pdf': PDF load error
+2026-03-09 21:08:12,296 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 21:08:12,560 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 21:08:12,562 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:08:12,564 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:08:12,565 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 21:08:12,567 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 21:08:12,568 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:08:12,568 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 21:08:12,570 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:08:12,570 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 21:08:12,576 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:08:12,610 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-63\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 21:08:12,610 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 21:08:12,612 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:08:12,612 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1579306265840'>, using fallback
+2026-03-09 21:08:12,612 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:08:12,613 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:08:12,615 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 21:08:12,615 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 21:08:12,615 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 21:08:12,615 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 21:08:12,617 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 21:08:12,617 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 21:08:17,611 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 21:08:17,612 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-63\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 21:08:17,612 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-63\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 21:08:17,617 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+2026-03-09 21:08:17,628 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 21:08:17,638 - app - WARNING - rebuild_vectorstore_from_pdfs:557 - Failed to load 'test.pdf': PDF load error
+2026-03-09 21:08:39,380 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 21:08:39,590 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 21:08:39,593 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:08:39,594 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:08:39,596 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 21:08:39,597 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 21:08:39,599 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:08:39,599 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 21:08:39,601 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:08:39,601 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 21:08:39,609 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:08:39,640 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-64\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 21:08:39,640 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 21:08:39,642 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:08:39,642 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1444863045184'>, using fallback
+2026-03-09 21:08:39,642 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:08:39,643 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:08:39,645 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 21:08:39,645 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 21:08:39,646 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 21:08:39,646 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 21:08:39,647 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 21:08:39,647 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 21:08:44,607 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 21:08:44,607 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-64\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 21:08:44,607 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-64\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 21:08:44,613 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+2026-03-09 21:08:44,625 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 21:08:44,634 - app - WARNING - rebuild_vectorstore_from_pdfs:557 - Failed to load 'test.pdf': PDF load error
+2026-03-09 21:09:12,214 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 21:09:12,424 - app - INFO - validate_environment:203 - Environment validation successful
+2026-03-09 21:09:12,427 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:09:12,429 - app - ERROR - validate_environment:182 - Configuration not loaded. Please check src/config/config.yaml
+2026-03-09 21:09:12,432 - app - ERROR - validate_environment:200 - GROQ_API_KEY not found in environment variables. Please set it in .env file.
+2026-03-09 21:09:12,434 - app - ERROR - validate_environment:191 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-09 21:09:12,436 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:09:12,436 - app - INFO - initialize_llm:232 - ✅ LLM initialized successfully: groq
+2026-03-09 21:09:12,439 - app - INFO - initialize_llm:227 - Initializing LLM: groq (model: llama-3.1-8b-instant)
+2026-03-09 21:09:12,439 - app - ERROR - initialize_llm:236 - Failed to initialize LLM: API error
+2026-03-09 21:09:12,448 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:09:12,483 - app - INFO - get_rag_prompt:267 - ✅ Successfully loaded prompt from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-65\test_get_rag_prompt_from_file0\medical_assistant.txt
+2026-03-09 21:09:12,483 - app - INFO - get_rag_prompt:268 - 📋 Prompt includes: 9 medical rules + 5 security rules
+2026-03-09 21:09:12,486 - app - INFO - get_rag_prompt:252 - Loading RAG prompt template from file...
+2026-03-09 21:09:12,486 - app - WARNING - get_rag_prompt:260 - Prompt file not found: <MagicMock name='Path()' id='1603169972784'>, using fallback
+2026-03-09 21:09:12,486 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:09:12,488 - app - INFO - create_fallback_prompt:300 - Using fallback prompt (basic version)
+2026-03-09 21:09:12,493 - app - INFO - prepare_rag_context:326 - Processing query: What is diabetes?...
+2026-03-09 21:09:12,493 - app - INFO - prepare_rag_context:349 - 🔍 Starting document retrieval...
+2026-03-09 21:09:12,493 - app - INFO - prepare_rag_context:364 - ✅ Retrieved 1 relevant documents
+2026-03-09 21:09:12,493 - app - INFO - prepare_rag_context:375 - 🤖 Preparing prompt for LLM...
+2026-03-09 21:09:12,497 - app - INFO - prepare_rag_context:326 - Processing query:    ...
+2026-03-09 21:09:12,498 - app - ERROR - prepare_rag_context:392 - Validation error: Query cannot be empty
+2026-03-09 21:09:18,718 - app - INFO - get_vectorstore:123 - Loaded embedding model: BAAI/bge-base-en-v1.5
+2026-03-09 21:09:18,719 - app - INFO - get_vectorstore:146 - 📂 Loading FAISS index from local path: C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-65\test_get_vectorstore_path_not_0\missing_db
+2026-03-09 21:09:18,719 - app - ERROR - get_vectorstore:152 - Vector store not found at C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-65\test_get_vectorstore_path_not_0\missing_db and GCS has no index either. Please run create_vectorstore.py first, or upload PDFs via the sidebar.
+2026-03-09 21:09:18,733 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 544, in rebuild_vectorstore_from_pdfs
+    with open(tmp_file_path, "wb") as f:
+         ~~~~^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'mock_temp_dir\\test.pdf'
+2026-03-09 21:09:18,762 - app - ERROR - rebuild_vectorstore_from_pdfs:625 - rebuild_vectorstore_from_pdfs failed: Embedding failed
+Traceback (most recent call last):
+  File "C:\Study\GenAI\Project\RAG\Medical-chatbot\app.py", line 535, in rebuild_vectorstore_from_pdfs
+    embedding_model = HuggingFaceEmbeddings(model_name=DEFAULT_EMBEDDING_MODEL)
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1169, in __call__
+    return self._mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1173, in _mock_call
+    return self._execute_mock_call(*args, **kwargs)
+           ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "C:\Users\dhire\AppData\Roaming\uv\python\cpython-3.13.6-windows-x86_64-none\Lib\unittest\mock.py", line 1228, in _execute_mock_call
+    raise effect
+Exception: Embedding failed
+2026-03-09 21:09:18,783 - app - WARNING - rebuild_vectorstore_from_pdfs:557 - Failed to load 'test.pdf': PDF load error
+2026-03-09 21:09:53,452 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 21:24:27,707 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-09 21:24:27,884 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-09 21:24:27,885 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-09 21:24:27,885 - __main__ - INFO - init_globals:61 - ✅ LangSmith observability enabled
+2026-03-09 21:24:28,410 - __main__ - INFO - init_globals:80 - ✅ Output guardrails initialized
+2026-03-09 21:24:28,411 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: medical-chatbot-faiss, prefix: faiss-index
+2026-03-09 21:24:28,411 - __main__ - INFO - init_globals:88 - ☁️  GCS storage enabled — bucket: medical-chatbot-faiss

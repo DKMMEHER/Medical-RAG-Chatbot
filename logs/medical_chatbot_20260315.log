@@ -1,0 +1,115 @@
+2026-03-15 19:32:20,921 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:21,102 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:21,104 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:21,107 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:32:21,110 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:32:21,207 - src.rag.engine - INFO - build_bm25_retriever:72 - 🔍 BM25 retriever built from 2 documents
+2026-03-15 19:32:21,210 - src.rag.engine - WARNING - build_bm25_retriever:69 - ⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped
+2026-03-15 19:32:21,213 - src.rag.engine - INFO - rerank_documents:52 - 🎯 Re-ranked 3 → top 2 docs (best score: 0.900)
+2026-03-15 19:32:21,216 - src.rag.engine - WARNING - rerank_documents:58 - ⚠️ Re-ranking failed — falling back to original order: Model crash
+2026-03-15 19:32:21,219 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:50,237 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:50,241 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:50,243 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:50,246 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:32:50,248 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:32:50,256 - src.rag.engine - INFO - build_bm25_retriever:72 - 🔍 BM25 retriever built from 2 documents
+2026-03-15 19:32:50,259 - src.rag.engine - WARNING - build_bm25_retriever:69 - ⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped
+2026-03-15 19:32:50,261 - src.rag.engine - INFO - rerank_documents:52 - 🎯 Re-ranked 3 → top 2 docs (best score: 0.900)
+2026-03-15 19:32:50,264 - src.rag.engine - WARNING - rerank_documents:58 - ⚠️ Re-ranking failed — falling back to original order: Model crash
+2026-03-15 19:32:50,266 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:32:58,618 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Study\GenAI\Project\RAG\Medical-chatbot\src\config\config.yaml
+2026-03-15 19:33:02,893 - src.config.settings - INFO - _load_yaml_config:57 - Loaded configuration from C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-71\test_load_yaml_config_success0\config.yaml
+2026-03-15 19:33:02,893 - src.config.settings - WARNING - _validate_config:76 - Recommended config keys missing: ['llms']
+2026-03-15 19:33:02,903 - src.config.settings - ERROR - _load_yaml_config:60 - Config file not found: non_existent_config.yaml
+2026-03-15 19:33:02,944 - src.config.settings - WARNING - _validate_config:76 - Recommended config keys missing: ['llms', 'embedding', 'vectorstore']
+2026-03-15 19:33:03,804 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-15 19:33:04,900 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: openai (provider: openai, model: gpt-4o-mini)
+2026-03-15 19:33:06,023 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: gemini (provider: google, model: gemini-pro)
+2026-03-15 19:33:06,711 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: claude (provider: anthropic, model: claude-3-5-sonnet-20241022)
+2026-03-15 19:33:06,729 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: ollama (provider: ollama, model: llama3:latest)
+2026-03-15 19:33:06,733 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: bad_provider (provider: unknown_xyz, model: some-model)
+2026-03-15 19:33:06,733 - src.model.llm_factory - ERROR - create_llm:200 - Unsupported provider: unknown_xyz
+2026-03-15 19:33:06,735 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-15 19:33:06,735 - src.model.llm_factory - ERROR - create_llm:92 - API key not found. Please set GROQ_API_KEY environment variable.
+2026-03-15 19:33:06,740 - src.model.llm_factory - ERROR - create_llm:73 - LLM 'nonexistent_llm' not found in config.yaml
+2026-03-15 19:33:06,743 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: openai (provider: openai, model: gpt-4o-mini)
+2026-03-15 19:33:06,746 - src.model.llm_factory - INFO - create_llm:82 - Creating LLM: groq (provider: groq, model: llama-3.1-8b-instant)
+2026-03-15 19:33:06,750 - src.observability.langsmith_config - INFO - configure_langsmith:51 - LangSmith API key not found. Tracing will be disabled.
+2026-03-15 19:33:06,755 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: test-project
+2026-03-15 19:33:06,755 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-15 19:33:06,762 - src.observability.langsmith_config - INFO - configure_langsmith:68 - ✅ LangSmith configured successfully for project: medical-chatbot
+2026-03-15 19:33:06,762 - src.observability.langsmith_config - INFO - configure_langsmith:69 - 📊 Tracing enabled: True
+2026-03-15 19:33:06,766 - src.observability.langsmith_config - WARNING - configure_langsmith:74 - Failed to configure LangSmith: Connection error
+2026-03-15 19:33:06,766 - src.observability.langsmith_config - INFO - configure_langsmith:75 - Application will continue without LangSmith tracing
+2026-03-15 19:33:06,778 - src.observability.langsmith_config - INFO - disable_tracing:105 - LangSmith tracing disabled
+2026-03-15 19:33:06,780 - src.observability.langsmith_config - INFO - enable_tracing:112 - LangSmith tracing enabled
+2026-03-15 19:33:06,782 - src.observability.langsmith_config - WARNING - enable_tracing:114 - Cannot enable tracing: LANGCHAIN_API_KEY not set
+2026-03-15 19:33:06,800 - src.observability.tracing - INFO - create_feedback:224 - ✅ Feedback created for run run-123: user_rating=0.8
+2026-03-15 19:33:06,803 - src.observability.tracing - ERROR - create_feedback:228 - Failed to create feedback: Network error
+2026-03-15 19:33:10,340 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:10,341 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,344 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:10,344 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,524 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:10,524 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,529 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:33:10,529 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,534 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:33:10,534 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,542 - src.rag.engine - INFO - build_bm25_retriever:72 - 🔍 BM25 retriever built from 2 documents
+2026-03-15 19:33:10,545 - src.rag.engine - WARNING - build_bm25_retriever:69 - ⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped
+2026-03-15 19:33:10,547 - src.rag.engine - INFO - rerank_documents:52 - 🎯 Re-ranked 3 → top 2 docs (best score: 0.900)
+2026-03-15 19:33:10,550 - src.rag.engine - WARNING - rerank_documents:58 - ⚠️ Re-ranking failed — falling back to original order: Model crash
+2026-03-15 19:33:10,554 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:10,554 - src.observability.tracing - INFO - wrapper:105 - Retrieved 2 documents
+2026-03-15 19:33:10,557 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,558 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: my-test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,560 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: explicit-bucket, prefix: faiss-index
+2026-03-15 19:33:10,562 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: b, prefix: custom/prefix
+2026-03-15 19:33:10,563 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: b, prefix: faiss-index
+2026-03-15 19:33:10,565 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,567 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,567 - src.storage.gcs_handler - INFO - index_exists:133 - GCS: FAISS index exists in bucket
+2026-03-15 19:33:10,569 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,570 - src.storage.gcs_handler - INFO - index_exists:131 - GCS: index file missing — faiss-index/index.pkl
+2026-03-15 19:33:10,572 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,572 - src.storage.gcs_handler - WARNING - index_exists:136 - GCS: could not check index existence: GCS connection failed
+2026-03-15 19:33:10,575 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,575 - src.storage.gcs_handler - INFO - upload_faiss_index:151 - GCS: upload skipped — GCS not configured
+2026-03-15 19:33:10,577 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,577 - src.storage.gcs_handler - ERROR - upload_faiss_index:156 - GCS upload failed: local path does not exist: /nonexistent/path/db_faiss
+2026-03-15 19:33:10,581 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,581 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.faiss (0.0 KB) → gs://test-bucket/faiss-index/index.faiss
+2026-03-15 19:33:10,581 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.pkl (0.0 KB) → gs://test-bucket/faiss-index/index.pkl
+2026-03-15 19:33:10,581 - src.storage.gcs_handler - INFO - upload_faiss_index:178 - ✅ GCS: FAISS index uploaded to gs://test-bucket/faiss-index/
+2026-03-15 19:33:10,584 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,585 - src.storage.gcs_handler - INFO - upload_faiss_index:173 - GCS: uploaded index.faiss (0.0 KB) → gs://test-bucket/faiss-index/index.faiss
+2026-03-15 19:33:10,585 - src.storage.gcs_handler - ERROR - upload_faiss_index:167 - GCS upload failed: missing file C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-71\test_returns_false_when_index_0\index.pkl
+2026-03-15 19:33:10,591 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,591 - src.storage.gcs_handler - ERROR - upload_faiss_index:184 - GCS upload failed: network error
+2026-03-15 19:33:10,594 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,594 - src.storage.gcs_handler - INFO - download_faiss_index:199 - GCS: download skipped — GCS not configured
+2026-03-15 19:33:10,597 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,597 - src.storage.gcs_handler - INFO - download_faiss_index:203 - GCS: no index found in bucket — skipping download
+2026-03-15 19:33:10,600 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,601 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.faiss (0.0 KB) → C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-71\test_downloads_both_files_succ0\download_dest\index.faiss
+2026-03-15 19:33:10,601 - src.storage.gcs_handler - INFO - download_faiss_index:219 - GCS: downloaded index.pkl (0.0 KB) → C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-71\test_downloads_both_files_succ0\download_dest\index.pkl
+2026-03-15 19:33:10,602 - src.storage.gcs_handler - INFO - download_faiss_index:221 - ✅ GCS: FAISS index downloaded to C:\Users\dhire\AppData\Local\Temp\pytest-of-dhire\pytest-71\test_downloads_both_files_succ0\download_dest
+2026-03-15 19:33:10,604 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,606 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,608 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,611 - src.storage.gcs_handler - INFO - __init__:62 - GCSHandler: GCS_BUCKET_NAME not set — running in local-only mode
+2026-03-15 19:33:10,612 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,615 - src.storage.gcs_handler - INFO - __init__:57 - GCSHandler initialized — bucket: test-bucket, prefix: faiss-index
+2026-03-15 19:33:10,650 - test_emoji - INFO - test_logger_emoji_support:33 - Testing emoji 🚀
+2026-03-15 19:33:28,572 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:28,575 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:28,578 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs
+2026-03-15 19:33:28,580 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:33:28,583 - src.rag.engine - INFO - prepare_rag_context:108 - 🔀 Hybrid retrieval (FAISS+BM25): 2 docs
+2026-03-15 19:33:28,591 - src.rag.engine - INFO - build_bm25_retriever:72 - 🔍 BM25 retriever built from 2 documents
+2026-03-15 19:33:28,594 - src.rag.engine - WARNING - build_bm25_retriever:69 - ⚠️ BM25: No documents found in vectorstore docstore — BM25 skipped
+2026-03-15 19:33:28,596 - src.rag.engine - INFO - rerank_documents:52 - 🎯 Re-ranked 3 → top 2 docs (best score: 0.900)
+2026-03-15 19:33:28,599 - src.rag.engine - WARNING - rerank_documents:58 - ⚠️ Re-ranking failed — falling back to original order: Model crash
+2026-03-15 19:33:28,601 - src.rag.engine - INFO - prepare_rag_context:111 - 🔍 FAISS-only retrieval: 2 docs

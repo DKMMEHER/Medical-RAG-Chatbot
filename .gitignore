@@ -40,15 +40,6 @@ firebase-service-account*.json
 *.swo
 *~
 
-# Logs and Temporary Test Data
-*.log
-logs/
-test_*.txt
-tests_*.txt
-pass_*.txt
-final_*.txt
-ruff_*.txt
-
 # Vector Store (too large for Git)
 vectorstore/
 
@@ -105,3 +96,6 @@ examples/
 
 # Pipeline file
 pipeline.txt
+
+# Interview guide
+interview_guide.txt

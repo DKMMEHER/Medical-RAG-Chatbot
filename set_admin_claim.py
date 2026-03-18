@@ -15,7 +15,7 @@ from firebase_admin import auth, credentials
 
 # ── CONFIG ──────────────────────────────────────────────────────────────────
 # It's safer to get this from an environment variable than to hardcode it
-ADMIN_USER_UID = os.getenv("ADMIN_USER_UID", "zwRD1g1tJHS8SX8I8DkvTpFOkZF2")
+ADMIN_USER_UID = os.getenv("ADMIN_USER_UID")
 # ────────────────────────────────────────────────────────────────────────────
 
 
