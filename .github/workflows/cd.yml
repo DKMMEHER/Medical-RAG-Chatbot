@@ -114,5 +114,5 @@ jobs:
             --cpu 2 \
             --allow-unauthenticated \
             --env-vars-file=.env.yaml \
-            --clear-startup-probe \
-            --clear-liveness-probe
+            --startup-probe=httpGet.path=/ \
+            --liveness-probe=httpGet.path=/
