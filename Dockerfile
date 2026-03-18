@@ -51,7 +51,7 @@ ENV GCS_BUCKET_NAME=""
 # Run the application
 # Port/address are set in .streamlit/config.toml only (not duplicated here)
 # to prevent Streamlit from hardcoding the WebSocket port in the browser URLs.
-CMD ["uv", "run", "streamlit", "run", "app.py", \
-    "--server.headless=true", \
-    "--server.enableCORS=false", \
-    "--server.enableXsrfProtection=false"]
+COPY start.sh /app/start.sh
+RUN chmod +x /app/start.sh
+
+CMD ["/app/start.sh"]
