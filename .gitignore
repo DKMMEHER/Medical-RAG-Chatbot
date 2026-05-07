@@ -98,4 +98,7 @@ examples/
 pipeline.txt
 
 # Interview guide
-interview_guide.txt
+*.txt
+
+# Logs
+logs/

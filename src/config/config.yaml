@@ -2,7 +2,7 @@
 # Switch between different LLMs by changing the 'active_llm' value
 
 # Active LLM for answer generation (can be any LLM)
-active_llm: "groq"
+active_llm: "gemini"
 
 # Active LLM for RAGAS evaluation (MUST be "openai" for RAGAS v0.4.3)
 # See RAGAS_LIMITATION.md for details
@@ -40,11 +40,11 @@ llms:
 
   gemini:
     provider: "google"
-    model: "gemini-3-pro-preview"
+    model: "gemini-2.5-flash"
     temperature: 0.5
     max_tokens: 512
     api_key_env: "GEMINI_API_KEY"
-    description: "gemini-3-pro-preview, paid but cheap ($0.15/1M tokens)"
+    description: "Gemini 2.5 Flash, fast and cost-effective with thinking capabilities"
 
 
   # === OPENAI OPTIONS ===
