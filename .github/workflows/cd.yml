@@ -81,11 +81,13 @@ jobs:
 
       - name: Configure Docker for GCP
         run: |
-          gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
+          echo "Currently Authenticated As:"
+          gcloud auth list
+          gcloud auth configure-docker asia-south1-docker.pkg.dev --quiet
 
       - name: Build and Push Docker Image
         run: |
-          DOCKER_TAG="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/medicalchatbotdkm1991/app:${{ github.sha }}"
+          DOCKER_TAG="asia-south1-docker.pkg.dev/medical-chatbot-4409a/medicalchatbotdkm1991/app:${{ github.sha }}"
           docker build -t "$DOCKER_TAG" .
           docker push "$DOCKER_TAG"
           echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
@@ -118,8 +120,8 @@ jobs:
 
           gcloud run deploy medical-chatbot \
             --image ${{ env.DOCKER_TAG }} \
-            --project ${{ secrets.GCP_PROJECT }} \
-            --region ${{ secrets.GCP_REGION }} \
+            --project medical-chatbot-4409a \
+            --region asia-south1 \
             --port 8080 \
             --memory 4Gi \
             --cpu 2 \
