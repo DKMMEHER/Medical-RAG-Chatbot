@@ -2,6 +2,7 @@ from fastapi import APIRouter, Depends, HTTPException, UploadFile, File, Backgro
 from api.models.schemas import UploadResponse, TaskStatusResponse
 from api.main import state, get_current_user
 from src.utils.logger import get_logger
+from src.config.settings import settings
 from api.tasks import process_pdf_indexing_task
 from src.utils.tenant_helper import extract_tenant_id
 from src.storage.gcs_handler import GCSHandler
