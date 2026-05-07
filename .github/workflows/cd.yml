@@ -79,6 +79,17 @@ jobs:
       - name: Set up Cloud SDK
         uses: google-github-actions/setup-gcloud@v2
 
+      - name: Configure Docker for GCP
+        run: |
+          gcloud auth configure-docker ${{ secrets.GCP_REGION }}-docker.pkg.dev --quiet
+
+      - name: Build and Push Docker Image
+        run: |
+          DOCKER_TAG="${{ secrets.GCP_REGION }}-docker.pkg.dev/${{ secrets.GCP_PROJECT }}/medicalchatbotdkm1991/app:${{ github.sha }}"
+          docker build -t "$DOCKER_TAG" .
+          docker push "$DOCKER_TAG"
+          echo "DOCKER_TAG=$DOCKER_TAG" >> $GITHUB_ENV
+
       - name: Deploy to Cloud Run
         env:
           GCS_BUCKET_NAME: ${{ secrets.GCS_BUCKET_NAME }}
@@ -106,7 +117,7 @@ jobs:
           '
 
           gcloud run deploy medical-chatbot \
-            --source . \
+            --image ${{ env.DOCKER_TAG }} \
             --project ${{ secrets.GCP_PROJECT }} \
             --region ${{ secrets.GCP_REGION }} \
             --port 8080 \
