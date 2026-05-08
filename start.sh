@@ -5,12 +5,12 @@ echo "🚀 Starting Medical RAG Chatbot services..."
 
 # Start FastAPI backend on port 8000 in the background
 echo "🔧 Starting FastAPI backend on port 8000..."
-uv run uvicorn api.main:app --host 0.0.0.0 --port 8000 &
+python -m uvicorn api.main:app --host 0.0.0.0 --port 8000 &
 UVICORN_PID=$!
 
 # Start Streamlit on port 8080 in the background
 echo "🌐 Starting Streamlit on port 8080..."
-uv run streamlit run app.py \
+python -m streamlit run app.py \
     --server.port=8080 \
     --server.address=0.0.0.0 \
     --server.headless=true \
